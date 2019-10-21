@@ -1,0 +1,34 @@
+{
+  "name": "bewed",
+  "version": "1.0.0",
+  "description": "Backend for bewed App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodchenk/bewed.git"
+  },
+  "keywords": [
+    "nodejs",
+    "typescript",
+    "ionic",
+    "api",
+    "foliage"
+  ],
+  "author": "Mischa Rodchenkov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodchenk/bewed/issues"
+  },
+  "homepage": "https://github.com/rodchenk/bewed#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.7.5"
+  }
+}
