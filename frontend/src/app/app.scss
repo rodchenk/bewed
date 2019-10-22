@@ -14,3 +14,30 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+.scroll-content{
+	overflow-y: hidden;
+	.item{
+		.icon{
+			padding: 0 12px
+		}
+		&:hover{
+			background: #eee
+		}
+	}
+	.item-inner{
+		border: none !important;
+	}
+}
+.content{
+	background: #f0f3f8;
+}
+.header{
+	border-bottom: 1px #eee solid;
+	.toolbar-background{
+		background: transparent;
+	}
+	&::after{
+		background-image: none;
+	}
+}
