@@ -4,6 +4,23 @@
 var mongoose = require('mongoose'),
   Task = mongoose.model('Tasks');
 
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
+
+exports.get_user = function(req, res){
+
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("bewed");
+    dbo.collection("bewed_collection").findOne({}, function(err, result) {
+      if (err) throw err;
+      //console.log(result.name);
+      res.json(result);
+      db.close();
+    });
+  });
+}
+
 exports.list_all_tasks = function(req, res) {
   Task.find({}, function(err, task) {
     if (err)

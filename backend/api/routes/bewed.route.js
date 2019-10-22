@@ -7,6 +7,9 @@ module.exports = function(app) {
     .get(bewed.test)
     .post(bewed.create_a_task);
 
+    app.route('/user').
+    	get(bewed.get_user);
+
 
   app.route('/tasks/:taskId')
     .get(bewed.read_a_task)
