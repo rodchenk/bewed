@@ -1,5 +1,5 @@
 {
-  "name": "bewed",
+  "name": "frontend",
   "integrations": {},
-  "type": "angular"
+  "type": "ionic-angular"
 }
