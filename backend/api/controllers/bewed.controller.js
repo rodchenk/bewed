@@ -13,7 +13,11 @@ exports.list_all_tasks = function(req, res) {
 };
 
 
-
+exports.test = function(req, res){
+  res.json({
+    "content" : "Hello world!"
+  });
+}
 
 exports.create_a_task = function(req, res) {
   var new_task = new Task(req.body);
