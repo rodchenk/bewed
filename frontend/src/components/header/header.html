@@ -1,5 +1,5 @@
 <ion-navbar>
-	<button *ngIf="header_data.ismenu" 
+	<!-- <button *ngIf="header_data.ismenu" 
 			ion-button icon-only menuToggle>
 		<ion-icon name="grid"></ion-icon>
 	</button>
@@ -8,5 +8,16 @@
 	</button>
 	<ion-title class="header-title" [ngClass]="{'ishome-title': header_data.ishome,'ismeun-centre': !header_data.ishome}">
 	{{header_data.title}}
-	</ion-title>
+	</ion-title> -->
+	<button *ngIf="header_data.ismenu" 
+			ion-button icon-only menuToggle>
+		<ion-icon name="grid"></ion-icon>
+	</button>
+	<input type="text" name="">
+	<button color="light">
+  		<ion-icon slot="icon-only" name="moon"></ion-icon>
+	</button>
+	<button color="light">
+  		<ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+	</button>
 </ion-navbar>
