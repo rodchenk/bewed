@@ -54,8 +54,12 @@
 	</div>
 	<div class="message-input">
 		<form (ngSubmit)="send_message()">
-			<input name="text" type="text" [(ngModel)]="messagetext">
-			<button  mat-flat-button color="primary">Send</button>	
+			<div class="ui input">
+		    	<input type="text" placeholder="Be nice in the chat" name="message" [(ngModel)]="messagetext">
+		 	</div>
+			<button mat-flat-button style="background: transparent;color: #686b79;">
+				<mat-icon aria-hidden="false" aria-label="icon" class="icon">near_me</mat-icon>
+			</button>	
 		</form>	
 	</div>
 </mat-card>

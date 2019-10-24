@@ -1,4 +1,4 @@
-<a routerLink="/" routerLinkActive="active" mat-stroked-button>
+<!-- <a routerLink="/" routerLinkActive="active" mat-stroked-button>
   <mat-icon aria-hidden="false" aria-label="Example camera icon">favorite_border</mat-icon>
   Home
 </a>
@@ -10,5 +10,51 @@
   <mat-icon aria-hidden="false" aria-label="Example camera icon">chat_bubble_outline</mat-icon>
   Message
 </a>
+ -->
+<header>
+  <a routerLink="/">
+    <img src="assets/img/logo.png" class="logo">
+  </a>
+  <div class="ui icon input header-element">
+    <input type="text" placeholder="Search for something">
+    <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">search</mat-icon>
+  </div>
+  <button mat-flat-button class="header-element mode">
+    <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">nights_stay</mat-icon>
+  </button>
+
+  <button mat-flat-button class="header-element login">
+    <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">arrow_upward</mat-icon>
+    Log in
+  </button>
+  <button mat-flat-button class="header-element signup">
+    Sign up
+  </button>
+</header>
+<div class="sidenav">
+  <ul>
+    <li>
+      <a routerLink="/">
+        <mat-icon aria-hidden="false" aria-label="Example camera icon">toll</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/msg">
+        <mat-icon aria-hidden="false" aria-label="Example camera icon">mail_outline</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/user">
+        <mat-icon aria-hidden="false" aria-label="Example camera icon">work_outline</mat-icon>
+      </a>
+    </li>
+
+    <li>
+      <a routerLink="/user">
+        <mat-icon aria-hidden="false" aria-label="Example camera icon">exit_to_app</mat-icon>
+      </a>
+    </li>
+  </ul>
+</div>
 
 <router-outlet></router-outlet>

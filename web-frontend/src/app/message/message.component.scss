@@ -52,15 +52,13 @@ h4{
 }
 .message-input{
 	position: relative;
-	input{
+	.ui.input{
 		width: 100%;
-		border-radius: 4px;
-	    box-shadow: 0 0 7px #d2d6e3;
-	    border: 1px #a3a4ae solid;
-		padding: 9px;
-		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	    box-sizing: border-box;         /* Opera/IE 8+ */
+	}
+	.ui.input>input{
+   		border: none;
+    	box-shadow: none;
+    	background: #eff0f6;
 	}
 	button{
 		position: absolute;
