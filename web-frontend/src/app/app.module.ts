@@ -8,6 +8,20 @@ import { UserComponent } from './user/user.component';
 import { MessageComponent } from './message/message.component';
 import { HomeComponent } from './home/home.component';
 
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+
+import { FormsModule } from '@angular/forms';
+
+import { MatButtonModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatCardModule } from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +32,16 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    AngularFirestoreModule,
+    FormsModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
   ],
   providers: [],
   bootstrap: [AppComponent]

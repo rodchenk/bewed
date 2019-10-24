@@ -1,4 +1,14 @@
-<a routerLink="/" routerLinkActive="active">Home</a>
-<a routerLink="/user" routerLinkActive="active">User</a>
-<a routerLink="/msg" routerLinkActive="active">Message</a>
+<a routerLink="/" routerLinkActive="active" mat-stroked-button>
+  <mat-icon aria-hidden="false" aria-label="Example camera icon">favorite_border</mat-icon>
+  Home
+</a>
+<a routerLink="/user" routerLinkActive="active" mat-stroked-button>
+  <mat-icon aria-hidden="false" aria-label="Example camera icon">face</mat-icon>
+  User
+</a>
+<a routerLink="/msg" routerLinkActive="active" mat-stroked-button>
+  <mat-icon aria-hidden="false" aria-label="Example camera icon">chat_bubble_outline</mat-icon>
+  Message
+</a>
+
 <router-outlet></router-outlet>
