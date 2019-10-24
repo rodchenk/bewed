@@ -55,7 +55,7 @@
 	<div class="message-input">
 		<form (ngSubmit)="send_message()">
 			<div class="ui input">
-		    	<input type="text" placeholder="Be nice in the chat" name="message" [(ngModel)]="messagetext">
+		    	<input type="text" placeholder="Be nice in the chat" name="message" [(ngModel)]="messagetext" autocomplete="off">
 		 	</div>
 			<button mat-flat-button style="background: transparent;color: #686b79;">
 				<mat-icon aria-hidden="false" aria-label="icon" class="icon">near_me</mat-icon>
