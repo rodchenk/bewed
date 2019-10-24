@@ -6,3 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 	max-width: 650px;
 	margin: 6px auto;
 }
+::selection{
+	background-color: #a61852;
+    color: white;
+}

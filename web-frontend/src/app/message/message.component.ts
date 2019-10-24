@@ -39,6 +39,7 @@ export class MessageComponent implements OnInit {
   	}
 
   	send_message(){
+  		if(this.messagetext.trim().length === 0) return;
   		let time = this.timestamp
   		console.log(time)
   		this.db.object('messages/' + (+new Date())).set({
