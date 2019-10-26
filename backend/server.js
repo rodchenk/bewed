@@ -1,13 +1,16 @@
 var express = require('express'),
   	app = express(),
   	port = process.env.PORT || 3000,
-  	mongoose = require('mongoose'),
+  	//mongoose = require('mongoose'),
+  	nano = require('nano')('http://localhost:5984'),
+  	db_name = 'bewed',
+  	db = nano.use(db_name),
   	Task = require('./api/models/bewed.model'), //created model loading here
   	bodyParser = require('body-parser');
   
 // mongoose instance connection url connection
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/bewed'); 
+// mongoose.Promise = global.Promise;
+// mongoose.connect('mongodb://localhost/bewed'); 
 
 app.use(function(req, res, next) {
   	res.header("Access-Control-Allow-Origin", "*");
@@ -16,14 +19,13 @@ app.use(function(req, res, next) {
   	next();
 });
 
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var routes = require('./api/routes/bewed.route'); //importing route
-routes(app); //register the route
 
-
+routes(app);
 app.listen(port);
 
-
-console.log('bewed RESTful API server started on: ' + port);
+console.log('bewed RESTful API server started on: ' + port + "\n\n\n");
