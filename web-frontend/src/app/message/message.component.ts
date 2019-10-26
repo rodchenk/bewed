@@ -20,7 +20,6 @@ export class MessageComponent implements OnInit {
 		this.db.list('messages').snapshotChanges().subscribe(data => {
 			this.messages = data.map(res => res.payload.val())
 			this.loading = false;
-			console.log('new message')
 		});
   	}
 
@@ -35,7 +34,6 @@ export class MessageComponent implements OnInit {
   	private scrollToBottom(){
   		let container = document.getElementsByClassName('content')[0]
   		container.scrollTo(0, container.scrollHeight)
-  		console.log('scrolling')
   	}
 
   	send_message(){
@@ -51,5 +49,4 @@ export class MessageComponent implements OnInit {
   			this.scrollToBottom()
   		});
   	}
-
 }
