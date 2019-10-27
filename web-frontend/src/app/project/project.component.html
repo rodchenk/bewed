@@ -1,0 +1,26 @@
+<p *ngIf="!connected" style="text-align: center;">No connection to database!</p>
+
+<mat-card *ngFor="let project of projects" class="card" [@slideInOut]>
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{project.name}}</mat-card-title>
+    <mat-card-subtitle>{{project.authname}}</mat-card-subtitle>
+  </mat-card-header>
+  <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+  <mat-card-content>
+    <p>
+      {{project.content}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button  mat-icon-button color="accent" (click)="like(project)">
+    	<i class="material-icons">
+    		{{project.liked ? 'favorite' : 'favorite_border'}}
+		</i>
+    </button>
+    <button  mat-button color="accent">
+		<mat-icon aria-hidden="false" aria-label="icon" class="icon" style="vertical-align: sub">chat_bubble_outline</mat-icon>
+		12
+    </button>
+  </mat-card-actions>
+</mat-card>

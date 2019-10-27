@@ -14,32 +14,40 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-import { MatButtonModule,
-  MatMenuModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatCardModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule } from '@angular/material';
+import { ProjectComponent } from './project/project.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     MessageComponent,
-    HomeComponent
+    HomeComponent,
+    ProjectComponent,
+    LoginComponent
   ],
   imports: [
+    ToastrModule.forRoot(), // ToastrModule added
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
+    MatInputModule,
     MatCardModule,
     AngularFirestoreModule,
+    MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
   ],

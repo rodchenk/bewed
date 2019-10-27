@@ -19,14 +19,21 @@
     <input type="text" placeholder="Search for something">
     <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">search</mat-icon>
   </div>
-  <button mat-flat-button class="header-element mode">
+<!--   <button mat-flat-button class="header-element mode">
     <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">nights_stay</mat-icon>
-  </button>
+  </button> -->
+  <a routerLink="/explore" mat-flat-button class="header-element" style="margin-left: 10px">
+    Get started
+  </a>
 
-  <button mat-flat-button class="header-element login">
+  <a routerLink="/explore" mat-flat-button class="header-element" style="margin-left: 10px">
+    Explore
+  </a>
+
+  <a mat-flat-button class="header-element login" routerLink="/login">
     <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">arrow_upward</mat-icon>
     Log in
-  </button>
+  </a>
   <button mat-flat-button class="header-element signup">
     Sign up
   </button>
@@ -46,6 +53,11 @@
     <li>
       <a routerLink="/user">
         <mat-icon aria-hidden="false" aria-label="Example camera icon">work_outline</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/user">
+        <mat-icon aria-hidden="false" aria-label="Example camera icon">notifications_none</mat-icon>
       </a>
     </li>
 

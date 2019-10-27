@@ -1,10 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #eff0f6}
 .mat-card{
 	max-width: 650px;
-	margin: 6px auto;
+	margin: 12px auto;
+	box-shadow: 0 0 7px #e1e2e9;
+}
+.mat-card-actions {
+	text-align: right;
 }
 ::selection{
 	background-color: #a61852;
