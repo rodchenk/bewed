@@ -1,10 +1,15 @@
 'use strict';
-module.exports = function(app) {
-    var bewed = require('../controllers/bewed.controller');
 
-    app.route('/test').get(bewed.test);
-    app.route('/user').
-        get(bewed.get_user).
-        post(bewed.add_user);
-    app.route('/couch').get(bewed.couch);
-};
+var bewed = require('../controllers/bewed.controller');
+var projects = require('../controllers/projects.controller');
+
+const express = require('express')
+const router = express.Router()
+
+router.get('/test', bewed.test)
+router.get('/user', bewed.getById)
+router.post('/user', bewed.add_user)
+router.get('/projects', projects.getAll)
+
+
+module.exports = router;

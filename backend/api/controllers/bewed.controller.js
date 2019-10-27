@@ -1,15 +1,6 @@
 'use strict';
-
-
-// var mongoose = require('mongoose'),
-// Task = mongoose.model('Tasks');
-
-// var MongoClient = require('mongodb').MongoClient;
-// var url = "mongodb://localhost:27017/";
-
+// user controller
 const NodeCouchDb = require('node-couchdb');
-
-// node-couchdb instance with default options
 const couch = new NodeCouchDb();
 const db_name = 'bewed';
 
@@ -40,6 +31,21 @@ exports.add_user = function(req, res){
     } );
 }
 
+exports.getById = function(req, res){
+    console.log(req.query);
+    couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$eq": req.query._id
+            }
+        }
+    }, {}).then(({data, headers, status}) => {
+        res.json(data);
+    }, err => {
+        res.json({'status':'error', 'reason':err});
+    });
+}
+
 exports.couch = function(req, res){
     couch.update(db_name, {
         _id: "86f6f15a09469b23abed73fdc3000b48",
@@ -52,6 +58,8 @@ exports.couch = function(req, res){
         res.json({'status': 'error', 'reason': err});
     });
 }
+
+
 
 exports.test = function(req, res){
     res.json({
