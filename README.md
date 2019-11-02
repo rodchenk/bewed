@@ -1,4 +1,20 @@
-# bewed
+# bewed (web & mobile frontend)
+
+### Web
+
+```bash
+cd web/
+npm install package.json
+ng serve --open
+```
+
+### Mobile
+
+```bash
+cd mobile/
+npm install package.json
+ionic serve
+```
 
 [Material icon](https://material.io/resources/icons/)
 
