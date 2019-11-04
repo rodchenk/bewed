@@ -5,6 +5,8 @@ import { UserComponent } from './user/user.component';
 import { MessageComponent } from './message/message.component';
 import { ProjectComponent } from './project/project.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [  
 	{
@@ -26,6 +28,14 @@ const routes: Routes = [
  	{
  		path: 'login',
  		component: LoginComponent
+ 	},
+ 	{
+ 		path: 'logout',
+ 		component: LogoutComponent
+ 	},
+ 	{
+ 		path: 'signup',
+ 		component: RegisterComponent
  	}
 ];
 

@@ -17,11 +17,13 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatButtonModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
 import { ProjectComponent } from './project/project.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { LoginComponent } from './login/login.component';
     MessageComponent,
     HomeComponent,
     ProjectComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    LogoutComponent
   ],
   imports: [
     ToastrModule.forRoot(), // ToastrModule added
@@ -43,6 +47,7 @@ import { LoginComponent } from './login/login.component';
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
+    MatProgressSpinnerModule,
     MatCardModule,
     AngularFirestoreModule,
     MatFormFieldModule,
