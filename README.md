@@ -1,4 +1,4 @@
-# bewed (web & mobile frontend)
+# bewed (web & mobile frontend) :neckbeard:
 
 ### Web
 
@@ -16,10 +16,20 @@ npm install package.json
 ionic serve
 ```
 
-[Material icon](https://material.io/resources/icons/)
+### Node server
 
-[Material components](https://material.angular.io/components/)
+```bash
+cd backend/
+npm install package.json
+node server
+```
 
-[Firebase DB](https://console.firebase.google.com/project/axial-theater-237714/database/)
+### Helpful links
 
-[Couch DB](http://localhost:5984/_utils/#/database/bewed/_all_docs)
+- [Material icon](https://material.io/resources/icons/)
+
+- [Material components](https://material.angular.io/components/)
+
+- [Firebase DB](https://console.firebase.google.com/project/axial-theater-237714/database/)
+
+- [Couch DB](http://localhost:5984/_utils/#/database/bewed/_all_docs)
