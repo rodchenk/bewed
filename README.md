@@ -1,4 +1,4 @@
-# bewed (web & mobile frontend) :neckbeard:
+# bewed (web & mobile frontend) :fire:
 
 ### Web
 
