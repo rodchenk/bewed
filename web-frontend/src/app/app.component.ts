@@ -7,7 +7,7 @@ import { UserService } from './user.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	public isLoading:boolean = true;
+	public isLoading:boolean = false;
 
 	public showSpinner():void{
 		this.isLoading = true;

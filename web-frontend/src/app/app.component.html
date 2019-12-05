@@ -1,74 +1,60 @@
-<!-- <a routerLink="/" routerLinkActive="active" mat-stroked-button>
-  <mat-icon aria-hidden="false" aria-label="Example camera icon">favorite_border</mat-icon>
-  Home
-</a>
-<a routerLink="/user" routerLinkActive="active" mat-stroked-button>
-  <mat-icon aria-hidden="false" aria-label="Example camera icon">face</mat-icon>
-  User
-</a>
-<a routerLink="/msg" routerLinkActive="active" mat-stroked-button>
-  <mat-icon aria-hidden="false" aria-label="Example camera icon">chat_bubble_outline</mat-icon>
-  Message
-</a>
- -->
 <header>
-  <a routerLink="/">
-    <img src="assets/img/logo.png" class="logo">
-  </a>
-  <div class="ui icon input header-element">
-    <input type="text" placeholder="Search for something">
-    <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">search</mat-icon>
-  </div>
-<!--   <button mat-flat-button class="header-element mode">
-    <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">nights_stay</mat-icon>
-  </button> -->
-  <a routerLink="/explore" mat-flat-button class="header-element" style="margin-left: 10px">
-    Get started
-  </a>
+    <a routerLink="/">
+        <img src="assets/img/logo.png" class="logo">
+    </a>
+    <div class="ui icon input header-element">
+        <input type="text" placeholder="Search for something">
+        <i class="icon ion-ios-search"></i>
+    </div>
 
-  <a routerLink="/explore" mat-flat-button class="header-element" style="margin-left: 10px">
-    Explore
-  </a>
+    <a routerLink="/explore" mat-flat-button class="header-element" style="margin-left: 10px">
+        Get started
+    </a>
 
-  <a *ngIf="!userService.isLoggedIn" mat-flat-button class="header-element login" routerLink="/login">
-    <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">arrow_upward</mat-icon>
-    Log in
-  </a>
-  <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-flat-button class="header-element signup">
-    Sign up
-  </a>
+    <a routerLink="/explore" mat-flat-button class="header-element" style="margin-left: 10px">
+        Explore
+    </a>
+
+    <a *ngIf="!userService.isLoggedIn" mat-flat-button class="header-element login" routerLink="/login">
+        <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">arrow_upward</mat-icon>
+        Log in
+    </a>
+        <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-flat-button class="header-element signup">
+        Sign up
+    </a>
+
 </header>
-<div class="sidenav">
-  <ul>
-    <li>
-      <a routerLink="/">
-        <mat-icon aria-hidden="false" aria-label="Example camera icon">toll</mat-icon>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/msg">
-        <mat-icon aria-hidden="false" aria-label="Example camera icon">mail_outline</mat-icon>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/user">
-        <mat-icon aria-hidden="false" aria-label="Example camera icon">work_outline</mat-icon>
-      </a>
-    </li>
-    <li>
-      <a routerLink="/user">
-        <mat-icon aria-hidden="false" aria-label="Example camera icon">notifications_none</mat-icon>
-      </a>
-    </li>
+<div class="sidenav" *ngIf="userService.isLoggedIn">
+    <ul>
+        <li>
+          <a routerLink="/">
+                <i class="ion-md-apps"></i>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/msg">
+                <i class="ion-md-paper-plane"></i>
+            </a>    
+        </li>
+        <li>
+            <a routerLink="/user">
+                <i class="ion-md-ribbon"></i>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/user">
+                <i class="ion-md-stopwatch"></i>
+            </a>
+        </li>
 
-    <li>
-      <a routerLink="/logout">
-        <mat-icon aria-hidden="false" aria-label="Example camera icon">exit_to_app</mat-icon>
-      </a>
-    </li>
-  </ul>
+        <li>
+            <a routerLink="/logout">
+                <i class="ion-ios-log-out"></i>
+            </a>
+        </li>
+    </ul>
 </div>
 <div *ngIf="isLoading" class="custom-spinner">
-  <mat-spinner ></mat-spinner>
+    <mat-spinner ></mat-spinner>
 </div>
 <router-outlet></router-outlet>

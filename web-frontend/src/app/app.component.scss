@@ -22,7 +22,6 @@ header{
     .ui .icon{
     	position: absolute;
     	right: 12px;
-    	top: 9px;
     }
     .ui input{
     	border: none;
@@ -75,7 +74,7 @@ header{
     	display: block;
     	text-align: center;
     	a{
-    		padding: 18px;
+    		padding: 18px 23px;
     		color: #686b79;
     		transition: 250ms;
     		display: inline-block;
