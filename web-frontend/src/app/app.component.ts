@@ -20,4 +20,8 @@ export class AppComponent {
 	constructor(public userService: UserService){
 		console.log(this.userService.isLoggedIn)
 	}
+
+	public onFocusSearch(){
+		console.log('focus');
+	}
 }
