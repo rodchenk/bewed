@@ -14,12 +14,11 @@
   </mat-card-content>
   <mat-card-actions>
     <button  mat-icon-button color="accent" (click)="like(project)">
-    	<i class="material-icons">
-    		{{project.liked ? 'favorite' : 'favorite_border'}}
-		</i>
+      <i class="ion-md-heart{{project.liked ? '' : '-empty'}}"></i>
+
     </button>
     <button  mat-button color="accent">
-		<mat-icon aria-hidden="false" aria-label="icon" class="icon" style="vertical-align: sub">chat_bubble_outline</mat-icon>
+      <i class="ion-md-quote"></i>
 		12
     </button>
   </mat-card-actions>
