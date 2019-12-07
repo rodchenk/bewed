@@ -5,9 +5,9 @@
 		content: "";
 		display: inline-block;
 		vertical-align: middle;
-		height: 1px;
-		width: 30%;
-		background-color: #c6c8d9;
+		height: .05em;
+		width: 40%;
+		background-color: #b2b3be;
 	    margin: 0 10px;
 	}
 }
@@ -21,4 +21,31 @@
 			margin-right: 10px
 		}
 	}
+}
+.register-container div.ui.input{
+	margin: 12px 0;
+	& input:not([type=checkbox]){
+		padding: 20px 12px;
+		background-color: #fbfcff;
+    	transition: 250ms;
+    	border: 1px rgba(0, 0, 0, 0.14) solid;
+		box-sizing: border-box;
+		width: 100%;
+		&:focus{
+			background-color: #fff;
+			border-color: #85b7d9;
+		}
+	}
+	& input[type=checkbox]{
+		margin-right: 10px;
+	}
+}
+.register-button{
+	background-color: #497b9b;
+    padding: 2px 20px;
+    border-radius: 4px;
+    transition: 250ms;
+    &:hover{
+    	box-shadow: 0 0 12px #8ccceb;
+    }
 }

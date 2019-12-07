@@ -27,3 +27,19 @@ body *::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 }
+
+.text-center{
+	text-align: center;
+}
+.text-right{
+	text-align: right;
+}
+.d-block{
+	display: block !important;
+}
+.float-right{
+	float: right;
+}
+.weight-300{
+	font-weight: 300;
+}

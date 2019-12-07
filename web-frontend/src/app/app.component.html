@@ -1,30 +1,61 @@
 <header>
-    <div>
-        <a routerLink="/">
-            <img src="assets/img/logo.png" class="logo">
-        </a>
-        <div class="ui icon input header-element">
-            <input type="text" placeholder="Search for something" (ngClick)="onFocusSearch()">
-            <i class="icon ion-ios-search"></i>
+    <div class="row">
+        <div class="col s10 m3 l2">
+            <a routerLink="/">
+                <img src="assets/img/logo.png" class="logo">
+            </a>
         </div>
 
-        <a routerLink="/explore" mat-button class="header-element" style="margin-left: 10px">
-            Get started
-        </a>
+        <div class="col s0 m7 l3">
+            <div class="ui icon input header-element" style="width: 100%">
+                <input type="text" placeholder="Search for something" (ngClick)="onFocusSearch()">
+                <i class="icon ion-ios-search"></i>
+            </div>
+        </div>
+        
+        <div class="col s0 m0 l4">
+            <a routerLink="/explore" mat-button class="header-element" style="margin-left: 10px">
+                Get started
+            </a>
+            <a routerLink="/explore" mat-button class="header-element" style="margin-left: 10px">
+                Explore
+            </a>
+        </div>
 
-        <a routerLink="/explore" mat-button class="header-element" style="margin-left: 10px">
-            Explore
-        </a>
+        <div class="col s0 m0 l3">
+            <a *ngIf="!userService.isLoggedIn" mat-flat-button class="header-element login" routerLink="/login">
+                Log in
+            </a>
+            <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-button class="header-element signup">
+                Sign up
+            </a>
+            <a  *ngIf="userService.isLoggedIn" routerLink="/logout" mat-button class="header-element signup" style="float: right">
+                Logout
+            </a>
+            <!-- <button *ngIf="userService.isLoggedIn" mat-button [matMenuTriggerFor]="menu">Account</button>
+            <mat-menu *ngIf="userService.isLoggedIn" #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu> 
 
-        <a *ngIf="!userService.isLoggedIn" mat-flat-button class="header-element login" routerLink="/login">
-            Log in
-        </a>
-        <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-button class="header-element signup">
-            Sign up
-        </a>
-        <a  *ngIf="userService.isLoggedIn" routerLink="/logout" mat-button class="header-element signup" style="float: right">
-            Logout
-        </a>
+            <mat-menu #menu="matMenu"></mat-menu>
+            <button [matMenuTriggerFor]="menu"></button>
+            -->
+        </div>
+
+        <div class="col m2 s2 l0 text-right">
+            
+            <mat-menu  #menu="matMenu">
+                <button mat-menu-item><i style="margin-right: 7px" class="ion-md-globe"></i> Explore</button>
+                <button mat-menu-item><i style="margin-right: 7px" class="ion-md-gift"></i> Get started</button>
+                <button mat-menu-item><i style="margin-right: 7px" class="ion-md-log-in"></i> Log in</button>
+            </mat-menu>
+            <button mat-icon-button style="margin-top: 5px" [matMenuTriggerFor]="menu">
+                <i class="ion-ios-menu"></i>
+            </button>
+        </div>        
+
+
     </div>
 </header>
 <div class="sidenav" *ngIf="userService.isLoggedIn">
