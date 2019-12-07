@@ -17,11 +17,14 @@
         </a>
 
         <a *ngIf="!userService.isLoggedIn" mat-flat-button class="header-element login" routerLink="/login">
-            <mat-icon aria-hidden="false" aria-label="Example camera icon" class="icon">arrow_upward</mat-icon>
+            <i class="ion-ios-arrow-forward icon"></i>
             Log in
         </a>
-            <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-flat-button class="header-element signup">
+        <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-flat-button class="header-element signup">
             Sign up
+        </a>
+        <a  *ngIf="userService.isLoggedIn" routerLink="/logout" mat-button class="header-element signup" style="float: right">
+            Logout
         </a>
     </div>
 </header>

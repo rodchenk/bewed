@@ -1,0 +1,30 @@
+
+<mat-card class="card">
+	<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)" style="padding: 12px 34px">
+
+		<div class="example-container">
+			<mat-form-field style="display: block;margin: 8px">
+				<mat-label>User name</mat-label>
+				<input matInput placeholder="Enter your user name" type="text" formControlName="name">
+			</mat-form-field>
+			<mat-form-field style="display: block;margin: 8px">
+				<mat-label>E-mail address</mat-label>
+				<input matInput placeholder="Enter your e-mail" type="text" formControlName="email">
+				<mat-hint>You will become a notification</mat-hint>
+			</mat-form-field>
+<!-- 			appearance="outline" -->
+			<mat-form-field style="display: block;margin: 8px">
+				<mat-label>Your password</mat-label>
+				<input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password">
+				<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+					<i class="ion-md-eye{{hide ? '-off' : ''}}"></i>
+				</button>
+				<!-- <mat-hint>Hint</mat-hint> -->
+			</mat-form-field>
+		</div>
+		<div style="text-align: right;">
+	  		<button mat-flat-button color="primary" class="button" type="submit" style="margin-right: 10px">Register</button>
+	  		<a routerLink="/login" mat-button color="primary" class="button" type="submit">Already have an account?</a>
+		</div>
+	</form>
+</mat-card>
