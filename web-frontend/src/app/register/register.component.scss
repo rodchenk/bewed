@@ -1,0 +1,24 @@
+.text-separator{
+	color: #9093aa;
+	&>small::before,
+	&>small::after{
+		content: "";
+		display: inline-block;
+		vertical-align: middle;
+		height: 1px;
+		width: 30%;
+		background-color: #c6c8d9;
+	    margin: 0 10px;
+	}
+}
+.connect-actions{
+	text-align: center;
+	& button{
+		width: 140px;
+		margin: 20px 10px;
+		&  i{
+			vertical-align: inherit;
+			margin-right: 10px
+		}
+	}
+}

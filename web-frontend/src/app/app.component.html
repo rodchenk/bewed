@@ -8,19 +8,18 @@
             <i class="icon ion-ios-search"></i>
         </div>
 
-        <a routerLink="/explore" mat-flat-button class="header-element" style="margin-left: 10px">
+        <a routerLink="/explore" mat-button class="header-element" style="margin-left: 10px">
             Get started
         </a>
 
-        <a routerLink="/explore" mat-flat-button class="header-element" style="margin-left: 10px">
+        <a routerLink="/explore" mat-button class="header-element" style="margin-left: 10px">
             Explore
         </a>
 
         <a *ngIf="!userService.isLoggedIn" mat-flat-button class="header-element login" routerLink="/login">
-            <i class="ion-ios-arrow-forward icon"></i>
             Log in
         </a>
-        <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-flat-button class="header-element signup">
+        <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-button class="header-element signup">
             Sign up
         </a>
         <a  *ngIf="userService.isLoggedIn" routerLink="/logout" mat-button class="header-element signup" style="float: right">

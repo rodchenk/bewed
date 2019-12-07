@@ -1,30 +1,43 @@
 
-<mat-card class="card">
-	<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)" style="padding: 12px 34px">
+<mat-card class="card" style="border: 1px #d9dbea solid;box-shadow: none;">
+	<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)" style="padding: 12px 34px;margin-bottom: 20px">
 
 		<div class="example-container">
-			<mat-form-field style="display: block;margin: 8px">
+			<mat-form-field style="display: block;margin: 8px" appearance="outline">
 				<mat-label>User name</mat-label>
 				<input matInput placeholder="Enter your user name" type="text" formControlName="name">
 			</mat-form-field>
-			<mat-form-field style="display: block;margin: 8px">
+
+			<mat-form-field style="display: block;margin: 8px" appearance="outline">
 				<mat-label>E-mail address</mat-label>
 				<input matInput placeholder="Enter your e-mail" type="text" formControlName="email">
 				<mat-hint>You will become a notification</mat-hint>
 			</mat-form-field>
+
 <!-- 			appearance="outline" -->
-			<mat-form-field style="display: block;margin: 8px">
+			<mat-form-field style="display: block;margin: 8px" appearance="outline">
 				<mat-label>Your password</mat-label>
 				<input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password">
-				<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
+				<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button" style="top: -9px">
 					<i class="ion-md-eye{{hide ? '-off' : ''}}"></i>
 				</button>
 				<!-- <mat-hint>Hint</mat-hint> -->
 			</mat-form-field>
+
 		</div>
 		<div style="text-align: right;">
 	  		<button mat-flat-button color="primary" class="button" type="submit" style="margin-right: 10px">Register</button>
 	  		<a routerLink="/login" mat-button color="primary" class="button" type="submit">Already have an account?</a>
 		</div>
 	</form>
+
+	<div style="text-align: center;" class="text-separator">
+		<small>Or connect via social networks</small>
+	</div>
+	<div class="connect-actions">
+		<button mat-flat-button color="primary" style="background-color: #646c99"><i class="ion-logo-facebook"></i> Facebook</button>
+		<button mat-flat-button color="warn" style="background-color: #f15f5f"><i class="ion-logo-google"></i> Google</button>
+		<button mat-flat-button color="primary" style="background-color: #36373d"><i class="ion-logo-github"></i> Github</button>
+	</div>
+	<img src="assets/img/rocket.gif" style="position: absolute;bottom: -40px;right: -50px;width: 150px;">
 </mat-card>

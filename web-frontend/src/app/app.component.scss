@@ -32,20 +32,14 @@ header{
     	background: #eff0f6;
     	padding: 10px;
     	margin-right: 10px;
-        transition: 2s !important;
-        &:focus{
-            width: 500px;
-            &+i.icon{
-                color: #fff;
-                background-color: #ef6666;
-                cursor: pointer;
-            }
-        }
     }
 
     .header-element{
     	vertical-align: top;
 	    margin: 7px auto;
+    }
+    a.header-element{
+        font-weight: 300
     }
     a.header-element.signup{
 	    float: right;
@@ -58,15 +52,15 @@ header{
 	    color: #6d707e;;
     }
     a.header-element.login{
-	    background: linear-gradient(45deg, #9c1358, #e33a2d);
-    	color: #f6afb2;
-    	box-shadow: 0 0 12px #df2a3abf;
+	    background: lightcoral;
+    	color: #fff;
 	    float: right;
 	    margin-right: 10px;
 	    padding-right: 24px;
-    }
-    a.header-element.login:hover .icon{
-    	transform: translate(0px, -12px) rotate(180deg);
+        transition: 250ms;
+        &:hover{
+            box-shadow: 0 0 12px #df2a3abf;
+        }
     }
 }
 .sidenav{
