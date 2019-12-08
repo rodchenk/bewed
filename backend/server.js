@@ -1,21 +1,21 @@
 /*------------------Variable initialization-----------------*/
 
 var express = require('express'),
-  	environment = require('./env/dev.json'),
   	app = express(),
   	port = process.env.PORT || 3000,
-  	nano = require('nano')(environment.db.protocol + environment.db.host),
+  	nano = require('nano')('http://localhost:5984'),
   	db_name = 'bewed',
   	db = nano.use(db_name),
   	bodyParser = require('body-parser'),
   	logger = require('morgan'),
-  	SuperLogin = require('superlogin');
+  	SuperLogin = require('superlogin'),
+  	environment = require('./env/dev.json');
   
 /*-----------------------Server body-------------------------*/
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));//true
+app.use(bodyParser.urlencoded({ extended: false }));//true
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -23,7 +23,7 @@ app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
 	next();
 });
-console.log(environment);
+
 var config = {
 	dbServer: {
 		protocol: environment.db.protocol,
@@ -55,7 +55,6 @@ var routes = require('./api/routes/bewed.route');
 
 app.use('/auth', superlogin.router);
 app.use('/api', routes);
-
 
 app.listen(port);
 console.log('bewed RESTful API server started on: ' + port + "\n");
