@@ -5,19 +5,17 @@
                 <img src="assets/img/logo.png" class="logo">
             </a>
         </div>
-
         <div class="col s0 m7 l3">
-            <div class="ui icon input header-element" style="width: 100%">
+            <div class="ui icon input header-element full-width">
                 <input type="text" placeholder="Search for something" (ngClick)="onFocusSearch()">
                 <i class="icon ion-ios-search"></i>
             </div>
         </div>
-        
         <div class="col s0 m0 l4">
-            <a routerLink="/explore" mat-button class="header-element" style="margin-left: 10px">
+            <a routerLink="/explore" mat-button class="header-element ml-10">
                 Get started
             </a>
-            <a routerLink="/explore" mat-button class="header-element" style="margin-left: 10px">
+            <a routerLink="/explore" mat-button class="header-element ml-10">
                 Explore
             </a>
         </div>
@@ -29,7 +27,7 @@
             <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-button class="header-element signup">
                 Sign up
             </a>
-            <a  *ngIf="userService.isLoggedIn" routerLink="/logout" mat-button class="header-element signup" style="float: right">
+            <a  *ngIf="userService.isLoggedIn" routerLink="/logout" mat-button class="header-element signup float-right">
                 Logout
             </a>
             <!-- <button *ngIf="userService.isLoggedIn" mat-button [matMenuTriggerFor]="menu">Account</button>
@@ -46,9 +44,9 @@
         <div class="col m2 s2 l0 text-right">
             
             <mat-menu  #menu="matMenu">
-                <button mat-menu-item><i style="margin-right: 7px" class="ion-md-globe"></i> Explore</button>
-                <button mat-menu-item><i style="margin-right: 7px" class="ion-md-gift"></i> Get started</button>
-                <button mat-menu-item><i style="margin-right: 7px" class="ion-md-log-in"></i> Log in</button>
+                <button mat-menu-item><i class="ion-md-globe mr-10"></i> Explore</button>
+                <button mat-menu-item><i class="ion-md-gift mr-10"></i> Get started</button>
+                <button mat-menu-item><i class="ion-md-log-in mr-10"></i> Log in</button>
             </mat-menu>
             <button mat-icon-button style="margin-top: 5px" [matMenuTriggerFor]="menu">
                 <i class="ion-ios-menu"></i>

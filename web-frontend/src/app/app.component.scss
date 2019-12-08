@@ -10,7 +10,8 @@ a{
 }
 header{
 	height: 49px;
-	position: relative;
+	position: sticky;
+    top: 0;
 	z-index: 99;
     background: #fff;
     border-bottom: 1px #dcdee5 solid;
