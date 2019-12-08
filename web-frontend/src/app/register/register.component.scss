@@ -6,16 +6,18 @@
 		display: inline-block;
 		vertical-align: middle;
 		height: .05em;
-		width: 40%;
+		width: 35%;
 		background-color: #b2b3be;
 	    margin: 0 10px;
 	}
 }
 .connect-actions{
 	text-align: center;
+	padding: 0 22px;
+    margin-top: 25px;
 	& button{
-		width: 140px;
-		margin: 20px 10px;
+		width: 100%;
+		margin:10px 0;
 		&  i{
 			vertical-align: inherit;
 			margin-right: 10px
@@ -41,11 +43,25 @@
 	}
 }
 .register-button{
-	background-color: #497b9b;
-    padding: 2px 20px;
+	background-color: #5ed1a7;
+    padding: 10px 20px;
     border-radius: 4px;
     transition: 250ms;
+    display: block;
+    width: 100%;
     &:hover{
-    	box-shadow: 0 0 12px #8ccceb;
+    	background-color: #45aa85;
     }
+}
+.legend{
+	margin: 20px auto !important;
+	max-width: 100%;
+	padding: 0 25px;
+	& a{
+		margin: 0 4px;
+
+	}
+	& span{
+		margin: 0 10px;
+	}
 }

@@ -15,6 +15,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 	background-color: #a61852;
     color: white;
 }
+*{
+	transition: 250ms;
+}
 body *::-webkit-scrollbar {
     width: 4px;
 }
@@ -42,4 +45,16 @@ body *::-webkit-scrollbar-thumb {
 }
 .weight-300{
 	font-weight: 300;
+}
+.text-grey{
+	color: #9093aa !important;
+}
+a{
+	text-decoration: none;
+}
+a.text-grey:hover{
+	color: #3b4061 !important;
+}
+.small-text{
+	font-size: 0.8em;
 }

@@ -1,5 +1,5 @@
-
 <mat-card class="card" style="border: 1px #d9dbea solid;box-shadow: none;">
+	<img src="assets/img/rocket.gif" style="position: absolute;top: -18px;left: 0;max-width: 150px;transform: rotate(90deg);">
 	<h2 class="text-center weight-300" style="margin-top: 1em;color: #808e97">
 		Create account
 	</h2>
@@ -19,16 +19,11 @@
 			<div class="ui left icon input d-block">
 				<i class="ion-md-key icon"></i>
 				<input matInput placeholder="Password" 
-						[type]="hide ? 'password' : 'text'" formControlName="email" autocomplete="off">
+						[type]="hide ? 'password' : 'text'" formControlName="password" autocomplete="off">
 				<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button" 
 						style="top: 10px; position: absolute; right: 10px;">
 					<i class="ion-md-eye{{hide ? '-off' : ''}}"></i>
 				</button>
-			</div>
-
-			<div class="ui input d-block">
-				<input type="checkbox" name="agreement" id="agreement" mat-checkbox>
-				<label for="agreement">I agree everything</label>
 			</div>
 
 			<!-- <mat-form-field style="display: block;margin: 8px" appearance="outline">
@@ -45,18 +40,36 @@
 			</mat-form-field> -->
 
 		</div>
-		<div style="margin-top: 50px">
-	  		<a routerLink="/login" mat-button color="black" class="button weight-300" type="submit">Already have an account?</a>
-	  		<button mat-flat-button color="primary" class="button float-right register-button" type="submit">Sign up</button>
+		<div style="margin-top: 20px" class="text-right">
+	  		<button mat-flat-button color="primary" class="button register-button" type="submit">
+				<i class="ion-ios-log-in" style="margin-right: 10px"></i>
+				Sign up
+			</button>
 		</div>
 	</form>
 
 	<div class="text-separator text-center">
-		<small>or</small>
+		<small>or login with</small>
 	</div>
-	<div class="connect-actions">
-		<button mat-flat-button color="primary" style="background-color: #646c99"><i class="ion-logo-facebook"></i> Facebook</button>
-		<button mat-flat-button color="warn" style="background-color: #f15f5f"><i class="ion-logo-google"></i> Google</button>
-		<button mat-flat-button color="primary" style="background-color: #36373d"><i class="ion-logo-github"></i> Github</button>
+	<div class="connect-actions row">
+		<div class="col s12 m4">
+			<button mat-flat-button color="primary" style="background-color: #646c99"><i class="ion-logo-facebook"></i> Facebook</button>
+		</div>
+		<div class="col s12 m4">
+			<button mat-flat-button color="warn" style="background-color: #f15f5f"><i class="ion-logo-google"></i> Google</button>
+		</div>
+		<div class="col s12 m4">
+			<button mat-flat-button color="primary" style="background-color: #36373d"><i class="ion-logo-github"></i> Github</button>
+		</div>
+	</div>
+	<div class="legend">
+		<span class="small-text">© foliage, 2019</span>
+		<a href="" class="text-grey small-text">Restore password</a>
+		<a routerLink="/login" class="text-grey small-text">Login</a>
+		<a href="" class="text-grey small-text">AGB</a>
+		<a href="" class="text-grey small-text">Privacy</a>
+		<a href="" class="text-grey small-text">Security</a>
+		<a href="" class="text-grey small-text">Cookies</a>
+		<a href="" class="text-grey small-text">Help</a>
 	</div>
 </mat-card>

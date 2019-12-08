@@ -25,7 +25,34 @@ export class RegisterComponent implements OnInit {
   	}
 
   	onSubmit(values:any){
-  		if(!values.email || !values.name || !values.password) return;
+  		if(!values.email || !values.name || !values.password){
+  			this.toast.error('', 'All fields are required', {
+	    		progressBar: true,
+	       		progressAnimation: 'increasing',
+	    		positionClass: 'toast-top-right'
+	    	});
+	    	return;
+  		}
+  		console.log(values);
+  		this.http.post(this.host + this.service + '/register', {
+  			email: values.email,
+			username: values.name,
+			name: values.name,
+			password: values.password,
+			confirmpassword: values.password
+		}).subscribe((data:any) => {
+			console.log(data)
+			//this.userProvider.setAuth(data);
+			//this.userProvider.LocalStorageManager.setValue('auth_user_data', data);
+			//this.loginForm.reset();
+		}, error => {
+			console.log(error)
+			this.toast.error('Registration failed', 'try later', {
+	    		progressBar: true,
+	       		progressAnimation: 'increasing',
+	    		positionClass: 'toast-top-right'
+	    	});
+		})
   		console.log('register')
   	}
 

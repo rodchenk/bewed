@@ -1,25 +1,73 @@
 
-<mat-card class="card">
+<mat-card class="card login-card" style="border: 1px #d9dbea solid;box-shadow: none;">
+	<h2 class="text-center weight-300" style="margin-top: 1em;color: #808e97">
+		Sign in
+	</h2>
 	<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" style="padding: 12px 34px">
 
-		<div class="example-container">
-			<mat-form-field style="display: block;margin: 8px">
+		<div class="login-container">
+			<!-- <mat-form-field style="display: block;margin: 8px">
 				<mat-label>User name</mat-label>
 				<input matInput placeholder="Enter your user name" type="text" formControlName="name">
 			</mat-form-field>
-<!-- 			appearance="outline" -->
 			<mat-form-field style="display: block;margin: 8px">
 				<mat-label>Your password</mat-label>
 				<input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password">
 				<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button">
 					<i class="ion-md-eye{{hide ? '-off' : ''}}"></i>
 				</button>
-				<!-- <mat-hint>Hint</mat-hint> -->
-			</mat-form-field>
+			</mat-form-field> -->
+
+			<div class="ui left icon input d-block">
+				<i class="ion-md-happy icon"></i>
+				<input matInput placeholder="E-mail" type="text" formControlName="name" autocomplete="off">
+			</div>
+
+			<div class="ui left icon input d-block">
+				<i class="ion-md-key icon"></i>
+				<input matInput placeholder="Password" 
+						[type]="hide ? 'password' : 'text'" formControlName="password" autocomplete="off">
+				<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" type="button" 
+						style="top: 10px; position: absolute; right: 10px;">
+					<i class="ion-md-eye{{hide ? '-off' : ''}}"></i>
+				</button>
+			</div>
+
 		</div>
-		<div style="text-align: right;">
-	  		<button mat-flat-button color="primary" class="button" type="submit" style="margin-right: 10px">Login</button>
-	  		<button mat-button color="primary" class="button" type="submit">Forgot password?</button>
+		<div class="row" style="margin-top: 40px">
+			
+	  		<div class="col s6" style="padding-left: 0">
+	  			<button mat-button class="button text-grey weight-300" type="submit">Forgot password?</button>
+	  		</div>
+	  		<div class="col s6 text-right" style="padding-right: 0">
+				<button mat-flat-button color="primary" class="button login-button" type="submit">
+					<i class="ion-ios-login" style="margin-right: 10px"></i>Login
+				</button>
+			</div>
 		</div>
 	</form>
+	<div class="text-separator text-center">
+		<small>or login with</small>
+	</div>
+	<div class="connect-actions row">
+		<div class="col s12 m4">
+			<button mat-flat-button color="primary" style="background-color: #646c99"><i class="ion-logo-facebook"></i> Facebook</button>
+		</div>
+		<div class="col s12 m4">
+			<button mat-flat-button color="warn" style="background-color: #f15f5f"><i class="ion-logo-google"></i> Google</button>
+		</div>
+		<div class="col s12 m4">
+			<button mat-flat-button color="primary" style="background-color: #36373d"><i class="ion-logo-github"></i> Github</button>
+		</div>
+	</div>
+	<div class="legend">
+		<span class="small-text">© foliage, 2019</span>
+		<a href="" class="text-grey small-text">Restore password</a>
+		<a routerLink="/signup" class="text-grey small-text">Sign up</a>
+		<a href="" class="text-grey small-text">AGB</a>
+		<a href="" class="text-grey small-text">Privacy</a>
+		<a href="" class="text-grey small-text">Security</a>
+		<a href="" class="text-grey small-text">Cookies</a>
+		<a href="" class="text-grey small-text">Help</a>
+	</div>
 </mat-card>
