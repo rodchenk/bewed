@@ -49,11 +49,17 @@ body *::-webkit-scrollbar-thumb {
 .text-grey{
 	color: #9093aa !important;
 }
+.text-light-grey{
+	color: #acb1c1 !important;
+}
 a{
 	text-decoration: none;
 }
 a.text-grey:hover{
 	color: #3b4061 !important;
+}
+a.text-light-grey:hover{
+	color: #eee !important;
 }
 .small-text{
 	font-size: 0.8em;

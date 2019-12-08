@@ -1,0 +1,23 @@
+footer{
+	background-color: #36373d;
+	padding: 20px;
+	& h4{
+		color: #c0a940;
+		padding: 0 4px;
+	}
+	& .list>a{
+		padding: 4px;
+	}
+	& .list>a.icon{
+		padding: 10px;
+	}
+	img.logo{
+		max-width: 100px;
+    	margin-top: 18px;
+    	display: block;
+    	filter: brightness(.7);
+    	&:hover{
+    		filter: brightness(1);
+    	}
+	}
+}

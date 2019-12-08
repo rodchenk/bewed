@@ -45,7 +45,7 @@ header{
     a.header-element.signup{
 	    float: right;
 	    margin-right: 10px;
-	    color: #bd2544;
+	    color: #444;
     }
     button.header-element.mode{
 	    background: #eff0f6;
@@ -53,14 +53,14 @@ header{
 	    color: #6d707e;;
     }
     a.header-element.login{
-	    background: lightcoral;
+	    background: #f4b14a;
     	color: #fff;
 	    float: right;
 	    margin-right: 10px;
 	    padding-right: 24px;
         transition: 250ms;
         &:hover{
-            box-shadow: 0 0 12px #df2a3abf;
+            background: #ca913a;
         }
     }
 }
