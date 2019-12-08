@@ -1,0 +1,13 @@
+{
+	"mail": {
+		"service": "Gmail",
+		"user": "user@gmail.com",
+		"password": "password"
+	},
+	"db": {
+		"user": "db_user",
+		"password": "db_password",
+		"host": "localhost:5984",
+		"protocol": "http:://"
+	}
+}

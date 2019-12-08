@@ -1,9 +1,10 @@
 /*------------------Variable initialization-----------------*/
 
 var express = require('express'),
+  	environment = require('./env/dev.json'),
   	app = express(),
   	port = process.env.PORT || 3000,
-  	nano = require('nano')('http://localhost:5984'),
+  	nano = require('nano')(environment.db.protocol + environment.db.host),
   	db_name = 'bewed',
   	db = nano.use(db_name),
   	bodyParser = require('body-parser'),
@@ -14,7 +15,7 @@ var express = require('express'),
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));//true
+app.use(bodyParser.urlencoded({ extended: true }));//true
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
@@ -22,23 +23,23 @@ app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
 	next();
 });
-
+console.log(environment);
 var config = {
 	dbServer: {
-		protocol: 'http://',
-		host: 'localhost:5984',
-		user: 'rodchenk',
-		password: 'b3w3d',
+		protocol: environment.db.protocol,
+		host: environment.db.host,
+		user: environment.db.user,
+		password: environment.db.password,
 		userDB: 'sl-users',
 		couchAuthDB: '_users'
 	},
 	mailer: {
-		fromEmail: 'rodchenkov.misha@gmail.com',
+		fromEmail: environment.mail.user,
 		options: {
-			service: 'Gmail',
+			service: environment.mail.service,
 			auth: {
-				user: 'rodchenkov.misha@gmail.com',
-				pass: 'Micaelrodchenkov93'
+				user: environment.mail.user,
+				pass: environment.mail.password
 			}
 		}
 	},
