@@ -7,8 +7,11 @@
         </div>
         <div class="col s0 m7 l3">
             <div class="ui icon input header-element full-width">
-                <input type="text" placeholder="Search for something" (ngClick)="onFocusSearch()">
-                <i class="icon ion-ios-search"></i>
+                <input type="text" placeholder="Search for something" [(ngModel)]="search_string">
+                <i *ngIf="search_string === ''" class="icon ion-ios-search"></i>
+                <button *ngIf="search_string !== ''" (click)="clearSearch()" class="icon" mat-icon-button>
+                    <i class="ion-ios-close"></i>
+                </button>
             </div>
         </div>
         <div class="col s0 m0 l4">
@@ -27,18 +30,33 @@
             <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-button class="header-element signup">
                 Sign up
             </a>
-            <a  *ngIf="userService.isLoggedIn" routerLink="/logout" mat-button class="header-element signup float-right">
-                Logout
-            </a>
-            <!-- <button *ngIf="userService.isLoggedIn" mat-button [matMenuTriggerFor]="menu">Account</button>
-            <mat-menu *ngIf="userService.isLoggedIn" #menu="matMenu">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu> 
 
-            <mat-menu #menu="matMenu"></mat-menu>
-            <button [matMenuTriggerFor]="menu"></button>
-            -->
+            <button *ngIf="userService.isLoggedIn" style="background: #f5dc56" 
+                mat-button [matMenuTriggerFor]="userMenu" class="header-element float-right weight-300">
+                <i class="ion-ios-arrow-down mr-10"></i>
+                {{userService.user.user_id}}
+            </button>
+
+            
+            <mat-menu #userMenu="matMenu">
+                <a mat-menu-item routerLink="/user">
+                    <i class="ion-ios-crop mr-10"></i>
+                    Profile
+                </a>
+                <a mat-menu-item routerLink="/user">
+                    <i class="ion-ios-color-wand mr-10"></i>
+                    Studio
+                </a>
+                <hr>
+                <a mat-menu-item routerLink="/logout" style="color: #f44336">
+                    <i class="ion-ios-log-out mr-10"></i>
+                    Logout
+                </a>
+            </mat-menu>    
+
+            <button mat-button class="header-element float-right mr-10" style="font-size: 20px">
+                <i class="ion-ios-notifications-outline"></i>
+            </button>        
         </div>
 
         <div class="col m2 s2 l0 text-right">
@@ -56,7 +74,7 @@
 
     </div>
 </header>
-<div class="sidenav" *ngIf="userService.isLoggedIn">
+<div class="sidenav" *ngIf="sidenavEnabled">
     <ul>
         <li>
           <a routerLink="/">

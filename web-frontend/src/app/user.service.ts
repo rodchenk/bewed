@@ -7,7 +7,8 @@ import { Router} from "@angular/router";
 export class UserService {
 
 	public isLoggedIn: boolean = false;
-	private auth_key:string = 'user_auth_data'; 
+	private auth_key:string = 'user_auth_data';
+	public user:any = null;
 
 	private LocalStorageManager:any = {
 	    setValue: function(key, value) {
@@ -42,7 +43,11 @@ export class UserService {
 	}
 
   	constructor(private router: Router) {
-  		this._refresh_auth()
+  		this._refresh_auth();
+  		if(this.isLoggedIn){
+  			this.user = this.LocalStorageManager.getValue(this.auth_key);
+  			console.log(this.user);
+  		}
   	}
 
   	private _refresh_auth():void{

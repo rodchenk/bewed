@@ -1,7 +1,7 @@
 *{
 	transition: 250ms !important;
 }
-a{
+a:not(.mat-menu-item){
 	margin: 4px 4px;
 }
 .mat-icon{
@@ -27,6 +27,12 @@ header{
     .ui .icon{
     	position: absolute;
     	right: 12px;
+    }
+    .ui button.icon{
+        position: absolute;
+        right: 14px;
+        top: -2px;
+        font-size: 18px;
     }
     .ui input{
     	border: none;
@@ -67,7 +73,7 @@ header{
 .sidenav{
     z-index: 89;
     display: flex;
-    display: none;
+    // display: none;
   	flex-direction: column;
   	justify-content: center;
 	position: fixed;
@@ -95,7 +101,6 @@ header{
         	}
         	a.selected,
         	a:hover{
-        		// box-shadow: 0 0 12px #c1c3d0;
         		background: #ffe59c;
         		color: #000;
         		transform: scale(0.8);

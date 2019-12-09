@@ -8,6 +8,12 @@ import { UserService } from './user.service';
 })
 export class AppComponent {
 	public isLoading:boolean = false;
+	public sidenavEnabled = false;
+	public search_string:string = '';
+
+	public clearSearch(){
+		this.search_string = '';
+	}
 
 	public showSpinner():void{
 		this.isLoading = true;
@@ -19,9 +25,5 @@ export class AppComponent {
 
 	constructor(public userService: UserService){
 		console.log(this.userService.isLoggedIn)
-	}
-
-	public onFocusSearch(){
-		console.log('focus');
 	}
 }

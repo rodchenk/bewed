@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 	public hide:boolean = true
 	private host:string = 'http://127.0.0.1:3000'
 	private service:string = '/auth'
+	public sidenavEnabled = true;
 
 	constructor(private formBuilder: FormBuilder, private http: HttpClient, private toast: ToastrService, private userProvider: UserService) {
 		this.loginForm = new FormGroup({
