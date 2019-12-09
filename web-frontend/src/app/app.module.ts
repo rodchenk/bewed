@@ -25,6 +25,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FooterComponent } from './footer/footer.component';
+import { StudioComponent } from './studio/studio.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    FooterComponent
+    FooterComponent,
+    StudioComponent
   ],
   imports: [
     ToastrModule.forRoot(), // ToastrModule added

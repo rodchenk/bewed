@@ -59,14 +59,14 @@ header{
 	    color: #6d707e;;
     }
     a.header-element.login{
-	    background: #f4b14a;
-    	color: #fff;
+	    background: #f5dc56;
+    	color: #444;
 	    float: right;
 	    margin-right: 10px;
 	    padding-right: 24px;
         transition: 250ms;
         &:hover{
-            background: #ca913a;
+            background: #ffc228;
         }
     }
 }

@@ -43,18 +43,17 @@
                     <i class="ion-ios-crop mr-10"></i>
                     Profile
                 </a>
-                <a mat-menu-item routerLink="/user">
+                <a mat-menu-item routerLink="/studio">
                     <i class="ion-ios-color-wand mr-10"></i>
                     Studio
                 </a>
-                <hr>
                 <a mat-menu-item routerLink="/logout" style="color: #f44336">
                     <i class="ion-ios-log-out mr-10"></i>
                     Logout
                 </a>
             </mat-menu>    
 
-            <button mat-button class="header-element float-right mr-10" style="font-size: 20px">
+            <button *ngIf="userService.isLoggedIn" mat-button class="header-element float-right mr-10" style="font-size: 20px">
                 <i class="ion-ios-notifications-outline"></i>
             </button>        
         </div>
