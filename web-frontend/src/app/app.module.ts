@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatButtonModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { ProjectComponent } from './project/project.component';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -55,6 +55,7 @@ import { StudioComponent } from './studio/studio.component';
     MatCardModule,
     AngularFirestoreModule,
     MatFormFieldModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,

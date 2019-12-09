@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './user.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +13,17 @@ export class AppComponent {
 	public sidenavEnabled = false;
 	public search_string:string = '';
 
+	constructor(public userService: UserService, public dialog: MatDialog){
+		console.log(this.userService.isLoggedIn)
+	}
+
+	private openLogin(){
+		const dialogRef = this.dialog.open(LoginComponent);
+	}
+
 	public clearSearch(){
 		this.search_string = '';
+		this.openLogin();
 	}
 
 	public showSpinner():void{
@@ -21,9 +32,5 @@ export class AppComponent {
 
 	public hideSpinner():void{
 		this.isLoading = false
-	}
-
-	constructor(public userService: UserService){
-		console.log(this.userService.isLoggedIn)
 	}
 }

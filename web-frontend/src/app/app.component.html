@@ -24,9 +24,9 @@
         </div>
 
         <div class="col s0 m0 l3">
-            <a *ngIf="!userService.isLoggedIn" mat-flat-button class="header-element login" routerLink="/login">
+            <button *ngIf="!userService.isLoggedIn" mat-flat-button class="header-element login weight-300" (click)="openLogin()">
                 Log in
-            </a>
+            </button>
             <a *ngIf="!userService.isLoggedIn" routerLink="/signup" mat-button class="header-element signup">
                 Sign up
             </a>
