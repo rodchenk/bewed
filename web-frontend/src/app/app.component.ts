@@ -19,11 +19,12 @@ export class AppComponent {
 
 	private openLogin(){
 		const dialogRef = this.dialog.open(LoginComponent);
+		//dialogRef.afterOpened().subscribe( _ => setTimeout( () => this.hideSpinner(), 3000) );
+		//dialogRef.afterClosed().subscribe(result =>	console.log('The dialog was closed ' + result));
 	}
 
 	public clearSearch(){
 		this.search_string = '';
-		this.openLogin();
 	}
 
 	public showSpinner():void{

@@ -26,6 +26,7 @@ import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import { FooterComponent } from './footer/footer.component';
 import { StudioComponent } from './studio/studio.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { StudioComponent } from './studio/studio.component';
     RegisterComponent,
     LogoutComponent,
     FooterComponent,
-    StudioComponent
+    StudioComponent,
+    SidenavComponent
   ],
   imports: [
     ToastrModule.forRoot(), // ToastrModule added
