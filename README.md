@@ -1,4 +1,6 @@
-# bewed (web & mobile frontend) :fire:
+# todo by foliage STUDIO
+
+![](https://raw.githubusercontent.com/rodchenk/worry/master/docs/img/studio.png?token=AHHVWEZ6NSEQJGBQKS4PL7C57JE7G)
 
 ### Web
 
