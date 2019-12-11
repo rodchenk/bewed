@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
@@ -8,13 +8,18 @@ import { LoginComponent } from './login/login.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 	public isLoading:boolean = false;
 	public sidenavEnabled = false;
 	public search_string:string = '';
+	public user:any = null;
 
 	constructor(public userService: UserService, public dialog: MatDialog){
 		console.log(this.userService.isLoggedIn)
+	}
+
+	ngOnInit(){
+
 	}
 
 	private openLogin(){

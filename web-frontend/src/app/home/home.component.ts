@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from './../user.service';
 
 @Component({
   selector: 'app-home',
@@ -9,27 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
 	public cards:any;
-  	constructor() { }
+  	constructor(public userProvider: UserService) { }
 
   	ngOnInit() {
-  		this.cards = [
-  			new News('foliage Studio','Mischa'),
-  			new News('Developing new features', 'Ksusha')
-  		];
+  		
   	}
 
-}
-interface NewsInterface{
-	title:string;
-	author:string;
-}
-class News implements NewsInterface{
-	
-	title:string;
-	author:string;
-
-	constructor(title:string = '', author:string = ''){
-		this.title = title;
-		this.author = author;
-	}
 }

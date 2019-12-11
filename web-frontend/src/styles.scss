@@ -64,6 +64,7 @@ a.text-light-grey:hover{
 .small-text{
 	font-size: 0.8em;
 }
+button.arrow-animation,
 a.arrow-animation{
 	i{
 		display: inline-block;
@@ -89,6 +90,13 @@ a.arrow-animation{
 .mb-10{
 	margin-bottom: 10px;
 }
+.pb-10{ padding-bottom: 10px}
+.pt-10{ padding-top: 10px }
+.pr-10{ padding-right: 10px }
+.pl-10{ padding-left: 10px}
+.bg-green{
+	background-color: #3fb58f !important; 
+}
 .vertical-middle{
   z-index: 89;
   display: flex;
@@ -97,6 +105,18 @@ a.arrow-animation{
 }
 .light-border{
 	border: 1px #d9dbea solid;
+}
+.light-border-bottom{
+	border-bottom: 1px #d9dbea solid;
+}
+.light-border-top{
+	border-top: 1px #d9dbea solid;
+}
+.light-border-right{
+	border-right: 1px #d9dbea solid;
+}
+.light-border-left{
+	border-left: 1px #d9dbea solid;
 }
 .with-sidenav{
 	padding-left: 100px;

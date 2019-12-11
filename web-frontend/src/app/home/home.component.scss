@@ -4,3 +4,29 @@
 .home-container{
 	padding: 25px;
 }
+div.ios-window{
+	border-radius: 4px;
+	padding: 0;
+	box-shadow: 0 0 14px #d0d3da;
+	background-color: #fff;
+	& div.ios-menu{
+		padding: 6px 8px;
+		background-color: #eff0f6;
+		border-bottom: 1px #d5d5e0 solid;
+		border-radius: 4px 4px 0 0;
+		& span.ios-menu-button{
+			display: inline-block;
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			margin: 0 7px;
+			&.red{ background-color: #fa886e }
+			&.yellow{ background-color: #f5dc56 }
+			&.green{ background-color: #3ea835 }
+		}
+	}
+
+	& div.ios-content{
+		padding: 15px;
+	}
+}
