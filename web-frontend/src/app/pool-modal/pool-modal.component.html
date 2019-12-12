@@ -1,36 +1,35 @@
-<div style="width: 550px;padding: 16px; background: #fff; position: relative;" class="m-auto">
-	<button mat-icon-button style="position: absolute;top:0;right: 5px;font-size: 1em">
+<div style="width: 550px;padding: 16px" class="m-auto bg-white p-relative">
+	<button mat-icon-button class="p-absolute" style="top:0;right:5px;font-size:1em" (click)="close()">
 		<i class="ion-ios-close"></i>
 	</button>
 	<h3 class="weight-300 no-mb no-mt">Add new pool to Studio</h3>
 	<h5 class="weight-300 text-grey no-mt">specify name and category</h5>
 	<form [formGroup]="poolForm" (ngSubmit)="onSubmit(poolForm.value)" class="bewed-input-container">
-		<div class="ui left icon input d-block">
-			<i class="ion-md-folder-open icon"></i>
-			<input matInput placeholder="Name" type="text" formControlName="name" autocomplete="off">
-		</div>
-		<div class="ui left icon input d-block">
-			<i class="ion-md-gift icon" style="z-index: 1"></i>
-			<mat-form-field>
-				<mat-select placeholder="Category" formControlName="category">
-					<mat-option *ngFor="let category of categories" [value]="category.value">{{category.viewValue}}</mat-option>
-				</mat-select>
-			</mat-form-field>
 
-		</div>
-		<div class="row" style="margin-top: 25px">
-			<div class="col s12 m6 ui checkbox">
+		<mat-form-field class="d-block"  appearance="outline">
+			<mat-label>Pool name</mat-label>
+			<input matInput type="text" formControlName="name" autocomplete="off" required>
+		</mat-form-field>
+
+		<mat-form-field class="d-block"  appearance="outline">
+			<mat-label>Category</mat-label>
+			<mat-select placeholder="Category" formControlName="category" required>
+				<mat-option *ngFor="let category of categories" [value]="category.value">{{category.viewValue}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<div class="row mt-10 no-mb">
+			<div class="col s12 m6">
 				<div class="row no-mb">
-					<input id="private-pool-input" type="checkbox" formControlName="isprivate" class="mr-10" value="false">
-					<label for="private-pool-input" class="weight-300">private pool</label>
+					<mat-checkbox color="warn" formControlName="isprivate">private pool</mat-checkbox>
 				</div>
 				<div class="row no-mb">
-					<h5 class="weight-300 text-grey no-mb" style="margin-top: 5px">private pools are only for you visible</h5>
+					<h5 class="weight-300 text-grey no-mb" style="margin-top:0">private pools are only for you visible</h5>
 				</div>
 			</div>
-			<div class="col s12 m6 text-right" style="padding-right: 0">
-				<button mat-button type="button" class="mr-10 bg-light-grey">Cancel</button> <!-- bg-light-grey -->
-				<button mat-button type="submit" class="bg-bewed-primary">Add pool</button> <!-- bg-yellow -->
+			<div class="col s12 m6 text-right" style="padding-right:0">
+				<button mat-button type="button" class="mr-10 bg-light-grey" (click)="close()">Cancel</button>
+				<button mat-button type="submit" class="bg-bewed-primary">Add pool</button>
 			</div>
 		</div>
 	</form>

@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatButtonModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { ProjectComponent } from './project/project.component';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -52,6 +52,7 @@ import { PoolModalComponent } from './pool-modal/pool-modal.component';
     BrowserAnimationsModule,
     MatButtonModule,
     MatMenuModule,
+    MatCheckboxModule,
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
