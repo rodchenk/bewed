@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from './../login/login.component';
+import { PoolModalComponent } from './../pool-modal/pool-modal.component';
 
 @Component({
   selector: 'app-studio',
@@ -14,8 +14,6 @@ export class StudioComponent implements OnInit {
   	ngOnInit() { }
 
   	public addPool(){
-  		console.log('add pool')
-  		const dialogRef = this.dialog.open(LoginComponent);
+  		const dialogRef = this.dialog.open(PoolModalComponent);
   	}
-
 }

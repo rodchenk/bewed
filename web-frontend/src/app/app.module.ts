@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatButtonModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { ProjectComponent } from './project/project.component';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -27,6 +27,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { FooterComponent } from './footer/footer.component';
 import { StudioComponent } from './studio/studio.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { PoolModalComponent } from './pool-modal/pool-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     LogoutComponent,
     FooterComponent,
     StudioComponent,
-    SidenavComponent
+    SidenavComponent,
+    PoolModalComponent
   ],
   imports: [
     ToastrModule.forRoot(), // ToastrModule added
@@ -53,6 +55,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
+    MatSelectModule,
     MatProgressSpinnerModule,
     MatCardModule,
     AngularFirestoreModule,
@@ -62,6 +65,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
+  ],
+  entryComponents: [
+      PoolModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

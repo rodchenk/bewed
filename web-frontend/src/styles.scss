@@ -121,3 +121,59 @@ a.arrow-animation{
 .with-sidenav{
 	padding-left: 100px;
 }
+/* TODO set the class to login and register sass */
+.bewed-input-container div.ui.input{
+	margin: 12px 0;
+	& input:not([type=checkbox]){
+		padding: 20px 12px;
+		background-color: #fbfcff;
+    	transition: 250ms;
+    	border: 1px rgba(0, 0, 0, 0.14) solid;
+		box-sizing: border-box;
+		width: 100%;
+		&:focus{
+			background-color: #fff;
+			border-color: #85b7d9;
+		}
+	}
+	& input[type=checkbox]{
+		margin-right: 10px;
+	}
+}
+/* select style 
+.mat-form-field {
+	width: 100%;
+	.mat-form-field-wrapper{
+		border: 1px rgba(0, 0, 0, 0.14) solid;
+		background: #fbfcff;
+		box-sizing: border-box;
+	    padding-bottom: 14px;
+	    border-radius: 4px;
+	    padding-top: 0px;
+	}
+	.mat-select-arrow-wrapper{
+		padding-right: 20px
+	}
+	.mat-select-value-text {
+		padding-left: 3.67142857em!important;
+	}
+	.mat-form-field-underline {
+		display: none;
+	}
+	.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label{ display: none}
+}
+*/
+.rounded{
+	border-radius: 4px;
+}
+.m-auto{
+	margin: auto;
+}
+.no-mt{ margin-top: 0 }
+.no-mb{ margin-bottom: 0 }
+.bg-bewed-primary{
+	background-color: #f5dc56;
+}
+.bg-light-grey{
+	background-color: #e3e3e8
+}
