@@ -39,7 +39,8 @@ export class PoolModalComponent implements OnInit {
   	public onSubmit(values:any){
   		if(!values.name || !values.category) 
   			return;
-
+  		if(values.isprivate === null) 
+  			values.isprivate = false;
   		this.http.post(this.host_and_service + '/pool', {
   			data: values,
   			user: this.userProvider.user.user_id

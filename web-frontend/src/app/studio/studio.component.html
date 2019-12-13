@@ -3,7 +3,7 @@
 	<div *ngIf="pools.length === 0" class="row">
 		<div class="col s12 text-center">
 			<h4 class="weight-300 text-grey">You do not have any pools yet</h4>
-			<button mat-button color="warn" class="bg-green" (click)="addPool()">
+			<button mat-flat-button color="warn" class="bg-green" (click)="addPool()">
 				<i class="ion-ios-add mr-10"></i>
 				Create pool
 			</button>
@@ -19,9 +19,12 @@
 			</div>
 		</div>
 		<div class="row p-16">
-			<div *ngFor="let pool of pools" class="col s12 m4 l3 xl2">
-				<div class="light-border rounded bg-white p-16 pointer drop-shadow" (click)="openPool(pool)">
-					<h4 class="weight-300 text-grey">{{pool.name}}</h4>
+			<div *ngFor="let pool of pools" class="col s12 m4 l3">
+				<div class="light-border rounded bg-white p-16 pointer drop-shadow mt-10" (click)="openPool(pool)">
+					<h4 class="weight-300 text-grey mt-10">
+						<i *ngIf="pool.private" class="ion-ios-lock mr-10"></i>
+						{{pool.name}}
+					</h4>
 					<p>{{pool.category}}</p>
 				</div>
 			</div>
