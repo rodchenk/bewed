@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PoolModalComponent } from './../pool-modal/pool-modal.component';
+import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from './../user.service';
 
@@ -12,6 +13,7 @@ import { UserService } from './../user.service';
 /**
 * @author Mischa Rodchenkov
 * @github github.com/rodchenk
+* @TODO setCategory() -> refactoring
 */
 export class StudioComponent implements OnInit {
 
@@ -21,7 +23,7 @@ export class StudioComponent implements OnInit {
   	constructor(private dialog: MatDialog, private http: HttpClient, private userProvider: UserService) { }
 
   	ngOnInit() {
-  		this.getUserPools()
+  		this.getPools()
   	}
 
   	/**
@@ -32,8 +34,23 @@ export class StudioComponent implements OnInit {
   	private getPools(){
   		this.http.get(this.host_and_service + '/pool/all', {}).subscribe( (data:any) => {
   			this.pools = data.docs;
+        this.setCategory();
   		}, error => console.warn(error))
   	}
+
+    /**
+    * @method switches categoryName with categoryViewName from PoolCategory array
+    * @TODO make better feature
+    */
+    private setCategory(){
+      this.pools.forEach((pool:any) => {
+        let result = PoolCategory.categories.filter( (category:PoolCategoryAbstract) => category.value === pool.category)
+        if(result.length > 0) 
+          pool.viewCategory = result[0].viewValue
+          pool.color = result[0].color
+      })
+
+    }
 
   	/**
   	* @method gets all pool data of given user_id from API
@@ -46,6 +63,7 @@ export class StudioComponent implements OnInit {
         }
   		}).subscribe( (data:any) => {
   			this.pools = data.docs;
+        this.setCategory();
   		}, error => console.warn(error))
   	}
 
@@ -56,7 +74,6 @@ export class StudioComponent implements OnInit {
   		const dialogRef = this.dialog.open(PoolModalComponent)
   		dialogRef.afterClosed().subscribe((hasAdd:boolean) => {
   			if(hasAdd) this.getUserPools()
-  			
   		})
   	}
 

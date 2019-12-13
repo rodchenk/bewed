@@ -1,0 +1,76 @@
+<div class="d-block m-auto p-26 container" style="min-height: calc(100vh - 320px)">
+	<mat-tab-group>
+		<mat-tab label="General">
+			<form [formGroup]="settingsForm" (ngSubmit)="saveGeneral(settingsForm.value)" class="p-16 rounded bg-white light-border mt-10">
+				<h2 class="text-grey weight-300 p-16 no-mt">Set up general setting</h2>
+				<div class="row">
+					<div class="col s12">
+						<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+					</div>
+				</div>
+				<div class="row no-mb">
+					<div class="col s12 m6">
+						<mat-form-field class="d-block"  appearance="outline">
+							<mat-label>First name</mat-label>
+							<input matInput type="text" formControlName="firstName" autocomplete="off" [value]="user.firstName || ''">
+						</mat-form-field>
+
+						<mat-form-field class="d-block"  appearance="outline">
+							<mat-label>Last name</mat-label>
+							<input matInput type="text" formControlName="lastName" autocomplete="off" [value]="user.lastName || ''">
+						</mat-form-field>
+
+						<mat-form-field class="d-block" appearance="outline">
+							<mat-label>Gender</mat-label>
+							<mat-select placeholder="Gender" formControlName="gender">
+								<mat-option value="male">Male</mat-option>
+								<mat-option value="female">Female</mat-option>
+								<mat-option value="another">Another</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<div class="rounded light-border text-center" style="min-height: 240px;background: #e8eaf5b8">
+							<i class="ion-md-camera text-grey d-block" style="margin-top: 75px;font-size: 3em"></i>
+						</div>
+					</div>
+					
+				</div>
+
+				<div class="row">
+					<mat-form-field class="d-block col s12 m6"  appearance="outline">
+						<mat-label>Birthday</mat-label>
+						<input matInput [matDatepicker]="picker" formControlName="birthday" autocomplete="off" [value]="user.birthday || ''">
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
+					</mat-form-field>
+
+					<mat-form-field class="d-block col s12 m6"  appearance="outline">
+						<mat-label>Location</mat-label>
+						<input matInput type="text" formControlName="location" autocomplete="off" [value]="user.location || ''">
+					</mat-form-field>
+				</div>
+				<div class="row">
+					<div class="col s12 text-right">
+						<a routerLink="/user" mat-button class="mr-10">Cancel</a>
+						<button mat-button type="submit" class="bg-green text-white">
+							Save
+						</button>
+					</div>
+				</div>
+			</form>
+		</mat-tab>
+		<mat-tab label="Security">
+			<h2 class="text-grey weight-300">Set up security setting</h2>
+			<p>hello from second tab</p>
+		</mat-tab>
+		<mat-tab label="Privacy">
+			<div class="p-16 rounded light-border bg-white mt-10">
+				<h1>Some more tab content</h1>
+				<p>hello from second tab</p>
+			</div>
+		</mat-tab>
+	</mat-tab-group>
+</div>
+<app-footer></app-footer>

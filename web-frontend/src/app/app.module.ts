@@ -17,7 +17,12 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatButtonModule, MatCheckboxModule, MatSelectModule, MatInputModule, MatFormFieldModule, MatMenuModule, MatToolbarModule, MatIconModule, MatCardModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatSelectModule, 
+        MatInputModule, MatFormFieldModule, MatMenuModule, 
+        MatToolbarModule, MatIconModule, MatCardModule, 
+        MatProgressSpinnerModule, MatDialogModule, MatChipsModule,
+        MatTabsModule, MatDatepickerModule, MatNativeDateModule,
+        MatProgressBarModule } from '@angular/material';
 import { ProjectComponent } from './project/project.component';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -28,6 +33,7 @@ import { FooterComponent } from './footer/footer.component';
 import { StudioComponent } from './studio/studio.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { PoolModalComponent } from './pool-modal/pool-modal.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +48,8 @@ import { PoolModalComponent } from './pool-modal/pool-modal.component';
     FooterComponent,
     StudioComponent,
     SidenavComponent,
-    PoolModalComponent
+    PoolModalComponent,
+    SettingsComponent
   ],
   imports: [
     ToastrModule.forRoot(), // ToastrModule added
@@ -54,11 +61,16 @@ import { PoolModalComponent } from './pool-modal/pool-modal.component';
     MatMenuModule,
     MatCheckboxModule,
     MatToolbarModule,
+    MatTabsModule,
     MatIconModule,
     MatInputModule,
+    MatChipsModule,
     MatSelectModule,
+    MatProgressBarModule,
+    MatNativeDateModule,
     MatProgressSpinnerModule,
     MatCardModule,
+    MatDatepickerModule,
     AngularFirestoreModule,
     MatFormFieldModule,
     MatDialogModule,

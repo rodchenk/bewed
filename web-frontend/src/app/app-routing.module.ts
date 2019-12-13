@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { LogoutComponent } from './logout/logout.component';
 import { StudioComponent } from './studio/studio.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [  
 	{
@@ -29,6 +30,10 @@ const routes: Routes = [
  	{
  		path: 'explore',
  		component: ProjectComponent
+ 	},
+ 	{
+ 		path: 'settings',
+ 		component: SettingsComponent
  	},
  	{
  		path: 'login',

@@ -3,11 +3,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UserService } from './../user.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
+import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
 
-export interface PoolCategory {
-	value: string;
-  	viewValue: string;
-}
 
 @Component({
   selector: 'app-pool-modal',
@@ -22,13 +19,8 @@ export class PoolModalComponent implements OnInit {
 
 	private poolForm:any
 	private host_and_service:string = 'http://127.0.0.1:3000/api'
-	private service:string = '/api'
 
-	public categories: PoolCategory[] = [
-    	{value: 'art', viewValue: 'Art'},
-    	{value: 'eng', viewValue: 'Engineering'},
-    	{value: 'sport', viewValue: 'Sport'}
-  	];
+	public categories: PoolCategoryAbstract[] = PoolCategory.categories
 
   	constructor(private formBuilder: FormBuilder, private userProvider: UserService, private http: HttpClient, public dialog: MatDialogRef<PoolModalComponent>) { }
 
