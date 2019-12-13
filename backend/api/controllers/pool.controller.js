@@ -9,7 +9,9 @@ exports.add = function(req, res){
     console.log(req);
     const pool = {
         name: req.body.data.name,
-        category: req.body.data.category
+        category: req.body.data.category,
+        private: req.body.data.isprivate,
+        user: req.body.user
     };
 
     couch.insert(db_name, pool).then( ({data, headers, status}) => {
