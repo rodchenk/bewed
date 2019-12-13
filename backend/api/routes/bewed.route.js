@@ -14,5 +14,6 @@ router.get('/projects', projects.getAll)
 
 router.post('/pool', pool.add)
 router.get('/pool/all', pool.getAll)
+router.get('/pool', pool.getByUser)
 
 module.exports = router;

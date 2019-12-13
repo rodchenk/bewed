@@ -62,7 +62,15 @@ exports.couch = function(req, res){
 
 
 exports.test = function(req, res){
+    var fs = require('fs');
+
+    // function to encode file data to base64 encoded string
+    // read binary data
+    var bitmap = fs.readFileSync('./image.png');
+    // convert binary data to base64 encoded string
+    
     res.json({
-        "content" : "Hello world!"
+        "image" : new Buffer(bitmap).toString('base64')
     });
 }
+

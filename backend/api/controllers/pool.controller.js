@@ -34,3 +34,17 @@ exports.getAll = function(req, res){
         res.json({'status':'error', 'reason':err});
     });
 }
+
+exports.getByUser = function(req, res){
+    couch.mango(db_name, {
+        selector: {
+            "user": {
+                "$eq": req.query.user_id
+            }
+        }
+    }, {}).then(({data, headers, status}) => {
+        res.json(data);
+    }, err => {
+        res.json({'status':'error', 'reason':err});
+    });
+}
