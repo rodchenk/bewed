@@ -14,6 +14,10 @@ export interface PoolCategory {
   templateUrl: './pool-modal.component.html',
   styleUrls: ['./pool-modal.component.scss']
 })
+/**
+* @author Mischa Rodchenkov
+* @github github.com/rodchenk
+*/
 export class PoolModalComponent implements OnInit {
 
 	private poolForm:any
@@ -36,6 +40,10 @@ export class PoolModalComponent implements OnInit {
 		});
   	}
 
+  	/**
+  	* @method is called after form submition; add pool to DB via API
+  	* @use_api POST /pool
+  	*/
   	public onSubmit(values:any){
   		if(!values.name || !values.category) 
   			return;
@@ -50,6 +58,9 @@ export class PoolModalComponent implements OnInit {
 		)
   	}
 
+  	/**
+  	* @method closes the modal window (Add pool)
+  	*/
   	public close(hasAdd:boolean = false){
   		this.dialog.close(hasAdd);
   	}
