@@ -91,8 +91,16 @@ export class UserService{
   		this.isLoggedIn = this.LocalStorageManager.getValue(this.auth_key) ? true : false
   	}
 
-  	private showError(message:string){
+  	public showError(message:string){
   		this.toast.error(message,'', {
+    		progressBar: true,
+       		progressAnimation: 'increasing',
+    		positionClass: 'toast-top-right'
+    	});
+  	}
+
+  	public showSuccess(message:string){
+  		this.toast.success(message,'', {
     		progressBar: true,
        		progressAnimation: 'increasing',
     		positionClass: 'toast-top-right'

@@ -47,7 +47,6 @@ export class StudioComponent implements OnInit {
         let result = PoolCategory.categories.filter( (category:PoolCategoryAbstract) => category.value === pool.category)
         if(result.length > 0) 
           pool.viewCategory = result[0].viewValue
-          pool.color = result[0].color
       })
 
     }

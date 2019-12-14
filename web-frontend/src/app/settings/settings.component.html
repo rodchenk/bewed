@@ -2,10 +2,9 @@
 	<mat-tab-group>
 		<mat-tab label="General">
 			<form [formGroup]="settingsForm" (ngSubmit)="saveGeneral(settingsForm.value)" class="p-16 rounded bg-white light-border mt-10">
-				<h2 class="text-grey weight-300 p-16 no-mt">Set up general setting</h2>
 				<div class="row">
 					<div class="col s12">
-						<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+						<mat-progress-bar mode="determinate" [value]="progress" class="mb-10 mt-10"></mat-progress-bar>
 					</div>
 				</div>
 				<div class="row no-mb">
@@ -31,8 +30,9 @@
 					</div>
 
 					<div class="col s12 m6">
-						<div class="rounded light-border text-center" style="min-height: 240px;background: #e8eaf5b8">
+						<div class="rounded light-border text-center" style="min-height: 230px;background: #e8eaf5b8">
 							<i class="ion-md-camera text-grey d-block" style="margin-top: 75px;font-size: 3em"></i>
+							<button mat-button type="button" class="bg-light-grey">Upload photo</button>
 						</div>
 					</div>
 					
@@ -53,8 +53,8 @@
 				</div>
 				<div class="row">
 					<div class="col s12 text-right">
-						<a routerLink="/user" mat-button class="mr-10">Cancel</a>
-						<button mat-button type="submit" class="bg-green text-white">
+						<a routerLink="/user" mat-button class="mr-10 weight-300">Cancel</a>
+						<button mat-flat-button type="submit" color="primary" [disabled]="saveDisabled" style="padding: 0 44px">
 							Save
 						</button>
 					</div>
