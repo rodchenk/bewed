@@ -38,7 +38,7 @@
             </button>
 
             
-            <mat-menu #userMenu="matMenu" class="small-dropdown" xPosition="before">
+            <mat-menu #userMenu="matMenu" class="small-dropdown no-pb" xPosition="before">
                 <a mat-menu-item routerLink="/user">
                     <i class="ion-ios-crop mr-10"></i>
                     Profile
@@ -51,7 +51,7 @@
                     <i class="ion-md-options mr-10"></i>
                     Settings
                 </a>
-                <a mat-menu-item routerLink="/logout" style="color: #f44336">
+                <a mat-menu-item (click)="onLogout()" style="color: #f44336">
                     <i class="ion-ios-log-out mr-10"></i>
                     Logout
                 </a>

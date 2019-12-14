@@ -28,7 +28,6 @@ import { ProjectComponent } from './project/project.component';
 import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { LogoutComponent } from './logout/logout.component';
 import { FooterComponent } from './footer/footer.component';
 import { StudioComponent } from './studio/studio.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -45,7 +44,6 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     ProjectComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent,
     FooterComponent,
     StudioComponent,
     SidenavComponent,
@@ -83,7 +81,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
   ],
   entryComponents: [
       PoolModalComponent,
-      ChangePasswordComponent
+      ChangePasswordComponent,
+      LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

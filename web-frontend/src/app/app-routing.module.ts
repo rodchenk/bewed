@@ -6,7 +6,6 @@ import { MessageComponent } from './message/message.component';
 import { ProjectComponent } from './project/project.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { LogoutComponent } from './logout/logout.component';
 import { StudioComponent } from './studio/studio.component';
 import { SettingsComponent } from './settings/settings.component';
 
@@ -34,14 +33,6 @@ const routes: Routes = [
  	{
  		path: 'settings',
  		component: SettingsComponent
- 	},
- 	{
- 		path: 'login',
- 		component: LoginComponent
- 	},
- 	{
- 		path: 'logout',
- 		component: LogoutComponent
  	},
  	{
  		path: 'signup',

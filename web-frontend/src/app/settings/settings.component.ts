@@ -153,8 +153,7 @@ export class SettingsComponent implements OnInit {
   	* @TODO
   	*/
   	onChangePassword(){
-  		console.log('saving password!')
-  		const dialogRef = this.dialog.open(ChangePasswordComponent)
+  		this.dialog.open(ChangePasswordComponent)
   	
   	}
 

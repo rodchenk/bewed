@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './login/login.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-	public isLoading:boolean = false;
+
 	public sidenavEnabled = false;
 	public search_string:string = '';
 	public user:any = null;
@@ -18,25 +18,17 @@ export class AppComponent implements OnInit{
 		console.log(this.userService.isLoggedIn)
 	}
 
-	ngOnInit(){
-
-	}
+	ngOnInit(){ }
 
 	private openLogin(){
-		const dialogRef = this.dialog.open(LoginComponent);
-		//dialogRef.afterOpened().subscribe( _ => setTimeout( () => this.hideSpinner(), 3000) );
-		//dialogRef.afterClosed().subscribe(result =>	console.log('The dialog was closed ' + result));
+		this.dialog.open(LoginComponent);
+	}
+
+	onLogout():void{
+		this.userService.logout()
 	}
 
 	public clearSearch(){
 		this.search_string = '';
-	}
-
-	public showSpinner():void{
-		this.isLoading = true;
-	}
-
-	public hideSpinner():void{
-		this.isLoading = false
 	}
 }

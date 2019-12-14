@@ -14,7 +14,7 @@ import { Config } from './config';
 export class UserService{
 
 	public isLoggedIn: boolean = false;
-	public user:any = null;
+	public user:any = {user_id:''};
 
 	private auth_key:string = 'user_auth_data';
 
@@ -24,8 +24,6 @@ export class UserService{
   			this.user = this.LocalStorageManager.getValue(this.auth_key);
   			console.log(this.user);
   		}
-
-  		console.log(this.LocalStorageManager.getValue(this.auth_key))
   	}
 
 	private LocalStorageManager:any = {
@@ -65,31 +63,40 @@ export class UserService{
 		}, error => this.showError(error.error.message))
 	}
 
-	public login(values:any){
-		if(!values.password || !values.name){
-			this.showError('All fields are required')	
-			return;
-		}
-		console.log(values)
-		this.http.post(Config.API_AUTH + '/login', {
-			username: values.name, 
-			password: values.password
-		}).subscribe((data:any) => {
-			this.setAuth(data);
-		}, error => this.showError(error.error.message))
+	public login(values:any):Promise<any>{
+		
+		return new Promise((resolve, reject) =>{
+			if(!values.password || !values.name){
+				this.showError('All fields are required')	
+				reject();
+			}
+			this.http.post(Config.API_AUTH + '/login', {
+				username: values.name, 
+				password: values.password
+			}).subscribe((data:any) => {
+				this.setAuth(data)
+				resolve()
+			}, error => {
+				this.showError(error.error.message)
+				reject()
+			})
+		})
+		
 	}
 
 	public setAuth(data:any):void{
 		this.LocalStorageManager.setValue(this.auth_key, data);
-		this.router.navigate(['/']);
+		this.user = data;
+		//this.router.navigate(['/']);
 		this._refresh_auth()
 	}
 
 	public logout():void{
+		this.isLoggedIn = false;
+		this.user = {user_id:''};
 		this.LocalStorageManager.remove(this.auth_key)
-		this.user = null;
 		this.router.navigate(['/'])
-		this._refresh_auth()
+		//this._refresh_auth()
 	}
 
   	private _refresh_auth():void{

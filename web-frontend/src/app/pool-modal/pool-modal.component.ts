@@ -7,9 +7,9 @@ import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
 import { Config } from './../config';
 
 @Component({
-  selector: 'app-pool-modal',
-  templateUrl: './pool-modal.component.html',
-  styleUrls: ['./pool-modal.component.scss']
+  	selector: 'app-pool-modal',
+  	templateUrl: './pool-modal.component.html',
+  	styleUrls: ['./pool-modal.component.scss']
 })
 /**
 * @author Mischa Rodchenkov
@@ -18,7 +18,6 @@ import { Config } from './../config';
 export class PoolModalComponent implements OnInit {
 
 	private poolForm:any
-
 	public categories: PoolCategoryAbstract[] = PoolCategory.categories
 
   	constructor(private formBuilder: FormBuilder, private userProvider: UserService, private http: HttpClient, public dialog: MatDialogRef<PoolModalComponent>) { }
