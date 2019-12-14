@@ -31,4 +31,8 @@ export class AppComponent implements OnInit{
 	public clearSearch(){
 		this.search_string = '';
 	}
+
+	explorePremium():void{
+		this.userService.showError('Premium not available yet')
+	}
 }

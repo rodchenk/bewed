@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from './../user.service';
 import { ChangePasswordComponent } from './../change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+    selector: 'app-settings',
+    templateUrl: './settings.component.html',
+    styleUrls: ['./settings.component.scss']
 })
 /**
 * @author Mischa Rodchenkov
@@ -17,6 +17,7 @@ export class SettingsComponent implements OnInit {
 
 	private settingsForm:any
 	private securityForm:any
+    private readonly message_data_saved = 'Data has been saved'
 
 	private user:any = {
 		firstName: '',
@@ -29,6 +30,7 @@ export class SettingsComponent implements OnInit {
 
 	public saveDisabled: boolean = true
 	public saveSecurityDisabled: boolean = true
+    public logoutOtherDisabled: boolean = false
 
 	public progress:number
 
@@ -84,10 +86,10 @@ export class SettingsComponent implements OnInit {
   	*/
   	initSecurityForm(){
   		this.securityForm = new FormGroup({
-  			email: new FormControl(),
-  			password: new FormControl(),
-  			tel: new FormControl,
-  			sec_email: new FormControl()
+  			email: new FormControl('', [Validators.email]),
+  			password: new FormControl('', [Validators.minLength(5)]),
+  			tel: new FormControl(),
+  			sec_email: new FormControl('', [Validators.email])
   		})
   		this.securityForm.valueChanges.subscribe( _ => {
   			this.saveSecurityDisabled = false
@@ -134,6 +136,7 @@ export class SettingsComponent implements OnInit {
   		this.user.photo = data.photo
   		this.user.gender = data.gender
 
+      this.saveDisabled = true
   		this.save()
   	}
 
@@ -143,18 +146,21 @@ export class SettingsComponent implements OnInit {
   	private save(){
   		this.userProvider.saveUserData(this.user).then((data:any) => {
   			this.user._rev = data.data.rev
-  			this.userProvider.showSuccess('Data has been saved')
+  			this.userProvider.showSuccess(this.message_data_saved)
   			this.saveDisabled = true
+        this.saveSecurityDisabled = true
   		}, error => console.warn(error) )
   	}
 
   	/**
   	* @method open pop up with change password form
-  	* @TODO
   	*/
   	onChangePassword(){
   		this.dialog.open(ChangePasswordComponent)
-  	
   	}
+
+    logoutOther():void {
+        this.userProvider.logoutOther().then( _ => this.logoutOtherDisabled = true )
+    }
 
 }

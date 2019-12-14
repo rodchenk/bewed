@@ -81,8 +81,14 @@ div.custom-spinner{
         left: 50%;
     }
 }
-footer{
-    flex: 0 0 8em;
-    background-color: #f8f8fc;
-    width: 100%;
+
+a.cool-menu-item{
+    padding: 12px 26px;
+    background: linear-gradient(45deg, #ff005e, #ff7f50);
+    color: white;
+    opacity: .8;
+    &:hover{
+        background: linear-gradient(45deg, #ff005e, #ff7f50);
+        opacity: 1
+    }
 }

@@ -5,30 +5,32 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './../login/login.component';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
-  	private registerForm:any
-	public hide:boolean = true
+    private registerForm: FormGroup
+	public hide: boolean = true
+    private readonly message_required_fields = 'All fields are required'
 
-  	constructor(private formBuilder: FormBuilder, private userProvider: UserService, private dialog: MatDialog) {
-  		this.registerForm = new FormGroup({
-			name: new FormControl(),
-			password: new FormControl(),
-			email: new FormControl()
-		});
-  	}
+    constructor(private formBuilder: FormBuilder, private userProvider: UserService, private dialog: MatDialog) { }
 
   	onSubmit(values:any){
+        if(!values.email || !values.name || !values.password){
+            this.userProvider.showError(this.message_required_fields);
+            return;
+        }
 		this.userProvider.register(values);
-  		console.log('register')
   	}
 
   	ngOnInit() {
-  		console.log('register ngoninit');
+  		this.registerForm = new FormGroup({
+            name: new FormControl(),
+            password: new FormControl(),
+            email: new FormControl()
+        });
   	}
 
     openLogin(){

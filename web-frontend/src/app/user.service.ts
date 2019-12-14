@@ -46,30 +46,37 @@ export class UserService{
 	    }
 	};
 
+	public setAuth(data:any):void{
+		this.LocalStorageManager.setValue(this.auth_key, data);
+		this.user = data;
+		this._refresh_auth()
+	}
+
+  	private _refresh_auth():void{
+  		this.isLoggedIn = this.LocalStorageManager.getValue(this.auth_key) ? true : false
+  	}
+
+  	/**
+  	* @method logs in the user and initializes temp password and token
+  	* @use_api POST /login
+  	*/ 
 	public register(values:any){
-		if(!values.email || !values.name || !values.password){
-  			this.showError('All fields are required');
-	    	return;
-  		}
-  		console.log(values);
   		this.http.post(Config.API_AUTH + '/register', {
   			email: 			values.email,
 			username: 		values.name,
 			name: 			values.name,
 			password: 		values.password,
 			confirmPassword:values.password
-		}).subscribe((data:any) => {
-			this.router.navigate(['/'])
-		}, error => this.showError(error.error.message))
+		}).subscribe((data:any) => this.router.navigate(['/']), error => this.showError(error.error.message))
 	}
 
+	/**
+  	* @method logs in the user and initializes temp password and token
+  	* @use_api POST /login
+  	* @return Promise<any>
+  	*/ 
 	public login(values:any):Promise<any>{
-		
-		return new Promise((resolve, reject) =>{
-			if(!values.password || !values.name){
-				this.showError('All fields are required')	
-				reject();
-			}
+		return new Promise((resolve, reject) => {
 			this.http.post(Config.API_AUTH + '/login', {
 				username: values.name, 
 				password: values.password
@@ -80,33 +87,65 @@ export class UserService{
 				this.showError(error.error.message)
 				reject()
 			})
-		})
-		
+		})	
 	}
 
-	public setAuth(data:any):void{
-		this.LocalStorageManager.setValue(this.auth_key, data);
-		this.user = data;
-		//this.router.navigate(['/']);
-		this._refresh_auth()
-	}
-
-	public logout():void{
-		this.isLoggedIn = false;
-		this.user = {user_id:''};
-		this.LocalStorageManager.remove(this.auth_key)
-		this.router.navigate(['/'])
-		//this._refresh_auth()
-	}
-
-  	private _refresh_auth():void{
-  		this.isLoggedIn = this.LocalStorageManager.getValue(this.auth_key) ? true : false
+  	/**
+  	* @method logs out and deauthorizes all user sessions except the current one.
+  	* @use_api POST /logout-others
+  	* @headers Protected endpoint -> Authorization : "Bearer {token}:{password}"
+  	* @return Promise<any>
+  	*/ 
+  	public logoutOther():Promise<any>{
+  		return new Promise((resolve, reject) => {
+  			this.http.post(Config.API_AUTH + '/logout-others', {}, { 
+  				headers: { "Authorization": 'Bearer ' + this.user.token + ':' + this.user.password } 
+  			}).subscribe( success =>  {
+  				this.showSuccess('Sessions has been cleaned')
+  				resolve()
+  			}, error => reject())
+  		})
   	}
+
+  	/**
+  	* @method logs out every session the user has open and deauthorizes the user completely on all databases
+  	* @use_api POST /logout-all
+  	* @headers Protected endpoint -> Authorization : "Bearer {token}:{password}"
+  	* @return Promise<any>
+  	* @unused
+  	*/ 
+  	public logoutAll():Promise<any>{
+  		return new Promise((resolve, reject) => {
+  			this.http.post(Config.API_AUTH + '/logout-all', {}, { 
+  				headers: { "Authorization": 'Bearer ' + this.user.token + ':' + this.user.password} 
+  			}).subscribe( success =>  {
+  					this.router.navigate(['/'])
+  					resolve()
+  				}, error => reject())
+  		})
+  	}
+
+	/**
+	* @method logs out the current session and deauthorizes the token on all user databases
+	* @use_api POST /logout
+	* @headers Protected endpoint -> Authorization : "Bearer {token}:{password}"
+  	* @return Promise<any>
+	*/
+	public logout():void{
+		this.http.post(Config.API_AUTH + '/logout', {}, {
+			headers: { "Authorization": 'Bearer ' + this.user.token + ':' + this.user.password}
+		}).subscribe( _ => {
+			this.isLoggedIn = false;
+			this.user = {user_id:''};
+			this.LocalStorageManager.remove(this.auth_key)
+			this.router.navigate(['/'])
+		})
+	}
 
 	/**
   	* @method shows error toast with given message
   	*/
-  	public showError(message:string){
+  	public showError(message:string):void {
   		this.toast.error(message,'', {
     		progressBar: true,
        		progressAnimation: 'increasing',
@@ -117,7 +156,7 @@ export class UserService{
   	/**
   	* @method shows success toast with given message
   	*/
-  	public showSuccess(message:string){
+  	public showSuccess(message:string):void {
   		this.toast.success(message,'', {
     		progressBar: true,
        		progressAnimation: 'increasing',
@@ -128,6 +167,7 @@ export class UserService{
   	/**
   	* @method gets user data
   	* @use_api GET /user
+  	* @return Promise<any>
   	*/
   	public getUserData():Promise<any>{
   		return new Promise( (resolve, reject) => {
@@ -140,6 +180,7 @@ export class UserService{
   	/**
   	* @method saves user data
   	* @use_api PUT /user
+  	* @return Promise<any>
   	*/
   	public saveUserData(user):Promise<any>{
   		return new Promise( (resolve, reject) => {
@@ -154,6 +195,7 @@ export class UserService{
   	* @params object of old and new password
   	* @use_api POST /password-change
   	* @headers Protected endpoint -> Authorization : "Bearer {token}:{password}"
+  	* @return Promise<any>
   	*/  	
   	public changeUserPassword(values:any):Promise<any>{
   		return new Promise( (resolve, reject) => {

@@ -38,8 +38,7 @@ export class ChangePasswordComponent implements OnInit {
 
   	onChangePassword(values:any):void{
   		this.userProvider.changeUserPassword(values).then( (data:any) => {
-  			if(data.success)
-  				this.close()
+			this.close()
   		})
   	}
 
