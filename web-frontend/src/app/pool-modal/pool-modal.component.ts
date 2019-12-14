@@ -4,7 +4,7 @@ import { UserService } from './../user.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
-
+import { Config } from './../config';
 
 @Component({
   selector: 'app-pool-modal',
@@ -18,7 +18,6 @@ import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
 export class PoolModalComponent implements OnInit {
 
 	private poolForm:any
-	private host_and_service:string = 'http://127.0.0.1:3000/api'
 
 	public categories: PoolCategoryAbstract[] = PoolCategory.categories
 
@@ -41,7 +40,7 @@ export class PoolModalComponent implements OnInit {
   			return;
   		if(values.isprivate === null) 
   			values.isprivate = false;
-  		this.http.post(this.host_and_service + '/pool', {
+  		this.http.post(Config.API_URL + '/pool', {
   			data: values,
   			user: this.userProvider.user.user_id
   		}).subscribe(

@@ -34,6 +34,7 @@ import { StudioComponent } from './studio/studio.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { PoolModalComponent } from './pool-modal/pool-modal.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { SettingsComponent } from './settings/settings.component';
     StudioComponent,
     SidenavComponent,
     PoolModalComponent,
-    SettingsComponent
+    SettingsComponent,
+    ChangePasswordComponent
   ],
   imports: [
     ToastrModule.forRoot(), // ToastrModule added
@@ -80,7 +82,8 @@ import { SettingsComponent } from './settings/settings.component';
     AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
   ],
   entryComponents: [
-      PoolModalComponent
+      PoolModalComponent,
+      ChangePasswordComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

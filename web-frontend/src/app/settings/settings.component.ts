@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from './../user.service';
+import { ChangePasswordComponent } from './../change-password/change-password.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-settings',
@@ -17,7 +18,6 @@ export class SettingsComponent implements OnInit {
 	private settingsForm:any
 	private securityForm:any
 
-	private host_and_service:string = 'http://127.0.0.1:3000/api'
 	private user:any = {
 		firstName: '',
 		lastName: '',
@@ -41,10 +41,11 @@ export class SettingsComponent implements OnInit {
 		gender: 0
 	}
 
-  	constructor(private formBuilder: FormBuilder, private userProvider: UserService, private http: HttpClient) {
-		this.http.get(this.host_and_service + '/user', {params: { user_id: this.userProvider.user.user_id }}).subscribe((user:any) => {
-  			if(user.docs.length > 0){
-  			  	this.user = user.docs[0]
+  	constructor(private dialog: MatDialog, private formBuilder: FormBuilder, private userProvider: UserService) {
+  		this.userProvider.getUserData().then( (data:any) => {
+
+  			if(data.docs.length > 0){
+  			  	this.user = data.docs[0]
   			  	this.settingsForm.patchValue(this.user)
   			  	this.securityForm.patchValue(this.user)
   			  	this.saveDisabled = true
@@ -52,6 +53,7 @@ export class SettingsComponent implements OnInit {
   			}	
   			console.log(this.user)
   		})
+
   	}
 
   	/**
@@ -136,11 +138,10 @@ export class SettingsComponent implements OnInit {
   	}
 
   	/**
-  	* @method saves user data
-  	* @use_api PUT /user
+  	* @method saves user data via userProvider
   	*/
   	private save(){
-  		this.http.put(this.host_and_service + '/user', {values: this.user}).subscribe( (data:any) => {
+  		this.userProvider.saveUserData(this.user).then((data:any) => {
   			this.user._rev = data.data.rev
   			this.userProvider.showSuccess('Data has been saved')
   			this.saveDisabled = true
@@ -153,6 +154,8 @@ export class SettingsComponent implements OnInit {
   	*/
   	onChangePassword(){
   		console.log('saving password!')
+  		const dialogRef = this.dialog.open(ChangePasswordComponent)
+  	
   	}
 
 }
