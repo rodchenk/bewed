@@ -73,7 +73,7 @@
 					<div class="col s12 m6">
 						<mat-form-field class="d-block"  appearance="outline">
 							<mat-label>User ID</mat-label>
-							<input matInput type="text" autocomplete="off" [value]="user._id" disabled="disabled">
+							<input matInput type="text" autocomplete="off" [value]="user._id" readonly>
 						</mat-form-field>
 					</div>
 
@@ -102,7 +102,7 @@
 
 				<div class="row">
 					<div class="col s12 m6">
-						<button mat-button class="weight-300">
+						<button mat-button class="weight-300" type="button" (click)="onChangePassword()">
 							<i class="ion-md-key mr-10"></i>
 							Change password
 						</button>
@@ -116,9 +116,8 @@
 			</form>
 		</mat-tab>
 		<mat-tab label="Privacy">
-			<div class="p-16 rounded light-border bg-white mt-10">
-				<h1>Some more tab content</h1>
-				<p>hello from second tab</p>
+			<div class="p-16 text-center">
+				<img src="assets/img/illustration_woman.svg" class="max-full-width">
 			</div>
 		</mat-tab>
 	</mat-tab-group>

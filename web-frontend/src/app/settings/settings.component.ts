@@ -8,6 +8,10 @@ import { UserService } from './../user.service';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
+/**
+* @author Mischa Rodchenkov
+* @github github.com/rodchenk
+*/
 export class SettingsComponent implements OnInit {
 
 	private settingsForm:any
@@ -50,11 +54,18 @@ export class SettingsComponent implements OnInit {
   		})
   	}
 
+  	/**
+  	* @method standard from Angular. Initialize forms
+  	*/
   	ngOnInit() {
 		this.initGeneralForm()
 		this.initSecurityForm()
   	}
 
+  	/**
+  	* @method calculates a field progress of mat-progress-bar in general tab
+  	* @init value of the progress bar is 10
+  	*/
   	calcGeneralProgress(){
   		if(this.settingsForm.controls.firstName.value) 	this.progressTable.firstName = 15; else this.progressTable.firstName = 0
 		if(this.settingsForm.controls.lastName.value) 	this.progressTable.lastName	 = 15; else this.progressTable.lastName	 = 0
@@ -66,6 +77,9 @@ export class SettingsComponent implements OnInit {
   		this.progress = 10 + this.progressTable.firstName + this.progressTable.lastName + this.progressTable.birthday + this.progressTable.photo + this.progressTable.location + this.progressTable.gender		
   	}
 
+  	/**
+  	* @method initializes a securityForm and set onChange event
+  	*/
   	initSecurityForm(){
   		this.securityForm = new FormGroup({
   			email: new FormControl(),
@@ -78,6 +92,9 @@ export class SettingsComponent implements OnInit {
   		})
   	}
 
+  	/**
+  	* @method initializes a generalForm and set onChange event
+  	*/
   	initGeneralForm(){
   		this.settingsForm = new FormGroup({
 			firstName: new FormControl(),
@@ -93,6 +110,9 @@ export class SettingsComponent implements OnInit {
 		})
   	}
 
+  	/**
+  	* @method patches security form values to user object and calls save function
+  	*/
   	saveSecurity(values:any){
   		this.user.email = values.email
   		this.user.sec_email = values.sec_email
@@ -101,8 +121,10 @@ export class SettingsComponent implements OnInit {
   		this.save()
   	}
 
+  	/**
+  	* @method patches general form values to user object and calls save function
+  	*/
   	saveGeneral(data:any){
-
   		this.user.firstName = data.firstName
   		this.user.lastName = data.lastName
   		this.user.birthday = data.birthday
@@ -113,12 +135,24 @@ export class SettingsComponent implements OnInit {
   		this.save()
   	}
 
+  	/**
+  	* @method saves user data
+  	* @use_api PUT /user
+  	*/
   	private save(){
   		this.http.put(this.host_and_service + '/user', {values: this.user}).subscribe( (data:any) => {
   			this.user._rev = data.data.rev
   			this.userProvider.showSuccess('Data has been saved')
   			this.saveDisabled = true
   		}, error => console.warn(error) )
+  	}
+
+  	/**
+  	* @method open pop up with change password form
+  	* @TODO
+  	*/
+  	onChangePassword(){
+  		console.log('saving password!')
   	}
 
 }
