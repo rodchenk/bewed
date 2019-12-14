@@ -23,7 +23,7 @@ export class StudioComponent implements OnInit {
   	constructor(private dialog: MatDialog, private http: HttpClient, private userProvider: UserService) { }
 
   	ngOnInit() {
-  		this.getPools()
+  		this.getUserPools()
   	}
 
   	/**

@@ -11,6 +11,8 @@ import { UserService } from './../user.service';
 export class SettingsComponent implements OnInit {
 
 	private settingsForm:any
+	private securityForm:any
+
 	private host_and_service:string = 'http://127.0.0.1:3000/api'
 	private user:any = {
 		firstName: '',
@@ -22,6 +24,7 @@ export class SettingsComponent implements OnInit {
 	}
 
 	public saveDisabled: boolean = true
+	public saveSecurityDisabled: boolean = true
 
 	public progress:number
 
@@ -39,7 +42,9 @@ export class SettingsComponent implements OnInit {
   			if(user.docs.length > 0){
   			  	this.user = user.docs[0]
   			  	this.settingsForm.patchValue(this.user)
+  			  	this.securityForm.patchValue(this.user)
   			  	this.saveDisabled = true
+  			  	this.saveSecurityDisabled = true
   			}	
   			console.log(this.user)
   		})
@@ -47,6 +52,7 @@ export class SettingsComponent implements OnInit {
 
   	ngOnInit() {
 		this.initGeneralForm()
+		this.initSecurityForm()
   	}
 
   	calcGeneralProgress(){
@@ -58,6 +64,18 @@ export class SettingsComponent implements OnInit {
 		if(this.settingsForm.controls.birthday.value) 	this.progressTable.birthday  = 15; else this.progressTable.birthday  = 0
 
   		this.progress = 10 + this.progressTable.firstName + this.progressTable.lastName + this.progressTable.birthday + this.progressTable.photo + this.progressTable.location + this.progressTable.gender		
+  	}
+
+  	initSecurityForm(){
+  		this.securityForm = new FormGroup({
+  			email: new FormControl(),
+  			password: new FormControl(),
+  			tel: new FormControl,
+  			sec_email: new FormControl()
+  		})
+  		this.securityForm.valueChanges.subscribe( _ => {
+  			this.saveSecurityDisabled = false
+  		})
   	}
 
   	initGeneralForm(){
@@ -75,6 +93,14 @@ export class SettingsComponent implements OnInit {
 		})
   	}
 
+  	saveSecurity(values:any){
+  		this.user.email = values.email
+  		this.user.sec_email = values.sec_email
+  		this.user.tel = values.tel
+
+  		this.save()
+  	}
+
   	saveGeneral(data:any){
 
   		this.user.firstName = data.firstName
@@ -84,6 +110,10 @@ export class SettingsComponent implements OnInit {
   		this.user.photo = data.photo
   		this.user.gender = data.gender
 
+  		this.save()
+  	}
+
+  	private save(){
   		this.http.put(this.host_and_service + '/user', {values: this.user}).subscribe( (data:any) => {
   			this.user._rev = data.data.rev
   			this.userProvider.showSuccess('Data has been saved')

@@ -62,8 +62,58 @@
 			</form>
 		</mat-tab>
 		<mat-tab label="Security">
-			<h2 class="text-grey weight-300">Set up security setting</h2>
-			<p>hello from second tab</p>
+			<form [formGroup]="securityForm" (ngSubmit)="saveSecurity(securityForm.value)" class="p-16 rounded bg-white light-border mt-10">
+				<div class="row">
+					<div class="col s12">
+						<mat-progress-bar mode="determinate" color="warn" value="70" class="mb-10 mt-10"></mat-progress-bar>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block"  appearance="outline">
+							<mat-label>User ID</mat-label>
+							<input matInput type="text" autocomplete="off" [value]="user._id" disabled="disabled">
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block"  appearance="outline">
+							<mat-label>E-mail</mat-label>
+							<input matInput type="email" formControlName="email" autocomplete="off" [value]="user.email || ''" required>
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block"  appearance="outline">
+							<mat-label>Second E-mail</mat-label>
+							<input matInput type="email" formControlName="sec_email" autocomplete="off" [value]="user.sec_email || ''">
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block"  appearance="outline">
+							<mat-label>Tel. number</mat-label>
+							<input matInput type="tel" formControlName="tel" autocomplete="off" [value]="user.tel || ''">
+						</mat-form-field>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col s12 m6">
+						<button mat-button class="weight-300">
+							<i class="ion-md-key mr-10"></i>
+							Change password
+						</button>
+					</div>
+					<div class="col s12 m6 text-right">
+						<button mat-flat-button type="submit" color="primary" [disabled]="saveSecurityDisabled" style="padding: 0 44px">
+							Save
+						</button>
+					</div>
+				</div>
+			</form>
 		</mat-tab>
 		<mat-tab label="Privacy">
 			<div class="p-16 rounded light-border bg-white mt-10">
