@@ -39,6 +39,8 @@
 			</div>
 		</div>
 
+		<h3 *ngIf="error" class="text-center text-grey weight-300">{{error}}</h3>
+
 		<div *ngFor="let message of messages" class="message">
 			<div>
 				<span class="author">{{message.name}}</span>
@@ -58,7 +60,7 @@
 		    	<input type="text" placeholder="Be nice in the chat" name="message" [(ngModel)]="messagetext" autocomplete="off">
 		 	</div>
 			<button mat-flat-button style="background: transparent;color: #686b79;">
-				<mat-icon aria-hidden="false" aria-label="icon" class="icon">near_me</mat-icon>
+				<i class="ion-md-paper-plane icon"></i>
 			</button>	
 		</form>	
 	</div>

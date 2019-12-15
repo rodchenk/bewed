@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UserService } from './../user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './../login/login.component';
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-register',
@@ -15,7 +16,10 @@ export class RegisterComponent implements OnInit {
 	public hide: boolean = true
     private readonly message_required_fields = 'All fields are required'
 
-    constructor(private formBuilder: FormBuilder, private userProvider: UserService, private dialog: MatDialog) { }
+    constructor(private router: Router, private formBuilder: FormBuilder, private userProvider: UserService, private dialog: MatDialog) {
+      if(this.userProvider.isLoggedIn)
+          this.router.navigate(['/'])
+    }
 
   	onSubmit(values:any){
         if(!values.email || !values.name || !values.password){

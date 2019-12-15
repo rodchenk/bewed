@@ -1,26 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import * as firebase from 'firebase/app';
+import { UserService } from './../user.service';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss']
+    selector: 'app-message',
+    templateUrl: './message.component.html',
+    styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit {
 
-	public messages: any;
+	public messages: any[];
 	public loading:boolean = true;
 	public messagetext:string = ''
-	public name: string ='Anon'
+	public name: string
+    public error:string
 
-  	constructor(private db: AngularFireDatabase) {}
+  	constructor(private db: AngularFireDatabase, private userProvider: UserService) {}
 
 	ngOnInit() {
+        this.name = this.userProvider.user.user_id
+
 		this.db.list('messages').snapshotChanges().subscribe(data => {
 			this.messages = data.map(res => res.payload.val())
 			this.loading = false;
-		});
+		}, error => {
+            console.log('error')
+            this.loading = false;
+            this.error = 'No connection to Database'
+        });
   	}
 
   	ngAfterViewChecked(){
