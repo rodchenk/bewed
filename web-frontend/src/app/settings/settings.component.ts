@@ -17,7 +17,7 @@ export class SettingsComponent implements OnInit {
 
 	private settingsForm:any
 	private securityForm:any
-    private readonly message_data_saved = 'Data has been saved'
+  private readonly message_data_saved = 'Data has been saved'
 
 	private user:any = {
 		firstName: '',
@@ -30,7 +30,7 @@ export class SettingsComponent implements OnInit {
 
 	public saveDisabled: boolean = true
 	public saveSecurityDisabled: boolean = true
-    public logoutOtherDisabled: boolean = false
+  public logoutOtherDisabled: boolean = true
 
 	public progress:number
 
@@ -51,7 +51,7 @@ export class SettingsComponent implements OnInit {
   			  	this.settingsForm.patchValue(this.user)
   			  	this.securityForm.patchValue(this.user)
   			  	this.saveDisabled = true
-  			  	this.saveSecurityDisabled = true
+  			  	this.saveSecurityDisabled = Object.keys(this.user.session).length > 1
   			}	
   			console.log(this.user)
   		})
@@ -72,11 +72,11 @@ export class SettingsComponent implements OnInit {
   	*/
   	calcGeneralProgress(){
   		if(this.settingsForm.controls.firstName.value) 	this.progressTable.firstName = 15; else this.progressTable.firstName = 0
-		if(this.settingsForm.controls.lastName.value) 	this.progressTable.lastName	 = 15; else this.progressTable.lastName	 = 0
-		if(this.settingsForm.controls.location.value) 	this.progressTable.location  = 15; else this.progressTable.location  = 0
-		if(this.settingsForm.controls.gender.value) 	this.progressTable.gender 	 = 15; else this.progressTable.gender 	 = 0
-		if(this.settingsForm.controls.photo.value) 		this.progressTable.photo 	 = 15; else this.progressTable.photo 	 = 0
-		if(this.settingsForm.controls.birthday.value) 	this.progressTable.birthday  = 15; else this.progressTable.birthday  = 0
+  		if(this.settingsForm.controls.lastName.value) 	this.progressTable.lastName	 = 15; else this.progressTable.lastName	 = 0
+  		if(this.settingsForm.controls.location.value) 	this.progressTable.location  = 15; else this.progressTable.location  = 0
+  		if(this.settingsForm.controls.gender.value) 	this.progressTable.gender 	 = 15; else this.progressTable.gender 	 = 0
+  		if(this.settingsForm.controls.photo.value) 		this.progressTable.photo 	 = 15; else this.progressTable.photo 	 = 0
+  		if(this.settingsForm.controls.birthday.value) 	this.progressTable.birthday  = 15; else this.progressTable.birthday  = 0
 
   		this.progress = 10 + this.progressTable.firstName + this.progressTable.lastName + this.progressTable.birthday + this.progressTable.photo + this.progressTable.location + this.progressTable.gender		
   	}
@@ -86,8 +86,8 @@ export class SettingsComponent implements OnInit {
   	*/
   	initSecurityForm(){
   		this.securityForm = new FormGroup({
-  			email: new FormControl('', [Validators.email]),
-  			password: new FormControl('', [Validators.minLength(5)]),
+  			email: new FormControl('', [Validators.email, Validators.required]),
+  			password: new FormControl('', [Validators.minLength(5), Validators.required]),
   			tel: new FormControl(),
   			sec_email: new FormControl('', [Validators.email])
   		})
@@ -101,12 +101,14 @@ export class SettingsComponent implements OnInit {
   	*/
   	initGeneralForm(){
   		this.settingsForm = new FormGroup({
-			firstName: new FormControl(),
-			lastName: new FormControl(),
+			firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+			lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
 			birthday: new FormControl(),
 			photo: new FormControl(),
 			location: new FormControl(),
-			gender: new FormControl()
+			gender: new FormControl(),
+      name: new FormControl('', [Validators.required]),
+      status: new FormControl('', Validators.maxLength(256))
 		});
 		this.settingsForm.valueChanges.subscribe( _ => {
 			this.calcGeneralProgress()

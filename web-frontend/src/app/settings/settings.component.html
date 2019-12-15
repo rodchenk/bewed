@@ -11,22 +11,36 @@
 					<div class="col s12 m6">
 						<mat-form-field class="d-block"  appearance="outline">
 							<mat-label>First name</mat-label>
-							<input matInput type="text" formControlName="firstName" autocomplete="off" [value]="user.firstName || ''">
+							<input matInput type="text" formControlName="firstName" autocomplete="off" [value]="user.firstName || ''" required="required">
 						</mat-form-field>
 
 						<mat-form-field class="d-block"  appearance="outline">
 							<mat-label>Last name</mat-label>
-							<input matInput type="text" formControlName="lastName" autocomplete="off" [value]="user.lastName || ''">
+							<input matInput type="text" formControlName="lastName" autocomplete="off" [value]="user.lastName || ''" required="required">
 						</mat-form-field>
 
-						<mat-form-field class="d-block" appearance="outline">
-							<mat-label>Gender</mat-label>
-							<mat-select placeholder="Gender" formControlName="gender">
-								<mat-option value="male">Male</mat-option>
-								<mat-option value="female">Female</mat-option>
-								<mat-option value="another">Another</mat-option>
-							</mat-select>
-						</mat-form-field>
+						<div class="row no-mb">
+							<div class="col s12 m6">
+								<mat-form-field class="d-block" appearance="outline">
+									<mat-label>Gender</mat-label>
+									<mat-select placeholder="Gender" formControlName="gender">
+										<mat-option value="male">Male</mat-option>
+										<mat-option value="female">Female</mat-option>
+										<mat-option value="another">Another</mat-option>
+									</mat-select>
+								</mat-form-field>
+							</div>
+
+							<div class="col s12 m6">
+								<mat-form-field class="d-block" appearance="outline">
+									<mat-label>Birthday</mat-label>
+									<input matInput [matDatepicker]="picker" formControlName="birthday" autocomplete="off" [value]="user.birthday || ''">
+									<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+									<mat-datepicker #picker></mat-datepicker>
+								</mat-form-field>
+							</div>
+						</div>
+						
 					</div>
 
 					<div class="col s12 m6">
@@ -38,17 +52,23 @@
 					
 				</div>
 
-				<div class="row">
-					<mat-form-field class="d-block col s12 m6"  appearance="outline">
-						<mat-label>Birthday</mat-label>
-						<input matInput [matDatepicker]="picker" formControlName="birthday" autocomplete="off" [value]="user.birthday || ''">
-						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-						<mat-datepicker #picker></mat-datepicker>
+				<div class="row no-mb">
+					<mat-form-field class="d-block col s12 m6" appearance="outline">
+						<mat-label>Display name</mat-label>
+						<input matInput type="text" formControlName="name" autocomplete="off" [value]="user.name || ''" required="required">
+						<mat-hint>Your page will be named with display name</mat-hint>
 					</mat-form-field>
 
 					<mat-form-field class="d-block col s12 m6"  appearance="outline">
 						<mat-label>Location</mat-label>
 						<input matInput type="text" formControlName="location" autocomplete="off" [value]="user.location || ''">
+					</mat-form-field>
+				</div>
+
+				<div class="row">
+					<mat-form-field class="d-block col s12"  appearance="outline">
+						<mat-label>Status</mat-label>
+						<textarea matInput type="text" formControlName="status" autocomplete="off" [value]="user.status || ''"></textarea>
 					</mat-form-field>
 				</div>
 				<div class="row">
@@ -108,7 +128,7 @@
 						</button>
 					</div>
 					<div class="col s6 m3">
-						<button mat-button class="weight-300" type="button" (click)="logoutOther()" [disabled]="logoutOtherDisabled">
+						<button mat-button class="weight-300 bg-light-grey" type="button" (click)="logoutOther()" [disabled]="logoutOtherDisabled">
 							<i class="ion-md-close mr-10"></i>
 							Log out other sessions
 						</button>
