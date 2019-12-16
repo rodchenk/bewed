@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { StudioComponent } from './studio/studio.component';
 import { SettingsComponent } from './settings/settings.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [  
 	{
@@ -15,7 +16,7 @@ const routes: Routes = [
   		component: HomeComponent
  	},
  	{
- 		path: 'user',
+ 		path: 'user/:id',
  		component: UserComponent
  	},
  	{
@@ -37,6 +38,10 @@ const routes: Routes = [
  	{
  		path: 'signup',
  		component: RegisterComponent
+ 	},
+ 	{ 
+ 		path: '**', 
+ 		component: NotFoundComponent  // error 404
  	}
 ];
 

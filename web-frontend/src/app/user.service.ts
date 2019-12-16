@@ -169,9 +169,9 @@ export class UserService{
   	* @use_api GET /user
   	* @return Promise<any>
   	*/
-  	public getUserData():Promise<any>{
+  	public getUserData(user_id?:string):Promise<any>{
   		return new Promise( (resolve, reject) => {
-  			this.http.get(Config.API_URL + '/user', {params: { user_id: this.user.user_id }}).subscribe((user:any) => {
+  			this.http.get(Config.API_URL + '/user', {params: { user_id: user_id || this.user.user_id }}).subscribe((user:any) => {
 	  			resolve(user)
 	  		}, error => reject(error))
   		})

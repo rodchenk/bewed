@@ -39,7 +39,7 @@
 
             
             <mat-menu #userMenu="matMenu" class="small-dropdown no-pb user-menu" xPosition="before">
-                <a mat-menu-item routerLink="/user">
+                <a mat-menu-item routerLink="/user/{{userService.user.user_id}}">
                     <i class="ion-md-happy mr-10"></i>
                     Profile
                 </a>
