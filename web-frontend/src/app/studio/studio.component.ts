@@ -4,6 +4,7 @@ import { PoolModalComponent } from './../pool-modal/pool-modal.component';
 import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from './../user.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-studio',
@@ -20,7 +21,7 @@ export class StudioComponent implements OnInit {
 	private host_and_service: string = 'http://127.0.0.1:3000/api'
 	public pools:any[] = [];
 
-  	constructor(private dialog: MatDialog, private http: HttpClient, private userProvider: UserService) { }
+  	constructor(private dialog: MatDialog, private http: HttpClient, private userProvider: UserService, private router: Router) { }
 
   	ngOnInit() {
   		this.getUserPools()
@@ -81,5 +82,6 @@ export class StudioComponent implements OnInit {
   	*/
   	public openPool(pool:any){
   		console.log(pool)
+      this.router.navigate(['studio/' + pool.category])
   	}
 }

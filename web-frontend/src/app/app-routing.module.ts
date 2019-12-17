@@ -10,6 +10,7 @@ import { StudioComponent } from './studio/studio.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CompleteSignupComponent } from './complete-signup/complete-signup.component';
+import { StudioPoolComponent } from './studio-pool/studio-pool.component';
 
 const routes: Routes = [  
 	{
@@ -43,6 +44,10 @@ const routes: Routes = [
  	{
  		path: 'complete-signup',
  		component: CompleteSignupComponent
+ 	},
+ 	{
+ 		path: 'studio/:pool',
+ 		component: StudioPoolComponent
  	},
  	{ 
  		path: '**', 
