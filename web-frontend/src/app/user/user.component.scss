@@ -1,21 +1,21 @@
 .user-photo{
 	padding: 2px;
 	border-radius: 50%;
-	background: linear-gradient(45deg, #d556f5, #f85e30);
+	background: linear-gradient(45deg, #f5b556, #f85e30);
 	display: inline-block;
 	position: relative;
 	box-shadow: 0 0 12px #ff007657;
-	&::before{
-		content: "";
-	    display: inline-block;
-	    position: absolute;
-	    width: 12px;
-	    height: 12px;
-	    border-radius: 50%;
-	    background-color: #f25d51;
-	    right: 0;
-	    top: 31%;
-	}
+	// &::before{
+	// 	content: "";
+	//     display: inline-block;
+	//     position: absolute;
+	//     width: 12px;
+	//     height: 12px;
+	//     border-radius: 50%;
+	//     background-color: #f25d51;
+	//     right: 0;
+	//     top: 31%;
+	// }
 	&::after{
 		content: "";
 	    display: inline-block;
