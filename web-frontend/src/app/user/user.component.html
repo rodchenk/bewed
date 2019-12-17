@@ -22,77 +22,87 @@
 		</a>
 	</div>
 </div> -->
-
-<div class="p-16 row">
-	<div class="col " style="max-width: 350px">
-		<mat-card class="p-26 no-mt drop-shadow" style="border-bottom: 2px #f25d5185 solid">
-			<div class="text-center">
-				<div class="user-photo"><div></div></div>
-			</div>
-
-			<div class="text-center mt-10 p-16 no-pb">
-				<span style="font-size: 1.2em">
-					<i class="ion-ios-checkmark-circle text-orange" style="margin-right: 2px;filter: drop-shadow(0 0 12px #f25d51)"></i>
-					mischa
-				</span>
-			</div>
-			<span class="text-grey d-block mt-10 weight-300 p-16 no-pt" style="font-size: 0.9em">Be the change you want to see the World</span>
-
-			<div class="p-16 row no-mb light-border-top light-border-bottom">
-				<div class="col s4 text-center">
-					<span class="bold d-block" style="font-size: 2em">0</span>
-					<span class="d-block small-text text-grey">projects</span>
+<div *ngIf="user.name">
+	<div class="p-16 row">
+		<div class="col " style="max-width: 350px">
+			<mat-card class="p-26 no-mt drop-shadow" style="border-bottom: 2px #f25d5185 solid">
+				<div class="text-center">
+					<div class="user-photo"><div></div></div>
 				</div>
-				<div class="col s4 text-center">
-					<a>
-						<span class="bold d-block" style="font-size: 2em">999</span>
-						<span class="d-block small-text text-grey">followers</span>
+
+				<div class="text-center mt-10 p-16 no-pb">
+					<span style="font-size: 1.2em">
+						<i class="ion-ios-checkmark-circle text-orange" style="margin-right: 2px;filter: drop-shadow(0 0 12px #f25d51)"></i>
+						{{user.name}}
+					</span>
+				</div>
+				<span class="text-grey d-block mt-10 weight-300 p-16 no-pt" style="font-size: 0.9em">{{user.status}}</span>
+
+				<div class="p-16 row no-mb light-border-top light-border-bottom">
+					<div class="col s4 text-center">
+						<span class="bold d-block" style="font-size: 2em">0</span>
+						<span class="d-block small-text text-grey">projects</span>
+					</div>
+					<div class="col s4 text-center">
+						<a>
+							<span class="bold d-block" style="font-size: 2em">999</span>
+							<span class="d-block small-text text-grey">followers</span>
+						</a>
+					</div>
+					<div class="col s4 text-center">
+						<span class="bold d-block" style="font-size: 2em">2</span>
+						<span class="d-block small-text text-grey">follows</span>
+					</div>
+				</div>
+
+				<div class="p-16 text-center mt-10">
+					<button class="bg-orange text-white full-width weight-300" mat-button>
+						<i class="ion-md-add mr-10"></i>
+						Follow
+					</button>
+					<button class="full-width weight-300 bg-light-grey mt-10" mat-button>
+						<i class="ion-md-paper-plane mr-10"></i>
+						Write a message
+					</button>
+				</div>
+
+				<div class="contact-links mt-10">
+					<a href="">
+						<i class="ion-logo-vk"></i>
+					</a>
+					<a href="">
+						<i class="ion-logo-github"></i>
+					</a>
+					<a href="">
+						<i class="ion-logo-twitter"></i>
+					</a>
+					<a href="">
+						<i class="ion-logo-instagram"></i>
 					</a>
 				</div>
-				<div class="col s4 text-center">
-					<span class="bold d-block" style="font-size: 2em">2</span>
-					<span class="d-block small-text text-grey">follows</span>
+
+			</mat-card>
+
+		</div>
+
+		<div class="col" style="max-width: calc(100% - 350px)">
+			<div class="container">
+				<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
+				<h5 class="text-center weight-300 no-mt">to create projects go to <a class="text-grey" routerLink="/studio">studio</a></h5>
+				<div class="container">
+					<img src="assets/img/shopping.svg" class="full-width">
 				</div>
 			</div>
-
-			<div class="p-16 text-center mt-10">
-				<button class="bg-orange text-white full-width weight-300" mat-button>
-					<i class="ion-md-add mr-10"></i>
-					Follow
-				</button>
-				<button class="full-width weight-300 bg-light-grey mt-10" mat-button>
-					<i class="ion-md-paper-plane mr-10"></i>
-					Write a message
-				</button>
-			</div>
-
-			<div class="contact-links mt-10">
-				<a href="">
-					<i class="ion-logo-vk"></i>
-				</a>
-				<a href="">
-					<i class="ion-logo-github"></i>
-				</a>
-				<a href="">
-					<i class="ion-logo-twitter"></i>
-				</a>
-				<a href="">
-					<i class="ion-logo-instagram"></i>
-				</a>
-			</div>
-
-		</mat-card>
-
-	</div>
-
-	<div class="col" style="max-width: calc(100% - 350px)">
-		<div class="container">
-			<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
-			<h5 class="text-center weight-300 no-mt">to create projects go to <a class="text-grey" routerLink="/studio">studio</a></h5>
-			<div class="container">
-				<img src="assets/img/shopping.svg" class="full-width">
-			</div>
 		</div>
-	</div>
 
+	</div>
+</div>
+<div *ngIf="!user.name">
+	<h2 class="weight-300 text-center p-16 no-mb">
+		<i class="ion-md-finger-print text-grey mr-10"></i>
+		User does not exist
+	</h2>
+	<div style="max-width: 400px" class="m-auto">
+		<img src="assets/img/empty.png" class="full-width mt-10">
+	</div>
 </div>

@@ -11,16 +11,16 @@ export class UserComponent implements OnInit {
 	private user_id: string
 	private user:any = {name:''}
 
-  	constructor(private userProvider: UserService, private route: ActivatedRoute) {
+  	constructor(private userProvider: UserService, private route: ActivatedRoute, private router: Router) {
   		console.log('constructor loaded');
   	}
 
   	ngOnInit() {
-  		// this.route.params.subscribe( params => {
-  		// 	this.userProvider.getUserData( params['id'] ).then( (user:any) => { // get user via http from API with ID from URL 
-  		// 		if(user.docs.length > 0)
-  		// 			this.user = user.docs[0]
-  		// 	});  			
-  		// });
+  		this.route.params.subscribe( params => {
+  			this.userProvider.getUserData( params['id'] ).then( (user:any) => { // get user via http from API with ID from URL 
+  				if(user.docs.length > 0)
+  					this.user = user.docs[0]
+  			});  			
+  		});
   	}
 }

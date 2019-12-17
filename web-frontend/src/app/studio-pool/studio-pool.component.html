@@ -1,8 +1,32 @@
 <app-sidenav></app-sidenav>
 
 <div class="with-sidenav">
+
+	<div class="row mt-10 no-mb p-16">
+		<div class="col s4">
+			<a mat-button class="bg-light-grey weight-300" routerLink="/studio">
+				<i class="ion-ios-arrow-round-back mr-10"></i>
+				Back to Studio
+			</a>
+		</div>
+		<div class="col s4 text-center">
+			<span>{{pool_name}}</span>
+			<mat-chip-list class="bewed-chips" style="display: inline-block;">
+				 <mat-basic-chip>Art</mat-basic-chip>
+			</mat-chip-list>
+		</div>
+		<div class="col s4 text-right">
+			<a mat-button class="mr-10 weight-300" routerLink="/studio">
+				<i class="ion-md-grid" style="font-size: 1.3em"></i>
+				<i class="ion-ios-arrow-down ml-10"></i>
+			</a>
+			<a mat-button class="weight-300" routerLink="/studio">
+				Sort
+				<i class="ion-ios-arrow-down ml-10"></i>
+			</a>
+		</div>
+	</div>
 	<div class="container">
-		<p>studio-pool works!</p>
 		
 	</div>
 	

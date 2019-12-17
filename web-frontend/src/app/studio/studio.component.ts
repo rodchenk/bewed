@@ -82,6 +82,6 @@ export class StudioComponent implements OnInit {
   	*/
   	public openPool(pool:any){
   		console.log(pool)
-      this.router.navigate(['studio/' + pool.category])
+      this.router.navigate(['studio/' + pool.name])
   	}
 }

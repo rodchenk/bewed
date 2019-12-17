@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-studio-pool',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudioPoolComponent implements OnInit {
 
-  constructor() { }
+	private pool_name:string = ''
 
-  ngOnInit() {
-  }
+  	constructor(private route: ActivatedRoute) { }
+
+  	ngOnInit() {
+  		this.route.params.subscribe( params => {
+  			this.pool_name = params['pool']			
+  		});
+
+  	}
 
 }

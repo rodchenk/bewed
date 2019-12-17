@@ -31,10 +31,9 @@
                 Sign up
             </a>
 
-            <button *ngIf="userService.isLoggedIn" style="background: #f5dc56" 
-                mat-button [matMenuTriggerFor]="userMenu" class="header-element float-right weight-300">
-                <i class="ion-ios-arrow-down mr-10"></i>
+            <button *ngIf="userService.isLoggedIn" style="background: #f5dc56" mat-button [matMenuTriggerFor]="userMenu" class="header-element float-right weight-300">
                 {{userService.user.user_id}}
+                <i class="ion-ios-arrow-down ml-10"></i>
             </button>
 
             
