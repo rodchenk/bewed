@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { StudioComponent } from './studio/studio.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CompleteSignupComponent } from './complete-signup/complete-signup.component';
 
 const routes: Routes = [  
 	{
@@ -38,6 +39,10 @@ const routes: Routes = [
  	{
  		path: 'signup',
  		component: RegisterComponent
+ 	},
+ 	{
+ 		path: 'complete-signup',
+ 		component: CompleteSignupComponent
  	},
  	{ 
  		path: '**', 

@@ -16,7 +16,8 @@ export class UserService{
 	public isLoggedIn: boolean = false;
 	public user:any = {user_id:''};
 
-	private auth_key:string = 'user_auth_data';
+	private auth_key:string = 'user_auth_data'
+	private email_key:string = 'user_email'
 
 	constructor(private router: Router, private toast: ToastrService, private http: HttpClient) {
   		this._refresh_auth();
@@ -56,9 +57,14 @@ export class UserService{
   		this.isLoggedIn = this.LocalStorageManager.getValue(this.auth_key) ? true : false
   	}
 
+  	public getSavedEmail(){
+  		return this.LocalStorageManager.getValue(this.email_key)
+  	}
+
   	/**
   	* @method logs in the user and initializes temp password and token
   	* @use_api POST /login
+  	* @redirect after successful registration to /complete-signup
   	*/ 
 	public register(values:any){
   		this.http.post(Config.API_AUTH + '/register', {
@@ -67,7 +73,10 @@ export class UserService{
 			name: 			values.name,
 			password: 		values.password,
 			confirmPassword:values.password
-		}).subscribe((data:any) => this.router.navigate(['/']), error => this.showError(error.error.message))
+		}).subscribe((data:any) => {
+			this.router.navigate(['/complete-signup'])
+			this.LocalStorageManager.setValue(this.email_key, values.email)
+		}, error => this.showError(error.error.message))
 	}
 
 	/**

@@ -22,7 +22,7 @@ import { MatButtonModule, MatCheckboxModule, MatSelectModule,
         MatToolbarModule, MatIconModule, MatCardModule, 
         MatProgressSpinnerModule, MatDialogModule, MatChipsModule,
         MatTabsModule, MatDatepickerModule, MatNativeDateModule,
-        MatProgressBarModule } from '@angular/material';
+        MatProgressBarModule, MatSnackBarModule } from '@angular/material';
 import { ProjectComponent } from './project/project.component';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -70,6 +70,7 @@ import { StudioPoolComponent } from './studio-pool/studio-pool.component';
     MatTabsModule,
     MatIconModule,
     MatInputModule,
+    MatSnackBarModule,
     MatChipsModule,
     MatSelectModule,
     MatProgressBarModule,

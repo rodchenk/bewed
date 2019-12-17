@@ -208,3 +208,18 @@ a.arrow-animation{
 /* drop down in header */
 .user-menu .mat-menu-content:not(:empty){ padding-bottom: 0 !important }
 .mat-elevation-z4{ box-shadow: 0 0 12px rgba(0,0,0,.12) } 
+
+button.gradient-button,
+a.gradient-button{
+	background: linear-gradient(45deg, #ff005e, #ff7f50);
+	opacity: 0.8;
+	&:hover{
+		opacity: 1;
+	} 
+}
+.marker{
+	background: #d5e0ec;
+    padding: 2px 4px;
+    border-radius: 4px;
+    display: inline-block;
+}

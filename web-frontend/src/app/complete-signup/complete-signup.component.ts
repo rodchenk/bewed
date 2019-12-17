@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UserService } from './../user.service';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-complete-signup',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompleteSignupComponent implements OnInit {
 
-  constructor() { }
+  	constructor(private snackBar: MatSnackBar, private userProvider: UserService, private router: Router) { }
 
-  ngOnInit() {
-  }
+    public email = ''
 
+  	ngOnInit() {
+      if(this.userProvider.isLoggedIn){
+        this.router.navigate(['page-not-found'])
+      }else{
+  		  this.showBar()
+        this.email = this.userProvider.getSavedEmail()
+      }
+  	}
+
+  	public resend():void{
+  		this.showBar()
+  	}
+
+  	private showBar():void{
+  		this.snackBar.open('Verification code sent', 'Close', {
+  			duration: 3000,
+  			horizontalPosition: 'right',
+  			verticalPosition: 'top'
+		});
+  	}
 }
