@@ -35,6 +35,8 @@ import { PoolModalComponent } from './pool-modal/pool-modal.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { CompleteSignupComponent } from './complete-signup/complete-signup.component';
+import { StudioPoolComponent } from './studio-pool/studio-pool.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     PoolModalComponent,
     SettingsComponent,
     ChangePasswordComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CompleteSignupComponent,
+    StudioPoolComponent
   ],
   imports: [
     ToastrModule.forRoot(), // ToastrModule added

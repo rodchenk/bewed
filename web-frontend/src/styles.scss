@@ -6,7 +6,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 .mat-card{
 	max-width: 650px;
 	margin: 12px auto;
-	box-shadow: 0 0 7px #e1e2e9;
+	box-shadow: 0 0 7px #e1e2e9 !important;
 }
 .mat-card-actions {
 	text-align: right;
@@ -172,7 +172,7 @@ a.arrow-animation{
 .no-pt{padding-top: 0!important}
 .pointer{ cursor: pointer }
 .drop-shadow:hover{
-	box-shadow: 0 0 12px rgba(0,0,0,.1)
+	box-shadow: 0 0 12px rgba(0,0,0,.1)!important
 }
 
 .small-dropdown{

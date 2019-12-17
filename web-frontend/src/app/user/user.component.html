@@ -1,55 +1,20 @@
-<!-- <div class="container mt-10">
-	<div class="row light-border-bottom p-16">
-		<div class="col s5 m4 l4">
-			<div class="bg-white light-border rounded user-photo"></div>
-		</div>
-		<div class="col s7 m8 l8">
-			<div class="p-16 no-pb">
-				<h4 class="weight-300 no-mb no-mt"><i class="mr-10 ion-ios-checkmark-circle" style="color: #247961"></i>mischa	</h4>
-				<h5 class="weight-300 text-grey no-mt">Be the change you want to see in the World</h5>
-			</div>
-			<div class="row no-pt">
-				<div class="col s4">
-					<button mat-button class="weight-300">Interested: 16</button>
-				</div>
-				<div class="col s4">
-					<button mat-button class="weight-300">Follows: 2</button>
-				</div>
-				<div class="col s4">
-					<button mat-button class="bg-green text-white" style="padding: 0 44px">Follow</button>
-				</div>
-			</div>
-		</div>
-
-	</div>
-
-	<div class="row">
-		<div class="col s12">
-			<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
-			<h5 class="text-center weight-300 no-mt">to create projects go to <a class="text-grey" routerLink="/studio">studio</a></h5>
-			<div class="container">
-				<img src="assets/img/shopping.svg" class="full-width">
-			</div>
-		</div>
-	</div>
-</div> -->
 
 <div class="p-16 mt-10 row">
 	<div class="col " style="max-width: 350px">
-		<mat-card class="p-26 no-mt" style="border-bottom: 2px #ff0076 solid;">
+		<mat-card class="p-26 no-mt drop-shadow" style="border-bottom: 2px #f25d5185 solid">
 			<div class="text-center">
 				<div class="user-photo"><div></div></div>
 			</div>
 
-			<div class="text-center mt-10">
+			<div class="text-center mt-10 p-16 no-pb">
 				<span style="font-size: 1.2em">
 					<i class="ion-ios-checkmark-circle text-orange" style="margin-right: 2px"></i>
 					mischa
 				</span>
 			</div>
-			<span class="text-grey d-block mt-10 weight-300 p-16 light-border-bottom">Be the change you want to see the World</span>
+			<span class="text-grey d-block mt-10 weight-300 p-16 no-pt">Be the change you want to see the World</span>
 
-			<div class="p-16 row mt-10 no-mb no-pb">
+			<div class="p-16 row no-mb light-border-top light-border-bottom">
 				<div class="col s6 text-center">
 					<a>
 						<span class="bold d-block" style="font-size: 2em">999</span>
@@ -67,9 +32,24 @@
 					<i class="ion-md-add mr-10"></i>
 					Follow
 				</button>
+				<button class="full-width weight-300 bg-light-grey mt-10" mat-button>
+					<i class="ion-md-paper-plane mr-10"></i>
+					Write a message
+				</button>
 			</div>
-		</mat-card>
-		<mat-card class="p-16">
+
+<!-- 			<div class="row mt-10">
+				<div class="col s12">
+					<mat-chip-list class="bewed-chips">
+						 <mat-basic-chip>TypeScript</mat-basic-chip>
+						 <mat-basic-chip>Node</mat-basic-chip>
+						 <mat-basic-chip>PHP</mat-basic-chip>
+						 <mat-basic-chip>Java</mat-basic-chip>
+						 <mat-basic-chip>Python</mat-basic-chip>
+						 <mat-basic-chip>Illustration</mat-basic-chip>
+					</mat-chip-list>
+				</div>
+			</div> -->
 			<div class="contact-links mt-10">
 				<a href="">
 					<i class="ion-logo-vk"></i>
@@ -80,14 +60,13 @@
 				<a href="">
 					<i class="ion-logo-twitter"></i>
 				</a>
+				<a href="">
+					<i class="ion-logo-instagram"></i>
+				</a>
 			</div>
-			<div class="p-26">
-				<button class="full-width weight-300 bg-light-grey" mat-button>
-					<i class="ion-md-paper-plane mr-10"></i>
-					Write a message
-				</button>
-			</div>
+
 		</mat-card>
+
 	</div>
 
 	<div class="col" style="max-width: calc(100% - 350px)">
