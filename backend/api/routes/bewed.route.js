@@ -17,10 +17,10 @@ router.get('/user', user.getByID)
 router.put('/user', user.update)
 
 /* pool api */
-router.get 	('/pool/all', pool.getAll)
-router.get 	('/pools', pool.getByUser)
-router.post	('/pool', pool.add)
-router.get 	('/pool', pool.getByID)
-router.put 	('/pool', pool.update)
-
+router.get 	 ('/pools/all', pool.getAll)
+router.get 	 ('/pools', pool.getByUser)
+router.get 	 ('/pool', pool.getByID)
+router.post	 ('/pool', pool.add)
+router.put 	 ('/pool', pool.update)
+router.delete('/pool', pool.delete)
 module.exports = router;

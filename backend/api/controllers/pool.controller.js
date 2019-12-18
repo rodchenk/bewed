@@ -71,3 +71,8 @@ exports.update = function(req, res){
         res.json({'status': 'error', 'reason': err});
     });
 }
+
+exports.delete = function(req, res){
+    //todo
+    res.json({'status': 'ok'})
+}
