@@ -48,3 +48,26 @@ exports.getByUser = function(req, res){
         res.json({'status':'error', 'reason':err});
     });
 }
+
+exports.getByID = function(req, res){
+    couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$eq": req.query.pool_id
+            }
+        }
+    }, {}).then(({data, headers, status}) => {
+        res.json(data);
+    }, err => {
+        res.json({'status':'error', 'reason':err});
+    });
+}
+
+exports.update = function(req, res){
+    console.log(req.body)
+    couch.update(db_name, req.body.values).then(({data, headers, status}) => {
+        res.json({'status': 'ok', "data": data});
+    }, err => {
+        res.json({'status': 'error', 'reason': err});
+    });
+}
