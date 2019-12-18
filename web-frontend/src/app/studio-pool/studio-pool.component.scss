@@ -1,0 +1,20 @@
+div.contact-links{
+	text-align: center;
+	&>a{
+		padding: 12px 18px;
+		display: inline-block;
+		font-size: 1.2em;
+		color: #3b4061;
+		&:hover{
+			color: #222;
+			transform: scale(1.2);
+		}
+	}
+}
+.image-top{
+	background-repeat: no-repeat;
+    background-image: url(/assets/img/waves.png);
+    background-position-y: -315px;
+    background-size: cover;
+    background-position-x: right;
+}

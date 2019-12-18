@@ -19,4 +19,8 @@ export class StudioPoolComponent implements OnInit {
 
   	}
 
+  	private openPoolSettings():void{
+  		console.log('pool settings')
+  	}
+
 }

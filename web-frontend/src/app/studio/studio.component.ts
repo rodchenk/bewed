@@ -79,6 +79,7 @@ export class StudioComponent implements OnInit {
 
   	/**
   	* @method opens the pool on click
+    * @redirect to /studio/:pool
   	*/
   	public openPool(pool:any){
   		console.log(pool)
