@@ -11,6 +11,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CompleteSignupComponent } from './complete-signup/complete-signup.component';
 import { StudioPoolComponent } from './studio-pool/studio-pool.component';
+import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
 
 const routes: Routes = [  
 	{
@@ -22,7 +23,7 @@ const routes: Routes = [
  		component: UserComponent
  	},
  	{
- 		path: 'studio',
+ 		path: 'studio/:user',
  		component: StudioComponent
  	},
  	{
@@ -46,7 +47,7 @@ const routes: Routes = [
  		component: CompleteSignupComponent
  	},
  	{
- 		path: 'studio/:pool',
+ 		path: 'studio/:user/:pool',
  		component: StudioPoolComponent
  	},
  	{ 

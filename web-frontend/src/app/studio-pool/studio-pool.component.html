@@ -2,70 +2,64 @@
 
 <div class="with-sidenav">
 
-<!-- 	<div class="row mt-10 no-mb p-16">
-		<div class="col s4">
-			<a mat-button class="bg-light-grey weight-300 mr-10" routerLink="/studio">
-				<i class="ion-ios-arrow-round-back mr-10"></i>
-				Back to Studio
-			</a>
-			<a mat-button class="bg-orange text-white weight-300" routerLink="/studio">
-				<i class="ion-logo-usd mr-10"></i>
-				Sponsor
-			</a>
+
+	<div *ngIf="pool.name" class="row p-16">
+		<div class="col s6 m9 row" style="padding-right: 0">
+			
+			<div class="container">
+				<button mat-button class="bg-light-grey weight-300" (click)="openPoolSettings()">
+					Settings
+				</button>
+				<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
+				<h5 class="text-center weight-300 no-mt">to create a project click on <i class="ion-md-gift marker"></i> in the side menu</h5>
+				<div class="container">
+					<img src="assets/img/shopping.svg" class="full-width">
+				</div>
+			</div>
 		</div>
-		<div class="col s4 text-center">
-			<a mat-button class="mr-10 weight-300" routerLink="/studio">
-				<i class="ion-md-grid" style="font-size: 1.3em"></i>
-				<i class="ion-ios-arrow-down ml-10"></i>
-			</a>
-			<a mat-button class="weight-300" routerLink="/studio">
-				Most recent
-				<i class="ion-ios-arrow-down ml-10"></i>
-			</a>
-		</div>
-		<div class="col s4 text-right">
-			<button mat-button class="bg-light-grey weight-300" (click)="openPoolSettings()">
-				Settings
-			</button>
-		</div>
-	</div> -->
-	<div class="row p-16">
+
 		<div class="col s6 m3">
-			<mat-card class="p-26 drop-shadow image-top" style="border-bottom: 2px #f25d5185 solid">
+			<mat-card class="p-26 drop-shadow">
+				<h1 class="text-center no-mb" style="text-decoration: underline #f25d51;font-weight: 900;">{{pool.name}}</h1>
 				<div class="text-center">
 					<div class="user-photo"><div></div></div>
 				</div>
 
-				<div class="text-center p-16 no-pb">
-					<span style="font-size: 1.2em">
-						{{pool_name}}
+				<div class="text-center p-16">
+					<span>
+						{{pool.viewCategory}}
 					</span>
 				</div>
-				<span class="text-grey d-block mt-10 weight-300 p-16 no-pt" style="font-size: 0.9em">
-					Some description may help to involve more people into the pool
+				<span class="text-grey d-block weight-300 p-16 no-pt" style="font-size: 0.9em">
+					{{pool.description}}
+					<br>
+					<br>
+					<a href="" class="text-dark">#hello </a>
+					<a href="" class="text-dark">#foliage </a>
+					<a href="" class="text-dark">#studio</a>
 				</span>
 
-				<div class="p-16 row no-mb light-border-top light-border-bottom">
+				<div class="p-16 row no-mb light-border-top">
 					<div class="col s4 text-center">
 						<span class="bold d-block" style="font-size: 2em">4</span>
-						<span class="d-block small-text text-grey">projects</span>
+						<span class="d-block small-text text-grey">Projects</span>
 					</div>
 					<div class="col s4 text-center">
 						<a>
 							<span class="bold d-block" style="font-size: 2em">13</span>
-							<span class="d-block small-text text-grey">followers</span>
+							<span class="d-block small-text text-grey">Watch</span>
 						</a>
 					</div>
 					<div class="col s4 text-center">
 						<span class="bold d-block" style="font-size: 2em">1</span>
-						<span class="d-block small-text text-grey">mates</span>
+						<span class="d-block small-text text-grey">Mates</span>
 					</div>
 				</div>
 
 				<div class="p-16 text-center mt-10">
-					<button class="bg-orange text-white full-width weight-300" mat-button>
-						<i class="ion-md-add mr-10"></i>
-						Follow
+					<button class="bg-orange text-white full-width weight-300 arrow-animation" mat-button>
+						<i class="ion-ios-arrow-round-forward mr-10"></i>
+						Watch
 					</button>
 					<button class="full-width weight-300 bg-light-grey mt-10" mat-button>
 						<i class="ion-logo-usd mr-10"></i>
@@ -88,17 +82,16 @@
 			</mat-card>
 
 		</div>
-		<div class="col s6 m9 row" style="padding-right: 0">
-			
-			<div class="container">
-				<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
-				<h5 class="text-center weight-300 no-mt">to create a project click on <i class="ion-md-gift marker"></i> in the side menu</h5>
-				<div class="container">
-					<img src="assets/img/shopping.svg" class="full-width">
-				</div>
-			</div>
-		</div>
+	</div>
 
+	<div *ngIf="!pool.name">
+		<h2 class="weight-300 text-center p-16 no-mb">
+			<i class="ion-md-finger-print text-grey mr-10"></i>
+			Pool does not exist
+		</h2>
+		<div style="max-width: 400px" class="m-auto">
+			<img src="assets/img/empty.png" class="full-width mt-10">
+		</div>
 	</div>
 	
 </div>

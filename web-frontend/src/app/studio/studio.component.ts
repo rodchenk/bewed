@@ -4,7 +4,7 @@ import { PoolModalComponent } from './../pool-modal/pool-modal.component';
 import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from './../user.service';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-studio',
@@ -20,17 +20,23 @@ export class StudioComponent implements OnInit {
 
 	private host_and_service: string = 'http://127.0.0.1:3000/api'
 	public pools:any[] = [];
+    private user
 
-  	constructor(private dialog: MatDialog, private http: HttpClient, private userProvider: UserService, private router: Router) { }
+
+  	constructor(private dialog: MatDialog, private http: HttpClient, private userProvider: UserService, private router: Router, private route: ActivatedRoute) { }
 
   	ngOnInit() {
-  		this.getUserPools()
+        this.route.params.subscribe( params => {
+            this.getUserPools(params['user'])   
+        });
+  		
   	}
 
   	/**
     * @unused
   	* @method gets all pool data from API
   	* @use_api GET /pool/all
+    * @TODO move it to PoolProvider
   	*/
   	private getPools(){
   		this.http.get(this.host_and_service + '/pool/all', {}).subscribe( (data:any) => {
@@ -55,11 +61,12 @@ export class StudioComponent implements OnInit {
   	/**
   	* @method gets all pool data of given user_id from API
   	* @use_api GET /pool
+    * @TODO move it to PoolProvider
   	*/
-  	private getUserPools(){
-  		this.http.get(this.host_and_service + '/pool', {
+  	private getUserPools(user_id:string){
+  		this.http.get(this.host_and_service + '/pools', {
   			params: { 
-          user_id: this.userProvider.user.user_id
+          user_id: user_id
         }
   		}).subscribe( (data:any) => {
   			this.pools = data.docs;
@@ -73,7 +80,7 @@ export class StudioComponent implements OnInit {
   	public addPool(){
   		const dialogRef = this.dialog.open(PoolModalComponent)
   		dialogRef.afterClosed().subscribe((hasAdd:boolean) => {
-  			if(hasAdd) this.getUserPools()
+  			if(hasAdd) this.ngOnInit()
   		})
   	}
 
@@ -83,6 +90,6 @@ export class StudioComponent implements OnInit {
   	*/
   	public openPool(pool:any){
   		console.log(pool)
-      this.router.navigate(['studio/' + pool.name])
+      this.router.navigate(['studio/' + this.userProvider.user.user_id + '/' + pool._id])
   	}
 }
