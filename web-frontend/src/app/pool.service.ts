@@ -8,10 +8,38 @@ import { UserService } from './user.service'
 @Injectable({
   	providedIn: 'root'
 })
+/**
+* @author Misha Rodchenkov
+* @github github.com/rodchenk
+*/
 export class PoolService {
 
   	constructor(private http: HttpClient, private toast: ToastrService, private userProvider: UserService) { }
 
+  	/**
+  	* @UNUSED
+  	* @method gets all pools of all users
+  	* @use_api GET /pools/all
+  	* @return Promise<any> e.g. Pool data
+  	*/
+  	public getAll():Promise<any>{
+  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools/all', {}).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
+  	}
+
+  	/**
+  	* @method gets all pools by given author (user_id)
+  	* @use_api GET /pools?user_id={id}
+  	* @return Promise<any> e.g. Pool data
+  	*/
+  	public getByUser(user_id:string):Promise<any>{
+  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools', { params: {user_id} }).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
+  	}
+
+  	/**
+  	* @method gets pool data by given pool id
+  	* @use_api GET /pool?pool_id={id}
+  	* @return Promise<any> e.g. Pool data
+  	*/
   	public getByID(pool_id):Promise<any>{
   		return new Promise( (resolve, reject) => {
   			this.http.get(Config.API_URL + '/pool', { params: {pool_id}} ).subscribe( (data:any) => {
@@ -28,8 +56,12 @@ export class PoolService {
   		})
   	}
 
-  	public update(pool:any):Promise<any>{
-  		console.log('pool service')
+  	/**
+  	* @method updates pool in DB
+  	* @use_api PUT /pool
+  	* @return Promise<void>
+  	*/
+  	public update(pool:any):Promise<void>{
   		return new Promise( (resolve, reject) => {
   			this.http.put(Config.API_URL + '/pool', {values: pool}).subscribe( 
   				(data:any) => {
@@ -37,30 +69,25 @@ export class PoolService {
 	  				resolve()
   			}, (error:any) => {
 	  				this.showError('An error occurs') 
-	  				reject()
+	  				reject(error)
   			})
   		})
   	}
 
-  	public add(values:any):Promise<any>{
-  		return new Promise( (resolve, reject) => {
-	  		if(!values.name || !values.category){
-	  			this.showError('Name and category required')	
-	  			return;
-	  		}
-	  		if(values.isprivate === null) 
-	  			values.isprivate = false;
-	  		this.http.post(Config.API_URL + '/pool', {
-	  			data: values,
-	  			user: this.userProvider.user.user_id
-	  		}).subscribe(
-				data => resolve(true), 
-				error => {
-					console.warn(error); 
-					reject()
-				}
-			)
-  		})
+  	/**
+  	* @method adds pool to DB
+  	* @use_api POST /pool
+  	* @return Promise<boolean> -> if true, modal window will close and pools data will update
+  	*/
+  	public add(values:any):Promise<boolean>{
+  		if(!values.name || !values.category){
+  			this.showError('Name and category required')	
+  			return;
+  		}
+	  	if(values.isprivate === null) 
+	  		values.isprivate = false;
+  		
+  		return new Promise( (resolve, reject) => this.http.post(Config.API_URL + '/pool', { data: values, user: this.userProvider.user.user_id}).subscribe( data => resolve(true), error => reject(error) ))
   	}
 
   	/**

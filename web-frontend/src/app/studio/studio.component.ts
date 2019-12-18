@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PoolModalComponent } from './../pool-modal/pool-modal.component';
 import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from './../user.service';
+import { PoolService } from './../pool.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -18,31 +18,25 @@ import { Router, ActivatedRoute } from "@angular/router";
 */
 export class StudioComponent implements OnInit {
 
-	private host_and_service: string = 'http://127.0.0.1:3000/api'
 	public pools:any[] = [];
-    private user
 
-
-  	constructor(private dialog: MatDialog, private http: HttpClient, private userProvider: UserService, private router: Router, private route: ActivatedRoute) { }
+  	constructor(private dialog: MatDialog, private userProvider: UserService, private poolProvider: PoolService, private router: Router, private route: ActivatedRoute) { }
 
   	ngOnInit() {
-        this.route.params.subscribe( params => {
-            this.getUserPools(params['user'])   
-        });
-  		
+        this.route.params.subscribe( params => this.getUserPools(params['user']) );
   	}
 
   	/**
     * @unused
   	* @method gets all pool data from API
-  	* @use_api GET /pool/all
-    * @TODO move it to PoolProvider
   	*/
   	private getPools(){
-  		this.http.get(this.host_and_service + '/pool/all', {}).subscribe( (data:any) => {
-  			this.pools = data.docs;
-        this.setCategory();
-  		}, error => console.warn(error))
+        this.poolProvider.getAll().then( (pools:any) => {
+            this.pools = pools
+            this.setCategory()
+        }).catch( error => console.warn(error) )
+
+  		
   	}
 
     /**
@@ -59,25 +53,20 @@ export class StudioComponent implements OnInit {
     }
 
   	/**
-  	* @method gets all pool data of given user_id from API
-  	* @use_api GET /pool
-    * @TODO move it to PoolProvider
+  	* @method gets all pool data of given user_id via API
   	*/
   	private getUserPools(user_id:string){
-  		this.http.get(this.host_and_service + '/pools', {
-  			params: { 
-          user_id: user_id
-        }
-  		}).subscribe( (data:any) => {
-  			this.pools = data.docs;
-        this.setCategory();
-  		}, error => console.warn(error))
+        this.poolProvider.getByUser(user_id).then( (pools:any) => {
+            this.pools = pools
+            this.setCategory()
+        } ).catch( error => console.warn(error) )
   	}
 
   	/**
-  	* @method opens modal dialog with pool creation form
+  	* @method opens modal dialog with pool form
+    * @trigger if modal returns true, then it will update all pools to get new data
   	*/
-  	public addPool(){
+  	public addPool():void{
   		const dialogRef = this.dialog.open(PoolModalComponent)
   		dialogRef.afterClosed().subscribe((hasAdd:boolean) => {
   			if(hasAdd) this.ngOnInit()
@@ -88,8 +77,7 @@ export class StudioComponent implements OnInit {
   	* @method opens the pool on click
     * @redirect to /studio/:pool
   	*/
-  	public openPool(pool:any){
-  		console.log(pool)
-      this.router.navigate(['studio/' + this.userProvider.user.user_id + '/' + pool._id])
+  	public openPool(pool_id:string):void{
+        this.router.navigate(['studio/' + this.userProvider.user.user_id + '/' + pool_id])
   	}
 }

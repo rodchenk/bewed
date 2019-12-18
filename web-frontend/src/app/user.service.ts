@@ -5,7 +5,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Config } from './config';
 
 @Injectable({
-  providedIn: 'root'
+  	providedIn: 'root'
 })
 /**
 * @author Mischa Rodchenkov

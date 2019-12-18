@@ -20,7 +20,7 @@
 		</div>
 		<div class="row p-16">
 			<div *ngFor="let pool of pools" class="col s12 m6 l3">
-				<div class="light-border rounded bg-white p-16 pointer drop-shadow mt-10" (click)="openPool(pool)">
+				<div class="light-border rounded bg-white p-16 pointer drop-shadow mt-10" (click)="openPool(pool._id)">
 					<h4 class="weight-300 text-grey mt-10">
 						<i *ngIf="pool.private" class="ion-ios-lock float-right"></i>
 						{{pool.name}}
