@@ -64,6 +64,13 @@ header{
             background: #ffc228;
         }
     }
+    div.user-photo{
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-block;
+        background-size: cover;
+    }
 }
 div.custom-spinner{
     position: absolute;

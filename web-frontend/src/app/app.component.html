@@ -31,13 +31,15 @@
                 Sign up
             </a>
 
-            <button *ngIf="userService.isLoggedIn" style="background: #f5dc56" mat-button [matMenuTriggerFor]="userMenu" class="header-element float-right weight-300">
-                {{userService.user.user_id}}
+            <button *ngIf="userService.isLoggedIn" mat-flat-button [matMenuTriggerFor]="userMenu" class="header-element float-right weight-300">
+                <!-- {{userService.user.user_id}} -->
+                <div class="user-photo" style="background-image: url(/assets/img/0c347a3d87cc0fb11db60553082a621df6c467eb.jpg)"></div>
                 <i class="ion-ios-arrow-down ml-10"></i>
             </button>
 
             
             <mat-menu #userMenu="matMenu" class="small-dropdown no-pb user-menu" xPosition="before">
+
                 <a mat-menu-item routerLink="/user/{{userService.user.user_id}}">
                     <i class="ion-md-happy mr-10"></i>
                     Profile
@@ -68,14 +70,13 @@
                 </a>
             </mat-menu>    
 
-            <button [matMenuTriggerFor]="notifications" *ngIf="userService.isLoggedIn" mat-icon-button class="header-element float-right mr-10" style="font-size: 20px;margin-right: 25px!important;margin-top: 5px">
+            <button [matMenuTriggerFor]="notifications" *ngIf="userService.isLoggedIn" mat-icon-button class="header-element float-right mr-10" style="font-size: 20px;margin-top: 5px">
                 <i class="ion-ios-notifications-outline"></i>
             </button>    
 
             <mat-menu  #notifications="matMenu" xPosition="before">
                 <span class="cool-menu-item weight-300" mat-menu-item>
-                    <i class="ion-ios-megaphone mr-10"></i>
-                    You do not have any notifications
+                    You do not have any notifications yet
                 </span>
                 <img src="assets/img/notif.png" class="full-width d-block">
             </mat-menu>
