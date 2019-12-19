@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PoolCategoryAbstract, PoolCategory} from './../pool-category';
 import { PoolService } from './../pool.service';
 import { Router } from '@angular/router';
 import { UserService } from './../user.service';
+import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'app-pool-settings',
@@ -21,7 +22,7 @@ export class PoolSettingsComponent implements OnInit {
 	private form:FormGroup
 	public categories: PoolCategoryAbstract[] = PoolCategory.categories
 
-	constructor(@Inject(MAT_DIALOG_DATA) public pool_data: any, private dialogRef: MatDialogRef<PoolSettingsComponent>, private poolProvider: PoolService, private router: Router, private userProvider: UserService) {
+	constructor(@Inject(MAT_DIALOG_DATA) public pool_data: any, private dialogRef: MatDialogRef<PoolSettingsComponent>, private dialog: MatDialog, private poolProvider: PoolService, private router: Router, private userProvider: UserService) {
   		this.pool = pool_data
   	}
 
@@ -54,10 +55,19 @@ export class PoolSettingsComponent implements OnInit {
     * @TODO add confiramtion dialog
     */
     deletePool():void{
-        this.poolProvider.delete(this.pool).then( _ => {
-            this.close()
-            this.router.navigate(['/studio/' + this.userProvider.user.user_id])
-        }).catch( error => console.warn(error))
+        let dialog = this.dialog.open(ConfirmDialogComponent, {
+            data: {
+                message: 'Aree you sure you want to delete ' + this.pool.name + '?',
+                okButton: 'Delete'
+            }
+        });
+        dialog.afterClosed().subscribe( (isConfirmed:boolean) => {
+            if(isConfirmed)
+                this.poolProvider.delete(this.pool).then( _ => {
+                    this.close()
+                    this.router.navigate(['/studio/' + this.userProvider.user.user_id])
+                }).catch( error => console.warn(error))
+        })
     }
 
 }

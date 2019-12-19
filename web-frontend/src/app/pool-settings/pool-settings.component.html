@@ -4,7 +4,7 @@
 	</button>
 	<h2 class="p-16 no-pt">Pool settings</h2>
 	<div class="">
-		<form class="row no-mb" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+		<form class="row light-border-bottom" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 			
 			<mat-form-field class="d-block col s6" appearance="outline">
 				<mat-label>Pool name</mat-label>
@@ -41,9 +41,11 @@
 				<button mat-button type="submit" class="bg-bewed-primary">Save</button>
 			</div>
 		</form>
-		<hr>
-		<div class="col s6 text-right">
-			<button mat-button type="button" color="warn" (click)="deletePool()">Delete</button>
+		<div class="mt-10">
+			<button mat-button type="button" color="accent" (click)="deletePool()">
+				<i class="ion-ios-trash mr-10" style="vertical-align: unset;"></i>
+				Delete
+			</button>
 		</div>
 	</div>
 </div>
