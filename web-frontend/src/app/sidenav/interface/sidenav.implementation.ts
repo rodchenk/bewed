@@ -1,27 +1,34 @@
-import { Injectable } from '@angular/core';
 import { SideNav } from './sidenav.interface';
 import { StudioComponent } from './../../studio/studio.component';
 
-@Injectable({
-  	providedIn: 'root'
-})
+/**
+* @author Mischa Rodchenkov
+* @github github.com/rodchenk
+*/
 export class StudioNav implements SideNav{
 
-	constructor(){}
+	constructor(private component: any){}
 	
 	addNew():void{
-		console.log('new pool?')
-		// emit?
+		this.component.addPool()
 	}
 
 }
 
 export class PoolNav implements SideNav{
 	
-	constructor(){ }
+	constructor(private component: any){ }
 	
 	addNew():void{
 		console.log('new project?')
 	}
+}
 
+export class ProjectNav implements SideNav{
+	
+	constructor(private component: any){ }
+	
+	addNew():void{
+		console.log('new task?')
+	}
 }

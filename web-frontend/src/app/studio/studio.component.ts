@@ -7,9 +7,9 @@ import { PoolService } from './../pool.service';
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: 'app-studio',
-  templateUrl: './studio.component.html',
-  styleUrls: ['./studio.component.scss']
+    selector: 'app-studio',
+    templateUrl: './studio.component.html',
+    styleUrls: ['./studio.component.scss']
 })
 /**
 * @author Mischa Rodchenkov
@@ -19,9 +19,13 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class StudioComponent implements OnInit {
 
 	public pools:any[] = [];
+    component:StudioComponent = this
 
   	constructor(private dialog: MatDialog, private userProvider: UserService, private poolProvider: PoolService, private router: Router, private route: ActivatedRoute) { }
 
+    /**
+    * @method will be called after constructor. It takes user parameter from URL and looks for its pools in DB
+    */
   	ngOnInit() {
         this.route.params.subscribe( params => this.getUserPools(params['user']) );
   	}
@@ -35,8 +39,6 @@ export class StudioComponent implements OnInit {
             this.pools = pools
             this.setCategory()
         }).catch( error => console.warn(error) )
-
-  		
   	}
 
     /**

@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 */
 export class PoolService {
 
+    private readonly ERROR_MESSAGE = 'An error is occured'
   	constructor(private http: HttpClient, private userProvider: UserService, private bar: MatSnackBar) { }
 
   	/**
@@ -68,7 +69,7 @@ export class PoolService {
 	  				this.showSuccess('Pool has been updated')
 	  				resolve()
   			}, (error:any) => {
-	  				this.showError('An error occurs') 
+	  				this.showError(this.ERROR_MESSAGE) 
 	  				reject(error)
   			})
   		})
@@ -89,6 +90,22 @@ export class PoolService {
   		
   		return new Promise( (resolve, reject) => this.http.post(Config.API_URL + '/pool', { data: values, user: this.userProvider.user.user_id}).subscribe( data => resolve(true), error => reject(error) ))
   	}
+
+    public delete(values:any):Promise<void>{
+        console.log(values)
+        return new Promise( (resolve, reject) => {
+            this.http.delete(Config.API_URL + '/pool', { params: {
+                 _id: values._id, 
+                 _rev: values._rev
+            }}).subscribe( (data:any) => {
+                this.showSuccess('Pool has been deleted')
+                resolve()
+            }, error => {
+                this.showError(this.ERROR_MESSAGE)
+                reject()
+            })
+        })
+    }
 
   	/**
   	* @method shows error toast with given message
