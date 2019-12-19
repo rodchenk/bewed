@@ -6,7 +6,6 @@ const db_name = 'pool';
 
 
 exports.add = function(req, res){
-    console.log(req);
     const pool = {
         name: req.body.data.name,
         category: req.body.data.category,
@@ -14,11 +13,7 @@ exports.add = function(req, res){
         user: req.body.user
     };
 
-    couch.insert(db_name, pool).then( ({data, headers, status}) => {
-        res.json({'status': 'ok', 'data': data});
-    }, err => {
-        res.json({'status': 'error', 'reason': err});
-    } );
+    couch.insert(db_name, pool).then( ({data, headers, status}) => res.json({'status': 'ok', 'data': data}), err => res.json({'status': 'error', 'reason': err}) );
 }
 
 exports.getAll = function(req, res){
@@ -28,11 +23,7 @@ exports.getAll = function(req, res){
                 "$gt": "0"
             }
         }
-    }, {}).then(({data, headers, status}) => {
-        res.json(data);
-    }, err => {
-        res.json({'status':'error', 'reason':err});
-    });
+    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
 exports.getByUser = function(req, res){
@@ -42,11 +33,7 @@ exports.getByUser = function(req, res){
                 "$eq": req.query.user_id
             }
         }
-    }, {}).then(({data, headers, status}) => {
-        res.json(data);
-    }, err => {
-        res.json({'status':'error', 'reason':err});
-    });
+    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
 exports.getByID = function(req, res){
@@ -56,23 +43,13 @@ exports.getByID = function(req, res){
                 "$eq": req.query.pool_id
             }
         }
-    }, {}).then(({data, headers, status}) => {
-        res.json(data);
-    }, err => {
-        res.json({'status':'error', 'reason':err});
-    });
+    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
 exports.update = function(req, res){
-    console.log(req.body)
-    couch.update(db_name, req.body.values).then(({data, headers, status}) => {
-        res.json({'status': 'ok', "data": data});
-    }, err => {
-        res.json({'status': 'error', 'reason': err});
-    });
+    couch.update(db_name, req.body.values).then(({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
 
 exports.delete = function(req, res){
-    //todo
-    res.json({'status': 'ok'})
+    couch.del(db_name, req.query._id, req.query._rev).then( ({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
