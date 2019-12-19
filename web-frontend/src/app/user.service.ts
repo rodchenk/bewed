@@ -1,6 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Config } from './config';
 
@@ -19,7 +21,7 @@ export class UserService{
 	private auth_key:string = 'user_auth_data'
 	private email_key:string = 'user_email'
 
-	constructor(private router: Router, private toast: ToastrService, private http: HttpClient) {
+	constructor(private router: Router, private bar: MatSnackBar, private http: HttpClient) {
   		this._refresh_auth();
   		if(this.isLoggedIn){
   			this.user = this.LocalStorageManager.getValue(this.auth_key);
@@ -151,26 +153,29 @@ export class UserService{
 		})
 	}
 
-	/**
+  	/**
   	* @method shows error toast with given message
   	*/
   	public showError(message:string):void {
-  		this.toast.error(message,'', {
-    		progressBar: true,
-       		progressAnimation: 'increasing',
-    		positionClass: 'toast-top-right'
-    	});
+  		this.bar.open(message, 'Close', {
+  			duration: 3000,
+  			panelClass: 'error',
+  			horizontalPosition: 'right',
+  			verticalPosition: 'top'
+		});
   	}
 
   	/**
   	* @method shows success toast with given message
   	*/
   	public showSuccess(message:string):void {
-  		this.toast.success(message,'', {
-    		progressBar: true,
-       		progressAnimation: 'increasing',
-    		positionClass: 'toast-top-right'
-    	});
+
+  		this.bar.open(message, 'Close', {
+  			duration: 3000,
+  			panelClass: 'success',
+  			horizontalPosition: 'right',
+  			verticalPosition: 'top'
+		});
   	}
 
   	/**

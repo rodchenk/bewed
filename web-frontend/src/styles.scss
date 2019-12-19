@@ -224,6 +224,16 @@ a.gradient-button{
     border-radius: 4px;
     display: inline-block;
 }
+.tag-marker{
+	background-color: #e4ecf9;
+	padding: 3px 5px;
+    border-radius: 4px;
+    display: inline-block;
+    margin: 2px;
+    &:hover{
+    	background-color: #dfebff;
+    }
+}
 button.close-button{
 	position: absolute;
 	top: 10px;

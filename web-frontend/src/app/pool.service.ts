@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { PoolCategoryAbstract, PoolCategory} from './pool-category';
 import { Config } from './config';
-import { ToastrService } from 'ngx-toastr';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { UserService } from './user.service'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   	providedIn: 'root'
@@ -14,7 +14,7 @@ import { UserService } from './user.service'
 */
 export class PoolService {
 
-  	constructor(private http: HttpClient, private toast: ToastrService, private userProvider: UserService) { }
+  	constructor(private http: HttpClient, private userProvider: UserService, private bar: MatSnackBar) { }
 
   	/**
   	* @UNUSED
@@ -94,21 +94,24 @@ export class PoolService {
   	* @method shows error toast with given message
   	*/
   	public showError(message:string):void {
-  		this.toast.error(message,'', {
-    		progressBar: true,
-       		progressAnimation: 'increasing',
-    		positionClass: 'toast-top-right'
-    	});
+  		this.bar.open(message, 'Close', {
+  			duration: 3000,
+  			panelClass: 'error',
+  			horizontalPosition: 'right',
+  			verticalPosition: 'top'
+		});
   	}
 
   	/**
   	* @method shows success toast with given message
   	*/
   	public showSuccess(message:string):void {
-  		this.toast.success(message,'', {
-    		progressBar: true,
-       		progressAnimation: 'increasing',
-    		positionClass: 'toast-top-right'
-    	});
+
+  		this.bar.open(message, 'Close', {
+  			duration: 3000,
+  			panelClass: 'success',
+  			horizontalPosition: 'right',
+  			verticalPosition: 'top'
+		});
   	}
 }

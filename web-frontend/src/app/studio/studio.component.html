@@ -1,4 +1,4 @@
-<app-sidenav></app-sidenav>
+<app-sidenav [page]="'studio'"></app-sidenav>
 <div class="with-sidenav">
 	<div *ngIf="pools.length === 0" class="row">
 		<div class="col s12 text-center">
@@ -28,7 +28,9 @@
 							 <mat-basic-chip>{{pool.viewCategory || pool.category}}</mat-basic-chip>
 						</mat-chip-list>
 					</h4>
-					<p>Info will appear later</p>
+					<div class="text-grey">
+						<span>hello</span>
+					</div>
 				</div>
 			</div>
 		</div>
