@@ -25,3 +25,13 @@ exports.update = function(req, res){
         res.json({'status': 'error', 'reason': err});
     });
 }
+
+exports.getAll = function(req, res){
+    couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$gt": "0"
+            }
+        }
+    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+}
