@@ -18,10 +18,10 @@
 				</mat-select>
 			</mat-form-field>
 
-			<mat-form-field class="d-block col s12" appearance="outline">
+			<!-- <mat-form-field class="d-block col s12" appearance="outline">
 				<mat-label>Tags</mat-label>
 				<input matInput type="text" autocomplete="off" formControlName="tags">
-			</mat-form-field>
+			</mat-form-field> -->
 
 
 			<mat-form-field class="d-block col s12" appearance="outline">
@@ -31,16 +31,17 @@
 
 
 			<mat-form-field class="example-chip-list d-block col s12">
-				<mat-chip-list #chipList aria-label="Fruit selection">
-					<mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="remove(tag)">
-						{{tag.tag}}
-						<i matChipRemove *ngIf="removable" class="ion-md-close"></i>
+				<mat-label>Tags</mat-label>
+				<mat-chip-list #chipList>
+					<mat-chip *ngFor="let tag of tags" [selectable]="true" [removable]="true" (removed)="removeTag(tag)" class="bg-light-grey">
+						{{tag}}
+						<i matChipRemove class="ion-md-close-circle" style="margin-top: 4px"></i>
 					</mat-chip>
-					<input placeholder="New tag..."
+					<input autocomplete="off" 
 						[matChipInputFor]="chipList"
 						[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-						[matChipInputAddOnBlur]="addOnBlur"
-						(matChipInputTokenEnd)="add($event)">
+						[matChipInputAddOnBlur]="true"
+						(matChipInputTokenEnd)="addTag($event)">
 				</mat-chip-list>
 			</mat-form-field>
 

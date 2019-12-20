@@ -6,12 +6,9 @@ import { PoolService } from './../pool.service';
 import { Router } from '@angular/router';
 import { UserService } from './../user.service';
 import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {COMMA, ENTER, SPACE} from '@angular/cdk/keycodes';
 import {MatChipInputEvent} from '@angular/material/chips';
 
-interface Tag{
-    tag: string
-}
 @Component({
     selector: 'app-pool-settings',
     templateUrl: './pool-settings.component.html',
@@ -27,53 +24,39 @@ export class PoolSettingsComponent implements OnInit {
 	private pool:any = {}
 	private form:FormGroup
 	public categories: PoolCategoryAbstract[] = PoolCategory.categories
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA, SPACE]
+    public tags: any[] = []
 
 	constructor(@Inject(MAT_DIALOG_DATA) public pool_data: any, private dialogRef: MatDialogRef<PoolSettingsComponent>, private dialog: MatDialog, private poolProvider: PoolService, private router: Router, private userProvider: UserService) {
   		this.pool = pool_data
   	}
 
-    visible = true;
-    selectable = true;
-    removable = true;
-    addOnBlur = true;
-    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-    tags: Tag[] = [
-        {tag: 'Lemon'},
-        {tag: 'Lime'},
-        {tag: 'Apple'},
-    ];
-
-    add(event: MatChipInputEvent): void {
+    addTag(event: MatChipInputEvent): void {
         const input = event.input;
         const value = event.value;
 
-        // Add our fruit
-        if ((value || '').trim()) {
-            this.tags.push({tag: value.trim()});
-        }
+        if((value || '').trim())
+            this.tags.push(value.trim())
 
-        // Reset the input value
-        if (input) {
+        if(input) 
             input.value = '';
-        }
     }
 
-    remove(fruit: Tag): void {
-        const index = this.tags.indexOf(fruit);
+    removeTag(tag: string): void {
+        const index = this.tags.indexOf(tag);
 
-        if (index >= 0) {
+        if(index >= 0) 
             this.tags.splice(index, 1);
-        }
     }
-
-    /*--------------*/
 
   	ngOnInit() {
+
+        this.tags = [...this.pool.tags]
+
   		this.form = new FormGroup({
   			name: new FormControl('', [Validators.required, Validators.maxLength(56)]),
   			category: new FormControl('', Validators.required),
   			private: new FormControl(),
-  			tags: new FormControl('', Validators.maxLength(128)),
   			description: new FormControl('', Validators.maxLength(256)),
             sponsor: new FormControl()
   		})
@@ -87,9 +70,9 @@ export class PoolSettingsComponent implements OnInit {
   		this.pool.name = pool.name
   		this.pool.category = pool.category
   		this.pool.private = pool.private
-  		this.pool.tags = pool.tags
   		this.pool.description = pool.description
         this.pool.sponsor = pool.sponsor
+        this.pool.tags = this.tags
 
   		this.poolProvider.update(this.pool).then( _ => this.close(true)).catch( error => console.warn(error))
   	}

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UserService } from './../user.service';
 import { ChangePasswordComponent } from './../change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
+import { UploadPhotoComponent } from './../upload-photo/upload-photo.component';
 
 @Component({
     selector: 'app-settings',
@@ -17,7 +18,7 @@ export class SettingsComponent implements OnInit {
 
 	private settingsForm:any
 	private securityForm:any
-  private readonly message_data_saved = 'Data has been saved'
+    private readonly message_data_saved = 'Data has been saved'
 
 	private user:any = {
 		firstName: '',
@@ -30,7 +31,7 @@ export class SettingsComponent implements OnInit {
 
 	public saveDisabled: boolean = true
 	public saveSecurityDisabled: boolean = true
-  public logoutOtherDisabled: boolean = true
+    public logoutOtherDisabled: boolean = true
 
 	public progress:number
 
@@ -41,8 +42,8 @@ export class SettingsComponent implements OnInit {
 		photo: 0,
 		location: 0,
 		gender: 0,
-    status: 0,
-    name: 0
+        status: 0,
+        name: 0
 	}
 
   	constructor(private dialog: MatDialog, private formBuilder: FormBuilder, private userProvider: UserService) {
@@ -61,6 +62,10 @@ export class SettingsComponent implements OnInit {
   		})
 
   	}
+
+    uploadImage():void{
+        let imageDialog = this.dialog.open(UploadPhotoComponent)
+    }
 
   	/**
   	* @method standard from Angular. Initialize forms

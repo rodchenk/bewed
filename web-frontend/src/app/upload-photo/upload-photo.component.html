@@ -1,0 +1,33 @@
+<div class="container" style="width: 550px">
+    <div class="row" style="margin-top: 5%;">
+    	<div class="col s6">
+			<span class="text-grey weight-300 p-10">Upload Image</span>
+    	</div>
+        <div class="text-right col s6">
+            <input id="upload-button" style="display: none;" type="file" (change)="fileChangeEvent($event)" />
+            <button mat-button class="bg-light-grey weight-300" onClick="document.getElementById('upload-button').click()">
+            	<i class="ion-ios-camera mr-10" style="vertical-align: unset;"></i>
+            	Select image
+            </button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 5%;">
+        <div class="text-center col s12">
+            <image-cropper 
+	            [imageChangedEvent]="imageChangedEvent" 
+	            [maintainAspectRatio]="false" 
+	            [aspectRatio]="4 / 4"
+	            [resizeToWidth]="256" 
+	            format="png" 
+	            (imageCropped)="imageCropped($event)" 
+	            (imageLoaded)="imageLoaded()"
+	            (cropperReady)="cropperReady()" 
+	            (loadImageFailed)="loadImageFailed()">
+	        </image-cropper>
+        </div>
+        <div class="text-right col s12 mt-10">
+        	<button mat-button class="bg-light-grey weight-300 mr-10" (click)="close()">Cancel</button>
+            <button mat-button class="text-white bg-green weight-300" (click)="save()" [disabled]="croppedImage.length === 0">Save</button>
+        </div>
+    </div>
+</div>

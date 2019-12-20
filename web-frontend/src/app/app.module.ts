@@ -5,6 +5,9 @@ import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+/* 3rd Party Components */
+import { ImageCropperModule } from 'ngx-image-cropper';
+
 /* Google firebase */
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -39,6 +42,7 @@ import { StudioPoolComponent } from './studio-pool/studio-pool.component';
 import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ExploreUsersComponent } from './explore-users/explore-users.component';
+import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +64,8 @@ import { ExploreUsersComponent } from './explore-users/explore-users.component';
         StudioPoolComponent,
         PoolSettingsComponent,
         ConfirmDialogComponent,
-        ExploreUsersComponent
+        ExploreUsersComponent,
+        UploadPhotoComponent
     ],
     imports: [
         BrowserModule,
@@ -85,6 +90,7 @@ import { ExploreUsersComponent } from './explore-users/explore-users.component';
         FormsModule,
         ReactiveFormsModule,
         AngularFireDatabaseModule,
+        ImageCropperModule,
         AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
     ],
     entryComponents: [
@@ -92,7 +98,8 @@ import { ExploreUsersComponent } from './explore-users/explore-users.component';
         ChangePasswordComponent,
         LoginComponent,
         PoolSettingsComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        UploadPhotoComponent
     ],
     providers: [],
     bootstrap: [AppComponent]
