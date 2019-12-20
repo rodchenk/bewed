@@ -1,7 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { ToastrService } from 'ngx-toastr';
-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Config } from './config';

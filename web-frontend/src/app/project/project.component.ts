@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
 
 import {
 	trigger,
@@ -32,7 +31,7 @@ export class ProjectComponent implements OnInit {
 	private connected:boolean = true
 	private host:string = 'http://localhost:3000/api'
   
-  	constructor(private http:HttpClient, private toast: ToastrService) { }
+  	constructor(private http:HttpClient) { }
 
   	ngOnInit() {
   		console.log('Explore init');
@@ -56,15 +55,5 @@ export class ProjectComponent implements OnInit {
 
   	public like(project:any){
   		project.liked = !project.liked
-  		this.showSuccess('You liked succesfull')
   	}
-
-  	private showSuccess(msg:string) {
-    	this.toast.success('Hello world!', msg, {
-    		progressBar: true,
-       		progressAnimation: 'increasing',
-    		positionClass: 'toast-top-right'
-    	});
-  	}
-
 }

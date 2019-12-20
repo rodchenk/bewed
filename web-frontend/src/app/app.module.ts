@@ -16,7 +16,6 @@ import { MatButtonModule, MatCheckboxModule, MatSelectModule,
         MatCardModule, MatDialogModule, MatChipsModule,
         MatTabsModule, MatDatepickerModule, MatNativeDateModule,
         MatProgressBarModule, MatSnackBarModule } from '@angular/material';
-import { ToastrModule } from 'ngx-toastr';
 
 /* bewed components */
 import { AppRoutingModule } from './app-routing.module';
@@ -40,7 +39,6 @@ import { StudioPoolComponent } from './studio-pool/studio-pool.component';
 import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ExploreUsersComponent } from './explore-users/explore-users.component';
-import { NgxTagsInputModule } from 'ngx-tags-input';
 
 @NgModule({
     declarations: [
@@ -65,7 +63,6 @@ import { NgxTagsInputModule } from 'ngx-tags-input';
         ExploreUsersComponent
     ],
     imports: [
-        ToastrModule.forRoot(),
         BrowserModule,
         HttpClientModule,
         AppRoutingModule,
@@ -88,7 +85,6 @@ import { NgxTagsInputModule } from 'ngx-tags-input';
         FormsModule,
         ReactiveFormsModule,
         AngularFireDatabaseModule,
-        NgxTagsInputModule,
         AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
     ],
     entryComponents: [
