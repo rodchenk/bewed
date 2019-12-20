@@ -4,7 +4,7 @@
 	</button>
 	<h2 class="p-16 no-pt">Pool settings</h2>
 	<div class="">
-		<form class="row light-border-bottom" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+		<form class="row no-mb" [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
 			
 			<mat-form-field class="d-block col s6" appearance="outline">
 				<mat-label>Pool name</mat-label>
@@ -28,24 +28,28 @@
 				<textarea matInput type="text" autocomplete="off" formControlName="description"></textarea>
 			</mat-form-field>
 
-			<div class="col s6 row">
-				<div class="no-mb">
+			<div class="col s12 row light-border-bottom" style="padding-bottom: 12px">
+				<div class="no-mb col s6">
 					<mat-checkbox color="warn" formControlName="private">private pool</mat-checkbox>
-				</div>
-				<div class="no-mb">
 					<h5 class="weight-300 text-grey no-mb no-mt">private pools are only for you visible</h5>
 				</div>
+				<div class="col s6">
+					<div class="no-mb">
+						<mat-checkbox color="warn" formControlName="sponsor">sponsor button</mat-checkbox>
+						<h5 class="weight-300 text-grey no-mb no-mt">let other users help you</h5>
+					</div>
+				</div>
+			</div>
+			<div class="col s6">
+				<button mat-flat-button type="button" color="warn" (click)="deletePool()">
+					<i class="ion-ios-trash mr-10" style="vertical-align: unset;"></i>
+					Delete
+				</button>
 			</div>
 			<div class="col s6 text-right">
 				<button mat-button type="button" class="mr-10 bg-light-grey" (click)="close()">Cancel</button>
-				<button mat-button type="submit" class="bg-bewed-primary">Save</button>
+				<button mat-button type="submit" class="bg-green text-white" style="padding: 0 40px">Save</button>
 			</div>
 		</form>
-		<div class="mt-10">
-			<button mat-button type="button" color="accent" (click)="deletePool()">
-				<i class="ion-ios-trash mr-10" style="vertical-align: unset;"></i>
-				Delete
-			</button>
-		</div>
 	</div>
 </div>

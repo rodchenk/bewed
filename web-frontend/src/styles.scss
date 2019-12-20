@@ -242,3 +242,31 @@ button.close-button{
 .mat-dialog-container{
 	position: relative;
 }
+
+div.menu-triangle{
+	color: violet;
+    &::before{
+    	content: "";
+    	position: absolute;
+        top: -16px;
+        right: 9px;
+        left: auto;
+
+        border-width: 8px;
+        border-style: solid;
+        border-color: transparent transparent #e5ecf3;
+        border-image: initial;
+    }
+    &::after{
+    	content: "";
+    	position: absolute;
+        top: -14px;
+        right: 10px;
+        left: auto;
+
+        border-width: 7px;
+        border-style: solid;
+        border-color: transparent transparent rgb(255, 255, 255);
+        border-image: initial;
+    }
+}

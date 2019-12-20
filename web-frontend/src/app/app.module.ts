@@ -39,6 +39,7 @@ import { CompleteSignupComponent } from './complete-signup/complete-signup.compo
 import { StudioPoolComponent } from './studio-pool/studio-pool.component';
 import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { ExploreUsersComponent } from './explore-users/explore-users.component';
 
 @NgModule({
     declarations: [
@@ -59,7 +60,8 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
         CompleteSignupComponent,
         StudioPoolComponent,
         PoolSettingsComponent,
-        ConfirmDialogComponent
+        ConfirmDialogComponent,
+        ExploreUsersComponent
     ],
     imports: [
         ToastrModule.forRoot(),

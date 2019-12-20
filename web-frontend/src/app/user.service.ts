@@ -63,6 +63,12 @@ export class UserService{
   		return this.LocalStorageManager.getValue(this.email_key)
   	}
 
+    public getAll():Promise<any>{
+        return new Promise( (resolve, reject) => {
+            this.http.get(Config.API_URL + '/users').subscribe( (data:any) => resolve(data.docs), error => reject(error))
+        })
+    }
+
   	/**
   	* @method logs in the user and initializes temp password and token
   	* @use_api POST /login

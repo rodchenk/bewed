@@ -15,6 +15,7 @@ import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.compo
 /**
 * @author Mischa Rodchenkov
 * @github github.com/rodchenk
+* @TODO tagsInput
 */
 export class PoolSettingsComponent implements OnInit {
 
@@ -28,31 +29,39 @@ export class PoolSettingsComponent implements OnInit {
 
   	ngOnInit() {
   		this.form = new FormGroup({
-  			name: new FormControl(),
-  			category: new FormControl(),
+  			name: new FormControl('', [Validators.required, Validators.maxLength(56)]),
+  			category: new FormControl('', Validators.required),
   			private: new FormControl(),
-  			tags: new FormControl(),
-  			description: new FormControl()
+  			tags: new FormControl('', Validators.maxLength(128)),
+  			description: new FormControl('', Validators.maxLength(256)),
+            sponsor: new FormControl()
   		})
   		this.form.patchValue(this.pool)
   	}
 
+    /**
+    * @method patch form values to pool object and send to pooProvider to update it in DB
+    */
   	private onSubmit(pool:any):void{
   		this.pool.name = pool.name
   		this.pool.category = pool.category
   		this.pool.private = pool.private
-  		this.pool.tags = pool.tags
+  		this.pool.tags = pool.tags.trim().split(",")
   		this.pool.description = pool.description
+        this.pool.sponsor = pool.sponsor
 
   		this.poolProvider.update(this.pool).then( _ => this.close(true)).catch( error => console.warn(error))
   	}
 
+    /**
+    * @method closes modal setting window
+    */
   	private close(isUpdated:boolean = false):void {
   		this.dialogRef.close(isUpdated)
   	}
 
     /**
-    * @TODO add confiramtion dialog
+    * @method opens confirmDialog and after confirmation removes pool data from DB
     */
     deletePool():void{
         let dialog = this.dialog.open(ConfirmDialogComponent, {

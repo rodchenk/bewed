@@ -38,7 +38,7 @@
             </button>
 
             
-            <mat-menu #userMenu="matMenu" class="small-dropdown no-pb user-menu" xPosition="before">
+            <mat-menu #userMenu="matMenu" class="small-dropdown no-pb user-menu menu-triangle" xPosition="before">
 
                 <a mat-menu-item routerLink="/user/{{userService.user.user_id}}">
                     <i class="ion-md-happy mr-10"></i>
@@ -74,7 +74,7 @@
                 <i class="ion-ios-notifications-outline"></i>
             </button>    
 
-            <mat-menu  #notifications="matMenu" xPosition="before">
+            <mat-menu  #notifications="matMenu" xPosition="before" class="menu-triangle">
                 <span class="cool-menu-item weight-300" mat-menu-item>
                     You do not have any notifications yet
                 </span>

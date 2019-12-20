@@ -12,6 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CompleteSignupComponent } from './complete-signup/complete-signup.component';
 import { StudioPoolComponent } from './studio-pool/studio-pool.component';
 import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
+import { ExploreUsersComponent } from './explore-users/explore-users.component';
 
 const routes: Routes = [  
 	{
@@ -32,7 +33,7 @@ const routes: Routes = [
  	},
  	{
  		path: 'explore',
- 		component: ProjectComponent
+ 		component: ExploreUsersComponent
  	},
  	{
  		path: 'settings',

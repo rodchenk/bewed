@@ -1,0 +1,19 @@
+<div *ngIf="users.length > 0" class="container mt-10 row">
+	<div *ngFor="let user of users" class="col s12 m4 l3">
+		<mat-card class="p-16 light-border">
+			<a class="text-grey weight-300 d-block" routerLink="/user/{{user._id}}">
+				<i *ngIf="user.verified" class="ion-ios-checkmark-circle" style="color: #3da08d;margin-right: 3px"></i>
+				{{user.name}}
+			</a>
+			<span class="text-small mt-10">
+				{{user.location || 'No location'}}
+			</span>
+		</mat-card>
+	</div>
+</div>
+
+<div *ngIf="users.length == 0" class="container mt-10">
+	<h3 class="text-grey weight-300 text-center">
+		No users found
+	</h3>
+</div>

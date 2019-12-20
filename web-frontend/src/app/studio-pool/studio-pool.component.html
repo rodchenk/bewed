@@ -4,8 +4,8 @@
 
 
 	<div *ngIf="pool.name" class="row p-16">
-		<div class="col s6 m9 row" style="padding-right: 0">
-			
+		<div class="col s6 m9 row">
+
 			<div class="container">
 				
 				<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
@@ -25,17 +25,13 @@
 				</div>
 
 				<div class="text-center p-16">
-					<span>
-						{{pool.viewCategory}}
-					</span>
+					<span>{{pool.viewCategory}}</span>
 				</div>
-				<span class="text-grey d-block weight-300 p-16 no-pt" style="font-size: 0.9em">
+				<span *ngIf="pool.description" class="text-grey d-block weight-300 p-16 no-pt" style="font-size: 0.9em">
 					{{pool.description}}
-					<br>
-					<br>
-					<a href="" class="text-dark tag-marker">hello</a>
-					<a href="" class="text-dark tag-marker">foliage</a>
-					<a href="" class="text-dark tag-marker">studio</a>
+				</span>
+				<span *ngIf="pool.tags" class="text-grey d-block weight-300 p-16 no-pt" style="font-size: 0.9em">
+					<a *ngFor="let tag of pool.tags" routerLink="/tags/{{tag}}" class="text-dark tag-marker">{{tag}}</a>
 				</span>
 
 				<div class="p-16 row no-mb light-border-top">
@@ -67,7 +63,7 @@
 						<i class="ion-ios-arrow-round-forward mr-10"></i>
 						Watch
 					</button>
-					<button class="full-width weight-300 bg-light-grey mt-10" mat-button>
+					<button class="full-width weight-300 bg-light-grey mt-10" mat-button *ngIf="pool.sponsor">
 						<i class="ion-logo-usd mr-10"></i>
 						Sponsor
 					</button>

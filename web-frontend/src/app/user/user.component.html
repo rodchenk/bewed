@@ -32,7 +32,7 @@
 
 				<div class="text-center mt-10 p-16 no-pb">
 					<span style="font-size: 1.2em">
-						<i class="ion-ios-checkmark-circle text-orange" style="margin-right: 2px;filter: drop-shadow(0 0 12px #f25d51)"></i>
+						<i *ngIf="user.verified" class="ion-ios-checkmark-circle text-orange" style="margin-right: 2px;filter: drop-shadow(0 0 12px #f25d51)"></i>
 						{{user.name}}
 					</span>
 				</div>
