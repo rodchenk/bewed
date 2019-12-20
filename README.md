@@ -1,6 +1,6 @@
 # todo by foliage STUDIO
 
-![](https://raw.githubusercontent.com/rodchenk/worry/master/docs/img/studio.png?token=AHHVWEZ6NSEQJGBQKS4PL7C57JE7G)
+![image](https://user-images.githubusercontent.com/30366483/71283260-f22b2300-235f-11ea-8bde-1b28e5d12b6b.png)
 
 ### Web
 
