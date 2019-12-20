@@ -23,10 +23,27 @@
 				<input matInput type="text" autocomplete="off" formControlName="tags">
 			</mat-form-field>
 
+
 			<mat-form-field class="d-block col s12" appearance="outline">
 				<mat-label>Description</mat-label>
 				<textarea matInput type="text" autocomplete="off" formControlName="description"></textarea>
 			</mat-form-field>
+
+
+			<mat-form-field class="example-chip-list d-block col s12">
+				<mat-chip-list #chipList aria-label="Fruit selection">
+					<mat-chip *ngFor="let tag of tags" [selectable]="selectable" [removable]="removable" (removed)="remove(tag)">
+						{{tag.tag}}
+						<i matChipRemove *ngIf="removable" class="ion-md-close"></i>
+					</mat-chip>
+					<input placeholder="New tag..."
+						[matChipInputFor]="chipList"
+						[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+						[matChipInputAddOnBlur]="addOnBlur"
+						(matChipInputTokenEnd)="add($event)">
+				</mat-chip-list>
+			</mat-form-field>
+
 
 			<div class="col s12 row light-border-bottom" style="padding-bottom: 12px">
 				<div class="no-mb col s6">

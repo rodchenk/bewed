@@ -1,13 +1,20 @@
 <div *ngIf="users.length > 0" class="container mt-10 row">
+	<div class="col s12 cover">
+		<h2 class="text-white bold">Creators</h2>
+	</div>
 	<div *ngFor="let user of users" class="col s12 m4 l3">
 		<mat-card class="p-16 light-border">
 			<a class="text-grey weight-300 d-block" routerLink="/user/{{user._id}}">
 				<i *ngIf="user.verified" class="ion-ios-checkmark-circle" style="color: #3da08d;margin-right: 3px"></i>
 				{{user.name}}
 			</a>
-			<span class="text-small mt-10">
-				{{user.location || 'No location'}}
+			<span class="text-small mt-10 d-block" style="min-height: 20px">
+				{{user.location}}
 			</span>
+			<button class="mt-10 d-block bg-light-grey full-width weight-300" mat-button>
+				<i class="ion-ios-arrow-round-forward mr-10"></i>
+				Follow
+			</button>
 		</mat-card>
 	</div>
 </div>

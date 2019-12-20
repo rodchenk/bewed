@@ -6,7 +6,12 @@ import { PoolService } from './../pool.service';
 import { Router } from '@angular/router';
 import { UserService } from './../user.service';
 import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material/chips';
 
+interface Tag{
+    tag: string
+}
 @Component({
     selector: 'app-pool-settings',
     templateUrl: './pool-settings.component.html',
@@ -27,6 +32,42 @@ export class PoolSettingsComponent implements OnInit {
   		this.pool = pool_data
   	}
 
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+    readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    tags: Tag[] = [
+        {tag: 'Lemon'},
+        {tag: 'Lime'},
+        {tag: 'Apple'},
+    ];
+
+    add(event: MatChipInputEvent): void {
+        const input = event.input;
+        const value = event.value;
+
+        // Add our fruit
+        if ((value || '').trim()) {
+            this.tags.push({tag: value.trim()});
+        }
+
+        // Reset the input value
+        if (input) {
+            input.value = '';
+        }
+    }
+
+    remove(fruit: Tag): void {
+        const index = this.tags.indexOf(fruit);
+
+        if (index >= 0) {
+            this.tags.splice(index, 1);
+        }
+    }
+
+    /*--------------*/
+
   	ngOnInit() {
   		this.form = new FormGroup({
   			name: new FormControl('', [Validators.required, Validators.maxLength(56)]),
@@ -46,7 +87,7 @@ export class PoolSettingsComponent implements OnInit {
   		this.pool.name = pool.name
   		this.pool.category = pool.category
   		this.pool.private = pool.private
-  		this.pool.tags = pool.tags.trim().split(",")
+  		this.pool.tags = pool.tags
   		this.pool.description = pool.description
         this.pool.sponsor = pool.sponsor
 

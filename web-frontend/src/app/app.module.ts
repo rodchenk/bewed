@@ -40,6 +40,7 @@ import { StudioPoolComponent } from './studio-pool/studio-pool.component';
 import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ExploreUsersComponent } from './explore-users/explore-users.component';
+import { NgxTagsInputModule } from 'ngx-tags-input';
 
 @NgModule({
     declarations: [
@@ -87,6 +88,7 @@ import { ExploreUsersComponent } from './explore-users/explore-users.component';
         FormsModule,
         ReactiveFormsModule,
         AngularFireDatabaseModule,
+        NgxTagsInputModule,
         AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
     ],
     entryComponents: [
