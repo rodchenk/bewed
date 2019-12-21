@@ -13,7 +13,7 @@ export class UploadPhotoComponent implements OnInit {
 	public croppedImage:string = ''
 
 	constructor(@Inject(MAT_DIALOG_DATA) public image: any, private dialog: MatDialogRef<UploadPhotoComponent>, private bar: MatSnackBar) {
-		//this.imageCropped = image ? image : ''
+		this.croppedImage = image ? image : ''
 	}
 
 	ngOnInit() { }
@@ -53,7 +53,7 @@ export class UploadPhotoComponent implements OnInit {
 	}
 
 	save():void{
-		console.log(this.croppedImage)
+		this.close(this.croppedImage)
 	}
 
 }

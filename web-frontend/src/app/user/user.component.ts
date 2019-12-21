@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class UserComponent implements OnInit {
 
 	private user_id: string
-	private user:any = {name:''}
+	private user:any = {name:'', photo: 'default.png'}
 
   	constructor(private userProvider: UserService, private route: ActivatedRoute, private router: Router) {
   		console.log('constructor loaded');

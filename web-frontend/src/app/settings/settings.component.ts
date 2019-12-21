@@ -65,6 +65,14 @@ export class SettingsComponent implements OnInit {
 
     uploadImage():void{
         let imageDialog = this.dialog.open(UploadPhotoComponent)
+        imageDialog.afterClosed().subscribe( (image:any) => {
+            console.log(image)
+            if(image){
+                this.settingsForm.controls.photo.value = image
+                this.settingsForm.controls.photo.touched = true
+            }
+            console.log(this.settingsForm.controls)
+        }, error => console.warn(error))
     }
 
   	/**
@@ -145,19 +153,19 @@ export class SettingsComponent implements OnInit {
   	* @method patches general form values to user object and calls save function
   	*/
   	saveGeneral(data:any){
-      if(this.settingsForm.status === "INVALID") return;
+        if(this.settingsForm.status === "INVALID") return;
 
-  		this.user.firstName = data.firstName
-  		this.user.lastName = data.lastName
-  		this.user.birthday = data.birthday
-  		this.user.location = data.location
-  		this.user.photo = data.photo
-  		this.user.gender = data.gender
-      this.user.status = data.status
-      this.user.name = data.name
+        this.user.firstName = data.firstName
+        this.user.lastName = data.lastName
+        this.user.birthday = data.birthday
+        this.user.location = data.location
+        this.user.photo = data.photo
+        this.user.gender = data.gender
+        this.user.status = data.status
+        this.user.name = data.name
 
-      this.saveDisabled = true
-  		this.save()
+        this.saveDisabled = true
+        this.save()
   	}
 
   	/**

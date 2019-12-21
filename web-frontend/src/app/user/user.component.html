@@ -27,7 +27,10 @@
 		<div class="col " style="max-width: 350px">
 			<mat-card class="p-26 no-mt drop-shadow" style="border-bottom: 2px #f25d5185 solid">
 				<div class="text-center">
-					<div class="user-photo"><div></div></div>
+					<div class="user-photo">
+						<img src="{{user.photo || 'assets/img/sd.jpg'}}">
+						<!-- <div style="background-image: url({{user.photo || 'assets/img/sd.jpg'}})" class="hello"></div> -->
+					</div>
 				</div>
 
 				<div class="text-center mt-10 p-16 no-pb">

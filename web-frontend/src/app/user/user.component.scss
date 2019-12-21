@@ -29,16 +29,17 @@
 	//     top: 19%;
 	// }
 }
-.user-photo>div{
+.user-photo>img{
 	border: 6px white solid;
 	background-color: #fff;
 	margin: auto;
 	width: 175px;
 	height: 175px;
 	border-radius: inherit;
-    background: url("/assets/img/0c347a3d87cc0fb11db60553082a621df6c467eb.jpg");
+    // background: url("/assets/img/0c347a3d87cc0fb11db60553082a621df6c467eb.jpg");
     background-position: center;
     background-size: cover;
+    object-fit: cover;
     display: block;
 }
 div.contact-links{
