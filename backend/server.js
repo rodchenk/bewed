@@ -14,8 +14,8 @@ var express = require('express'),
 /*-----------------------Server body-------------------------*/
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));//true
+app.use(bodyParser.json({limit: '5mb'}));
+app.use(bodyParser.urlencoded({ limit: '5mb', extended: false }));//true
 
 app.use(function (req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
