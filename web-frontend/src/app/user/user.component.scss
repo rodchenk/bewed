@@ -4,7 +4,7 @@
 	background: linear-gradient(45deg, #f5b556, #f85e30);
 	display: inline-block;
 	position: relative;
-	box-shadow: 0 0 12px #ff007657;
+	// box-shadow: 0 0 12px #ff007657;
 	// &::before{
 	// 	content: "";
 	//     display: inline-block;
@@ -36,9 +36,6 @@
 	width: 175px;
 	height: 175px;
 	border-radius: inherit;
-    // background: url("/assets/img/0c347a3d87cc0fb11db60553082a621df6c467eb.jpg");
-    background-position: center;
-    background-size: cover;
     object-fit: cover;
     display: block;
 }

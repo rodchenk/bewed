@@ -9,7 +9,7 @@ import { UserService } from './../user.service';
 export class ExploreUsersComponent implements OnInit {
 
 	users:any[] = []
-	me:string = ''
+	private me:string = ''
 
   	constructor(private userService: UserService) {
   		this.me = this.userService.user.user_id
@@ -23,6 +23,8 @@ export class ExploreUsersComponent implements OnInit {
   		this.userService.getAll().then( (users:any) => {
   			if(users.length > 0) 
   				this.users = users.filter( (user:any) => user._id !== this.me)
+
+        console.log(this.users)
   		}).catch( error => this.users = [])
   	}
 
