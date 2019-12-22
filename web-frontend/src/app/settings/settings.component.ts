@@ -4,6 +4,7 @@ import { UserService } from './../user.service';
 import { ChangePasswordComponent } from './../change-password/change-password.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UploadPhotoComponent } from './../upload-photo/upload-photo.component';
+import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
 
 @Component({
     selector: 'app-settings',
@@ -18,6 +19,9 @@ export class SettingsComponent implements OnInit {
 
 	private settingsForm:any
 	private securityForm:any
+    private link:string
+    private readonly default_photo:string = '/assets/img/dpi.png'
+    private readonly host:string = 'http://localhost:4200'
     private readonly message_data_saved = 'Data has been saved'
 
 	private user:any = {
@@ -54,24 +58,41 @@ export class SettingsComponent implements OnInit {
   			  	this.settingsForm.patchValue(this.user)
   			  	this.securityForm.patchValue(this.user)
   			  	this.saveDisabled = true
-            this.saveSecurityDisabled = true
+                this.saveSecurityDisabled = true
 
   			  	this.logoutOtherDisabled = !(Object.keys(this.user.session).length > 1)
+                this.link = this.host + '/user/' + this.user._id
+
+                if(!this.user.photo){
+                    this.user.photo = this.default_photo
+                }
   			}	
   			console.log(this.user)
   		})
-
   	}
 
+    copyLink():void{
+        console.log(this.link)
+    }
+
+    deleteImage():void{
+        let dialogRef = this.dialog.open(ConfirmDialogComponent, { data: { message: 'Do you want to delete the current profile image?', okButton: 'Yes, delete'}})
+        dialogRef.afterClosed().subscribe( (confirmed:boolean) => {
+            if(confirmed)
+                this.user.photo = this.default_photo
+                this.settingsForm.controls.photo.value = null
+                this.saveDisabled = false
+        });
+    }
+
     uploadImage():void{
-        let imageDialog = this.dialog.open(UploadPhotoComponent)
+        let imageDialog = this.dialog.open(UploadPhotoComponent, { data: {image: this.user.photo}})
         imageDialog.afterClosed().subscribe( (image:any) => {
-            console.log(image)
             if(image){
+                this.user.photo = image
                 this.settingsForm.controls.photo.value = image
-                this.settingsForm.controls.photo.touched = true
+                this.saveDisabled = false
             }
-            console.log(this.settingsForm.controls)
         }, error => console.warn(error))
     }
 
@@ -94,8 +115,8 @@ export class SettingsComponent implements OnInit {
   		if(this.settingsForm.controls.gender.value) 	  this.progressTable.gender 	 = 12; else this.progressTable.gender 	 = 0
   		if(this.settingsForm.controls.photo.value) 		  this.progressTable.photo 	 =   12; else this.progressTable.photo 	   = 0
   		if(this.settingsForm.controls.birthday.value) 	this.progressTable.birthday  = 12; else this.progressTable.birthday  = 0
-      if(this.settingsForm.controls.name.value)       this.progressTable.name    =   12; else this.progressTable.name      = 0
-      if(this.settingsForm.controls.status.value)     this.progressTable.status  =   12; else this.progressTable.status    = 0
+        if(this.settingsForm.controls.name.value)       this.progressTable.name    =   12; else this.progressTable.name      = 0
+        if(this.settingsForm.controls.status.value)     this.progressTable.status  =   12; else this.progressTable.status    = 0
 
   		this.progress = 4 + this.progressTable.name + this.progressTable.status + this.progressTable.firstName + this.progressTable.lastName + 
                       this.progressTable.birthday + this.progressTable.photo + this.progressTable.location + this.progressTable.gender		
@@ -127,9 +148,10 @@ export class SettingsComponent implements OnInit {
 			photo: new FormControl(),
 			location: new FormControl(),
 			gender: new FormControl(),
-      name: new FormControl('', [Validators.required]),
-      status: new FormControl('', Validators.maxLength(256))
+            name: new FormControl('', [Validators.required]),
+            status: new FormControl('', Validators.maxLength(256))
 		});
+
 		this.settingsForm.valueChanges.subscribe( _ => {
 			this.calcGeneralProgress()
 			this.saveDisabled = false
@@ -159,12 +181,11 @@ export class SettingsComponent implements OnInit {
         this.user.lastName = data.lastName
         this.user.birthday = data.birthday
         this.user.location = data.location
-        this.user.photo = data.photo
+        //this.user.photo = data.photo
         this.user.gender = data.gender
         this.user.status = data.status
         this.user.name = data.name
 
-        this.saveDisabled = true
         this.save()
   	}
 
@@ -175,8 +196,12 @@ export class SettingsComponent implements OnInit {
   		this.userProvider.saveUserData(this.user).then((data:any) => {
   			this.user._rev = data.data.rev
   			this.userProvider.showSuccess(this.message_data_saved)
+            if(this.user.photo != this.default_photo){
+                console.log('equels')
+                this.userProvider.user.photo = this.user.photo //????
+            }
   			this.saveDisabled = true
-        this.saveSecurityDisabled = true
+            this.saveSecurityDisabled = true
   		}, error => console.warn(error) )
   	}
 

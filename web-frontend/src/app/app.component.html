@@ -32,8 +32,9 @@
             </a>
 
             <button *ngIf="userService.isLoggedIn" mat-flat-button [matMenuTriggerFor]="userMenu" class="header-element float-right weight-300">
-                <!-- {{userService.user.user_id}} -->
-                <div class="user-photo" style="background-image: url(/assets/img/0c347a3d87cc0fb11db60553082a621df6c467eb.jpg)"></div>
+                <div class="user-photo">
+                    <img src="{{userService.user.photo}}" class="p-absoulte full-width" style="left: 0; max-height: 100%">
+                </div>
                 <i class="ion-ios-arrow-down ml-10"></i>
             </button>
 

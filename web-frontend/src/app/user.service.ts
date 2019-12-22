@@ -237,4 +237,16 @@ export class UserService{
   			
   		})
   	}
+
+    getUserImage():Promise<string>{
+        return new Promise( (resolve, reject) => {
+            this.http.get(Config.API_URL + '/user/image', { params: {size: 'm', user_id: this.user.user_id}}).subscribe( (image:string) => {
+                if(image){
+                    resolve(image)
+                }else{
+                    reject(null)
+                }
+            }, error => reject(null))
+        })
+    }
 }

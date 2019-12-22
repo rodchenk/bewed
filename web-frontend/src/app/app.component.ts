@@ -13,12 +13,23 @@ export class AppComponent implements OnInit{
 	public sidenavEnabled = false;
 	public search_string:string = '';
 	public user:any = null;
+	public photo:string = '/assets/img/dpi.png'
 
 	constructor(public userService: UserService, public dialog: MatDialog){
 		console.log(this.userService.isLoggedIn)
 	}
 
-	ngOnInit(){ }
+	ngOnInit(){
+		this.userService.getUserImage().then( (data:any) => {
+			if(data.docs.length > 0){
+				if(!data.docs[0].photo){
+					this.userService.user.photo = this.photo
+				}else{
+					this.userService.user.photo = data.docs[0].photo
+				}
+			}
+		}).catch( e => console.warn('no image'))
+	}
 
 	private openLogin(){
 		this.dialog.open(LoginComponent);

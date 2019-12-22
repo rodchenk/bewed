@@ -18,8 +18,12 @@ export class UserComponent implements OnInit {
   	ngOnInit() {
   		this.route.params.subscribe( params => {
   			this.userProvider.getUserData( params['id'] ).then( (user:any) => { // get user via http from API with ID from URL 
-  				if(user.docs.length > 0)
+  				if(user.docs.length > 0){
   					this.user = user.docs[0]
+            if(!this.user.photo){
+              this.user.photo = '/assets/img/dpi.png'
+            }
+          }
   			});  			
   		});
   	}

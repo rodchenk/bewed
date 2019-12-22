@@ -69,7 +69,15 @@ header{
         height: 30px;
         border-radius: 50%;
         display: inline-block;
-        background-size: cover;
+        &>img{
+            background-color: #fff;
+            margin: auto;
+            width: 30px;
+            height: 30px;
+            border-radius: inherit;
+            object-fit: cover;
+            display: block;
+        }
     }
 }
 div.custom-spinner{

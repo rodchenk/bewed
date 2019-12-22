@@ -41,12 +41,27 @@
 							</div>
 						</div>
 						
+						<mat-form-field class="d-block" appearance="outline">
+							<mat-label>Location</mat-label>
+							<input matInput type="text" formControlName="location" autocomplete="off" [value]="user.location || ''" required="required">
+						</mat-form-field>
+
 					</div>
 
 					<div class="col s12 m6">
-						<div class="rounded light-border text-center" style="min-height: 230px;background: #e8eaf5b8">
+						<div class="rounded light-border text-center p-relative" style="min-height: 233px;background: #e8eaf5b8">
+							<img src="{{user.photo}}" class="full-width p-absolute" style="max-height: 100%;left:0;object-fit: contain;">
 							<i class="ion-md-camera text-grey d-block" style="margin-top: 75px;font-size: 3em"></i>
-							<button mat-button type="button" class="bg-light-grey" (click)="uploadImage()">Upload photo</button>
+							
+						</div>
+						<div class="weight-300 text-right" style="margin-top: 2.5em">
+							<button mat-button color="warn" type="button" class="mr-10" (click)="deleteImage()">
+								Delete current photo
+							</button>
+							<button mat-button type="button" class="bg-light-grey weight-300" (click)="uploadImage()">
+								<i class="ion-md-camera mr-10" style="vertical-align: unset;"></i>
+								Upload photo
+							</button>
 						</div>
 					</div>
 					
@@ -60,8 +75,11 @@
 					</mat-form-field>
 
 					<mat-form-field class="d-block col s12 m6"  appearance="outline">
-						<mat-label>Location</mat-label>
-						<input matInput type="text" formControlName="location" autocomplete="off" [value]="user.location || ''">
+						<mat-label>Page link</mat-label>
+						<input matInput type="text" autocomplete="off" [value]="link" readonly>
+						<button mat-icon-button matSuffix (click)="copyLink()" type="button" class="p-absolute" style="top:-35px;right:2px">
+							<i class="ion-ios-link"></i>
+						</button>
 					</mat-form-field>
 				</div>
 

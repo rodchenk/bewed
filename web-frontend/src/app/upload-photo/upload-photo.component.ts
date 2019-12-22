@@ -11,20 +11,22 @@ export class UploadPhotoComponent implements OnInit {
 
 	imageChangedEvent: any = '';
 	public croppedImage:string = ''
+	public user_photo:string = '/assets/img/dpi.png'
+	public loading:boolean = false
 
 	constructor(@Inject(MAT_DIALOG_DATA) public image: any, private dialog: MatDialogRef<UploadPhotoComponent>, private bar: MatSnackBar) {
-		this.croppedImage = image ? image : ''
+		this.user_photo = this.image.image
 	}
 
 	ngOnInit() { }
 
 	fileChangeEvent(event:ImageCroppedEvent):void{
-		console.log('fileChangeEvent')
+		this.loading = true
 		this.imageChangedEvent = event;
 	}
 
 	loadImageFailed():void{
-		console.log('loadImageFailed')
+		this.loading = false
 		this.bar.open('Loading failed', 'Close', {
 			verticalPosition: 'top',
 			duration: 3000
@@ -32,7 +34,6 @@ export class UploadPhotoComponent implements OnInit {
 	}
 
 	cropperReady():void{
-		console.log('cropperReady')
 		this.bar.open('Image loaded', 'Close', {
 			verticalPosition: 'top',
 			duration: 3000
@@ -40,11 +41,10 @@ export class UploadPhotoComponent implements OnInit {
 	}
 
 	imageLoaded():void{
-		console.log('imageLoaded')
+		this.loading = false
 	}
 
 	imageCropped(event:ImageCroppedEvent):void{
-		console.log('imageCropped')
 		this.croppedImage = event.base64;
 	}
 
