@@ -35,3 +35,19 @@ exports.getAll = function(req, res){
         }
     }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
+
+exports.getImage = function(req, res){
+    console.warn('Getting image with size ' + req.query.size);
+    couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$eq": req.query.user_id
+            }
+        },
+        fields: ['_id', '_rev', 'photo']
+    }, {}).then(({data, headers, status}) => {
+        res.json(data);
+    }, err => {
+        res.json({'status':'error', 'reason':err});
+    });
+}

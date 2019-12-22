@@ -15,6 +15,7 @@ router.get('/projects', projects.getAll)
 /* user api */
 router.get('/user', user.getByID)
 router.put('/user', user.update)
+router.get('/user/image', user.getImage)
 router.get('/users', user.getAll)
 
 /* pool api */
