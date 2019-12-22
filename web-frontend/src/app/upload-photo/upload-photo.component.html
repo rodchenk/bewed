@@ -15,7 +15,7 @@
         <div class="text-center col s12">
         	<mat-progress-bar *ngIf="loading" mode="indeterminate" [value]="progress" class="mb-10 mt-10"></mat-progress-bar>
 
-        	<img *ngIf="croppedImage.length == 0" src="{{user_photo}}">
+        	<img *ngIf="croppedImage.length == 0" src="{{user_photo}}" class="full-width">
 
         	<h3 *ngIf="loading" class="text-center weight-300 text-grey">image is loading</h3>
             <image-cropper style="max-height: 70vh;"

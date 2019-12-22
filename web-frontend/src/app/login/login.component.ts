@@ -32,7 +32,17 @@ export class LoginComponent implements OnInit {
 		if(!values.password || !values.name)
 			this.userProvider.showError(this.message_required_fields)
 
-		this.userProvider.login(values).then( _ => this.close() ).catch( error => console.warn(error) );
+		this.userProvider.login(values).then( _ => {
+			this.userProvider.getUserImage().then( (data:any) => {
+				if(data.docs.length > 0){
+					if(!data.docs[0].photo){
+						this.userProvider.user.photo = '/assets/img/dpi.png'
+					}else{
+						this.userProvider.user.photo = data.docs[0].photo
+					}
+				}
+			}).catch( e => console.warn('no image')).finally( () => this.close() )
+			}).catch( error => console.warn(error) );
 	}
 
 	/**

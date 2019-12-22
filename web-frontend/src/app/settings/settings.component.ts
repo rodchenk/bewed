@@ -82,6 +82,7 @@ export class SettingsComponent implements OnInit {
                 this.user.photo = this.default_photo
                 this.settingsForm.controls.photo.value = null
                 this.saveDisabled = false
+                this.calcGeneralProgress()
         });
     }
 
@@ -92,6 +93,7 @@ export class SettingsComponent implements OnInit {
                 this.user.photo = image
                 this.settingsForm.controls.photo.value = image
                 this.saveDisabled = false
+                this.calcGeneralProgress()
             }
         }, error => console.warn(error))
     }
@@ -196,10 +198,8 @@ export class SettingsComponent implements OnInit {
   		this.userProvider.saveUserData(this.user).then((data:any) => {
   			this.user._rev = data.data.rev
   			this.userProvider.showSuccess(this.message_data_saved)
-            if(this.user.photo != this.default_photo){
-                console.log('equels')
-                this.userProvider.user.photo = this.user.photo //????
-            }
+            this.userProvider.user.photo = this.user.photo //????
+            
   			this.saveDisabled = true
             this.saveSecurityDisabled = true
   		}, error => console.warn(error) )

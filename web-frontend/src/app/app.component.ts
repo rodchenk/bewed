@@ -20,15 +20,17 @@ export class AppComponent implements OnInit{
 	}
 
 	ngOnInit(){
-		this.userService.getUserImage().then( (data:any) => {
-			if(data.docs.length > 0){
-				if(!data.docs[0].photo){
-					this.userService.user.photo = this.photo
-				}else{
-					this.userService.user.photo = data.docs[0].photo
+		if(this.userService.isLoggedIn){
+			this.userService.getUserImage().then( (data:any) => {
+				if(data.docs.length > 0){
+					if(!data.docs[0].photo){
+						this.userService.user.photo = this.photo
+					}else{
+						this.userService.user.photo = data.docs[0].photo
+					}
 				}
-			}
-		}).catch( e => console.warn('no image'))
+			}).catch( e => console.warn('no image'))
+		}
 	}
 
 	private openLogin(){
