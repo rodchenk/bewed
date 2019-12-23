@@ -18,21 +18,24 @@ import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.compo
 export class SettingsComponent implements OnInit {
 
 	private settingsForm:any
-	private securityForm:any
+	private securityForm:FormGroup
+    private socialForm:any
     private link:string
     private readonly default_photo:string = '/assets/img/dpi.png'
     private readonly host:string = 'http://localhost:4200'
     private readonly message_data_saved = 'Data has been saved'
 
-	private user:any = {
-		firstName: '',
-		lastName: '',
-		birthday: '',
-		gender: '',
-		location: '',
-		photo: ''
-	}
+    private user:any = {
+        firstName: '',
+        lastName: '',
+        birthday: '',
+        gender: '',
+        location: '',
+        photo: '',
+        social: {}
+    }
 
+    private saveSocialDisabled:boolean = true
 	public saveDisabled: boolean = true
 	public saveSecurityDisabled: boolean = true
     public logoutOtherDisabled: boolean = true
@@ -55,6 +58,9 @@ export class SettingsComponent implements OnInit {
 
   			if(data.docs.length > 0){
   			  	this.user = data.docs[0]
+                if(!this.user.social){
+                    this.user.social = {}
+                }
   			  	this.settingsForm.patchValue(this.user)
   			  	this.securityForm.patchValue(this.user)
   			  	this.saveDisabled = true
@@ -66,6 +72,8 @@ export class SettingsComponent implements OnInit {
                 if(!this.user.photo){
                     this.user.photo = this.default_photo
                 }
+                if(this.socialForm)
+                    this.socialForm.patchValue(this.user.social)
   			}	
   			console.log(this.user)
   		})
@@ -103,8 +111,33 @@ export class SettingsComponent implements OnInit {
   	*/
   	ngOnInit() {
   		this.initGeneralForm()
-  		this.initSecurityForm()
+        this.initSecurityForm()
+  		this.initSocialForm()
   	}
+
+    initSocialForm():void{
+        console.log(this.user.social)
+        this.socialForm = new FormGroup({
+            instagram: new FormControl(),
+            facebook: new FormControl(),
+            vk: new FormControl(),
+            youtube: new FormControl(),
+            github: new FormControl(),
+            twitch: new FormControl()
+        })
+
+        this.socialForm.valueChanges.subscribe( _ => this.saveSocialDisabled = false )
+    }
+
+    /**
+    * @TODO
+    */
+    saveSocial(values:any):void{
+        console.log(values)
+        this.user.social = values
+
+        this.save()
+    }
 
   	/**
   	* @method calculates a field progress of mat-progress-bar in general tab
@@ -130,7 +163,7 @@ export class SettingsComponent implements OnInit {
   	initSecurityForm(){
   		this.securityForm = new FormGroup({
   			email: new FormControl('', [Validators.email, Validators.required]),
-  			password: new FormControl('', [Validators.minLength(5), Validators.required]),
+  			//password: new FormControl('', [Validators.minLength(5), Validators.required]),
   			tel: new FormControl(),
   			sec_email: new FormControl('', [Validators.email])
   		})
@@ -202,6 +235,7 @@ export class SettingsComponent implements OnInit {
             
   			this.saveDisabled = true
             this.saveSecurityDisabled = true
+            this.saveSocialDisabled = true
   		}, error => console.warn(error) )
   	}
 

@@ -55,7 +55,7 @@
 							
 						</div>
 						<div class="weight-300 text-right" style="margin-top: 2.5em">
-							<button mat-button color="warn" type="button" class="mr-10" (click)="deleteImage()">
+							<button mat-button color="accent" type="button" class="mr-10" (click)="deleteImage()" style="background: #f8f1ef;font-weight: 400">
 								Delete current photo
 							</button>
 							<button mat-button type="button" class="bg-light-grey weight-300" (click)="uploadImage()">
@@ -91,7 +91,7 @@
 				</div>
 				<div class="row">
 					<div class="col s12 text-right">
-						<a routerLink="/user" mat-button class="mr-10 weight-300">Cancel</a>
+						<a routerLink="/user/{{user._id}}" mat-button class="mr-10 weight-300">Cancel</a>
 						<button mat-flat-button type="submit" color="primary" [disabled]="saveDisabled" style="padding: 0 44px">
 							Save
 						</button>
@@ -163,6 +163,74 @@
 			<div class="p-16 text-center">
 				<img src="assets/img/illustration_woman.svg" class="max-full-width">
 			</div>
+		</mat-tab>
+		<mat-tab label="Social">
+			<form [formGroup]="socialForm" (ngSubmit)="saveSocial(socialForm.value)" class="p-16 rounded bg-white light-border mt-10">
+				<div class="row">
+					<div class="col s12">
+						<mat-progress-bar mode="determinate" color="primary" value="25" class="mb-10 mt-10"></mat-progress-bar>
+					</div>
+				</div>
+				<div class="row">
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block" >
+							<mat-label>Instagram</mat-label>
+							<label matPrefix class="field-prefix">instagram.com/</label>
+							<input matInput type="text" autocomplete="off" formControlName="instagram" [value]="user.social.instagram || ''">
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block" >
+							<mat-label>YouTube</mat-label>
+							<label matPrefix class="field-prefix">youtube.com/</label>
+							<input matInput type="text" autocomplete="off" formControlName="youtube" [value]="user.social.youtube || ''">
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block" >
+							<mat-label>Facebook</mat-label>
+							<label matPrefix class="field-prefix">facebook.com/</label>
+							<input matInput type="text" autocomplete="off" formControlName="facebook" [value]="user.social.facebook || ''">
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block" >
+							<mat-label>Github</mat-label>
+							<label matPrefix class="field-prefix">github.com/</label>
+							<input matInput type="text" autocomplete="off" formControlName="github" [value]="user.social.github || ''">
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block" >
+							<mat-label>VK</mat-label>
+							<label matPrefix class="field-prefix">vk.com/</label>
+							<input matInput type="text" autocomplete="off" formControlName="vk" [value]="user.social.vk || ''">
+						</mat-form-field>
+					</div>
+
+					<div class="col s12 m6">
+						<mat-form-field class="d-block" >
+							<mat-label>Twitch</mat-label>
+							<label matPrefix class="field-prefix">twitch.org/</label>
+							<input matInput type="text" autocomplete="off" formControlName="twitch" [value]="user.social.twitch || ''">
+						</mat-form-field>
+					</div>
+
+				</div>
+
+				<div class="row">
+					<div class="col s12 text-right">
+						<button mat-flat-button type="submit" color="primary" [disabled]="saveSocialDisabled" style="padding: 0 44px">
+							Save
+						</button>
+					</div>
+				</div>
+			</form>
 		</mat-tab>
 	</mat-tab-group>
 </div>

@@ -58,28 +58,38 @@
 				</div>
 
 				<div class="p-16 text-center mt-10">
-					<button class="bg-orange text-white full-width weight-300" mat-button>
+					<button class="bg-orange text-white full-width weight-300" mat-button *ngIf="!isItMe">
 						<i class="ion-md-add mr-10"></i>
 						Follow
 					</button>
-					<button class="full-width weight-300 bg-light-grey mt-10" mat-button>
+					<button class="full-width weight-300 bg-light-grey mt-10" mat-button *ngIf="!isItMe">
 						<i class="ion-md-paper-plane mr-10"></i>
 						Write a message
 					</button>
+					<button class="full-width weight-300 bg-light-grey mt-10" mat-button *ngIf="isItMe">
+						<i class="ion-ios-cog mr-10"></i>
+						Settings
+					</button>
 				</div>
 
-				<div class="contact-links mt-10">
-					<a href="">
+				<div *ngIf="user.social" class="contact-links mt-10">
+					<a *ngIf="user.social.vk" href="https://vk.com/{{user.social.vk}}">
 						<i class="ion-logo-vk"></i>
 					</a>
-					<a href="">
+					<a *ngIf="user.social.github" href="https://github.com/{{user.social.github}}">
 						<i class="ion-logo-github"></i>
 					</a>
-					<a href="">
-						<i class="ion-logo-twitter"></i>
+					<a *ngIf="user.social.facebook" href="https://facebook.com/{{user.social.facebook}}">
+						<i class="ion-logo-facebook"></i>
 					</a>
-					<a href="">
+					<a *ngIf="user.social.instagram" href="https://instagram.com/{{user.social.instagram}}">
 						<i class="ion-logo-instagram"></i>
+					</a>
+					<a *ngIf="user.social.youtube" href="https://youtube.com/{{user.social.youtube}}">
+						<i class="ion-logo-youtube"></i>
+					</a>
+					<a *ngIf="user.social.twitch" href="https://twitch.com/{{user.social.twitch}}">
+						<i class="ion-logo-twitch"></i>
 					</a>
 				</div>
 

@@ -4,11 +4,16 @@
 	background-image: url(/assets/img/cover.jpg);
 	background-size: cover;
 	margin-top: -11px;
-    border-radius: 0 0 4px 4px;
+    // border-radius: 0 0 4px 4px;
     & h2{
-    	font-size:4em;
-    	text-decoration: underline #7b3a167d;
-    	padding-left: 20px;
+    	font-size:8em;
+        letter-spacing: -5px;
+    	margin: 0;
+        position: absolute;
+        bottom: -50px;
+        left: -20px;
+        color: #eff0f6;
+        font-weight: 900;
     }
 }
 
