@@ -6,21 +6,93 @@
 	<div *ngIf="pool.name" class="row p-16">
 		<div class="col s6 m8 row">
 
-			<div class="container">
+			<!-- <div class="container">
 				
 				<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
 				<h5 class="text-center weight-300 no-mt">to create a project click on <i class="ion-md-add marker"></i> in the side menu</h5>
-				<!-- <button mat-button (click)="newTask()">Generate task</button> -->
 				<div class="container">
 					<img src="assets/img/shopping.svg" class="full-width">
 				</div>
+			</div> -->
+
+			<div class="col s12 m6 l4">
+				<mat-card class="task drop-shadow">
+					<img src="/assets/img/task_cover_2.png" class="full-width cover">
+					<div class="p-10">
+						<span class="text-center d-block">
+							First project
+						</span>
+						<p class="text-grey weight-300">
+							Be the change you want to see in the world
+						</p>
+						<div class="actions text-right">
+							<button mat-icon-button class="mr-10">
+								<i class="ion-md-alarm"></i>
+								12
+							</button>
+							<button mat-icon-button>
+								<i class="ion-md-pulse"></i>
+								3
+							</button>
+						</div>
+					</div>
+				</mat-card>
 			</div>
+
+			<div class="col s12 m6 l4">
+				<mat-card class="task drop-shadow">
+					<img src="/assets/img/task_cover_1.PNG" class="full-width cover">
+					<div class="p-10">
+						<span class="text-center d-block">
+							Second project
+						</span>
+						<p class="text-grey weight-300">
+							Be the change you want to see in the world
+						</p>
+						<div class="actions text-right">
+							<button mat-icon-button class="mr-10">
+								<i class="ion-md-alarm"></i>
+								12
+							</button>
+							<button mat-icon-button>
+								<i class="ion-md-pulse"></i>
+								3
+							</button>
+						</div>
+					</div>
+				</mat-card>
+			</div>
+
+			<div class="col s12 m6 l4">
+				<mat-card class="task drop-shadow">
+					<img src="/assets/img/me.jpg" class="full-width cover">
+					<div class="p-10">
+						<span class="text-center d-block">
+							Third project
+						</span>
+						<p class="text-grey weight-300">
+							Be the change you want to see in the world
+						</p>
+						<div class="actions text-right">
+							<button mat-icon-button class="mr-10">
+								<i class="ion-md-alarm"></i>
+								12
+							</button>
+							<button mat-icon-button>
+								<i class="ion-md-pulse"></i>
+								3
+							</button>
+						</div>
+					</div>
+				</mat-card>
+			</div>
+
 		</div>
 
 		<div class="col s6 m4">
 			<div class="p-26 no-pt">
 				<div>
-					<img src="assets/img/3.png" class="full-width">
+					<img src="{{cover}}" class="full-width">
 				</div>
 				<h1 class="text-center no-mb" style="text-decoration: underline #f25d51;font-weight: 900;">{{pool.name}}</h1>
 				<div class="text-center">
@@ -44,31 +116,9 @@
 						<i class="ion-logo-instagram"></i>
 					</a>
 				</div>
-				<span *ngIf="pool.tags" class="text-grey d-block weight-300 p-16 no-pt" style="font-size: 0.9em">
+				<span *ngIf="pool.tags" class="text-grey d-block weight-300 p-16 no-pt text-center" style="font-size: 0.9em">
 					<a *ngFor="let tag of pool.tags" routerLink="/tags/{{tag}}" class="text-dark tag-marker">{{tag}}</a>
 				</span>
-
-				
-
-				
-				<div class="p-16 text-center row">
-					<div class="col s6">
-						<button mat-button class="full-width weight-300" (click)="openPoolSettings()" style="border-radius: 40px;padding: 8px 0">
-							<i class="ion-ios-cog mr-10"></i>
-							Settings
-						</button>
-					</div>
-					<div class="col s6">
-						<button class="bg-orange text-white full-width weight-300 arrow-animation" mat-button style="border-radius: 40px;padding: 8px 0">
-							<i class="ion-ios-arrow-round-forward mr-10"></i>
-							Watch
-						</button>
-					</div>
-					<button class="full-width weight-300 bg-light-grey mt-10" mat-button *ngIf="pool.sponsor">
-						<i class="ion-logo-usd mr-10"></i>
-						Sponsor
-					</button>
-				</div>
 
 				<div class="p-16 row no-mb light-border-top">
 					<div class="col s4 text-center">
@@ -91,6 +141,25 @@
 							<span class="d-block small-text text-grey">Private</span>
 						</a>
 					</div>
+				</div>
+				
+				<div class="p-16 text-center row">
+					<div class="col s6">
+						<button mat-button class="full-width weight-300" (click)="openPoolSettings()" style="border-radius: 40px;padding: 8px 0">
+							<i class="ion-ios-cog mr-10"></i>
+							Settings
+						</button>
+					</div>
+					<div class="col s6">
+						<button class="bg-orange text-white full-width weight-300 arrow-animation" mat-button style="border-radius: 40px;padding: 8px 0">
+							<i class="ion-ios-arrow-round-forward mr-10"></i>
+							Watch
+						</button>
+					</div>
+					<button class="full-width weight-300 bg-green text-white mt-10" mat-button *ngIf="pool.sponsor" style="border-radius: 40px;padding: 8px 0">
+						<i class="ion-logo-usd mr-10"></i>
+						Sponsor
+					</button>
 				</div>
 
 			</div>

@@ -11,10 +11,15 @@ div.contact-links{
 		}
 	}
 }
-.image-top{
-	background-repeat: no-repeat;
-    background-image: url(/assets/img/waves.png);
-    background-position-y: 333px;
-    background-size: cover;
-    background-position-x: right;
+.task{
+	padding: 0;
+	&>img.cover{
+		height: 100px;
+		border-radius: 4px 4px 0 0;
+		object-fit: cover;
+		object-position: bottom;
+	}
+	& div.actions i{
+		margin-right: 2px;
+	}
 }

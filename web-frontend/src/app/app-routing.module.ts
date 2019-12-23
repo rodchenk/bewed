@@ -3,15 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { UserComponent } from './user/user.component';
 import { MessageComponent } from './message/message.component';
-import { ProjectComponent } from './project/project.component';
-import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { StudioComponent } from './studio/studio.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CompleteSignupComponent } from './complete-signup/complete-signup.component';
 import { StudioPoolComponent } from './studio-pool/studio-pool.component';
-import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
 import { ExploreUsersComponent } from './explore-users/explore-users.component';
 
 const routes: Routes = [  

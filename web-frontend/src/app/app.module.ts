@@ -27,7 +27,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './user/user.component';
 import { MessageComponent } from './message/message.component';
 import { HomeComponent } from './home/home.component';
-import { ProjectComponent } from './project/project.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { FooterComponent } from './footer/footer.component';
@@ -43,6 +42,7 @@ import { PoolSettingsComponent } from './pool-settings/pool-settings.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ExploreUsersComponent } from './explore-users/explore-users.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
+import { CreateTaskComponent } from './create-task/create-task.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +50,6 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
         UserComponent,
         MessageComponent,
         HomeComponent,
-        ProjectComponent,
         LoginComponent,
         RegisterComponent,
         FooterComponent,
@@ -65,7 +64,8 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
         PoolSettingsComponent,
         ConfirmDialogComponent,
         ExploreUsersComponent,
-        UploadPhotoComponent
+        UploadPhotoComponent,
+        CreateTaskComponent
     ],
     imports: [
         BrowserModule,
@@ -99,7 +99,8 @@ import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
         LoginComponent,
         PoolSettingsComponent,
         ConfirmDialogComponent,
-        UploadPhotoComponent
+        UploadPhotoComponent,
+        CreateTaskComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

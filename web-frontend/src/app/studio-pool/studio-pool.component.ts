@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PoolSettingsComponent } from './../pool-settings/pool-settings.component';
 import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
 import { PoolService } from './../pool.service';
+import { CreateTaskComponent } from './../create-task/create-task.component';
 
 @Component({
 	selector: 'app-studio-pool',
@@ -18,6 +19,7 @@ export class StudioPoolComponent implements OnInit {
 
 	private pool:any = {name:''};
 	private component:StudioPoolComponent = this
+	private cover:string = 'assets/img/3.png'
 
   	constructor(private poolProvider: PoolService, private route: ActivatedRoute, private dialog: MatDialog) { }
 
@@ -29,7 +31,10 @@ export class StudioPoolComponent implements OnInit {
 	* @method loads pool data by id via API. Id will be taken from URL -> params['pool']
 	*/
   	private loadPoolData():void{
-  		this.route.params.subscribe( (params:any) => this.poolProvider.getByID(params['pool']).then( (data:any) => this.pool = data ).catch( error => console.warn(error)) );
+  		this.route.params.subscribe( (params:any) => this.poolProvider.getByID(params['pool']).then( (data:any) => {
+  			this.pool = data 
+  			this.cover = '/assets/img/' + this.pool.category + '.png'
+  		}).catch( error => console.warn(error)) );
   	}
 
   	/**
@@ -37,6 +42,7 @@ export class StudioPoolComponent implements OnInit {
   	* @method opens modal with task creation form
   	*/
   	private newTask():void{
+  		let dialog = this.dialog.open(CreateTaskComponent, { data: this.pool._id } );
   		console.log('new task')
   	}
 
