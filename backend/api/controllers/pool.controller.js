@@ -53,3 +53,7 @@ exports.update = function(req, res){
 exports.delete = function(req, res){
     couch.del(db_name, req.query._id, req.query._rev).then( ({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
+
+exports.addTask = function(req, res){
+    res.json({'status': 'ok'})
+}
