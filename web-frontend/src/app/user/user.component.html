@@ -46,13 +46,11 @@
 						<span class="d-block small-text text-grey">projects</span>
 					</div>
 					<div class="col s4 text-center">
-						<a>
-							<span class="bold d-block" style="font-size: 2em">999</span>
-							<span class="d-block small-text text-grey">followers</span>
-						</a>
+						<span class="bold d-block" style="font-size: 2em">0</span>
+						<span class="d-block small-text text-grey">followers</span>
 					</div>
 					<div class="col s4 text-center">
-						<span class="bold d-block" style="font-size: 2em">2</span>
+						<span class="bold d-block" style="font-size: 2em">0</span>
 						<span class="d-block small-text text-grey">follows</span>
 					</div>
 				</div>
@@ -66,10 +64,10 @@
 						<i class="ion-md-paper-plane mr-10"></i>
 						Write a message
 					</button>
-					<button class="full-width weight-300 bg-light-grey mt-10" mat-button *ngIf="isItMe">
+					<a class="full-width weight-300 bg-light-grey mt-10" mat-button *ngIf="isItMe" routerLink="/settings">
 						<i class="ion-ios-cog mr-10"></i>
 						Settings
-					</button>
+					</a>
 				</div>
 
 				<div *ngIf="user.social" class="contact-links mt-10">

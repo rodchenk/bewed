@@ -27,7 +27,7 @@ export class StudioComponent implements OnInit {
     * @method will be called after constructor. It takes user parameter from URL and looks for its pools in DB
     */
   	ngOnInit() {
-        this.route.params.subscribe( params => this.getUserPools(params['user']) );
+        this.route.params.subscribe( params => this.getUserPools(params['user'] || this.userProvider.user.user_id) );
   	}
 
   	/**

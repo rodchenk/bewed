@@ -17,6 +17,7 @@ import { PoolService } from './../pool.service';
 export class StudioPoolComponent implements OnInit {
 
 	private pool:any = {name:''};
+	private component:StudioPoolComponent = this
 
   	constructor(private poolProvider: PoolService, private route: ActivatedRoute, private dialog: MatDialog) { }
 
@@ -29,6 +30,14 @@ export class StudioPoolComponent implements OnInit {
 	*/
   	private loadPoolData():void{
   		this.route.params.subscribe( (params:any) => this.poolProvider.getByID(params['pool']).then( (data:any) => this.pool = data ).catch( error => console.warn(error)) );
+  	}
+
+  	/**
+  	* @used in Sidenav
+  	* @method opens modal with task creation form
+  	*/
+  	private newTask():void{
+  		console.log('new task')
   	}
 
   	/**

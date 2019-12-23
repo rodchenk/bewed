@@ -20,7 +20,7 @@ export class PoolNav implements SideNav{
 	constructor(private component: any){ }
 	
 	addNew():void{
-		console.log('new project?')
+		this.component.newTask()
 	}
 }
 
