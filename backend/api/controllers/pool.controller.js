@@ -10,7 +10,9 @@ exports.add = function(req, res){
         name: req.body.data.name,
         category: req.body.data.category,
         private: req.body.data.isprivate,
-        user: req.body.user
+        user: req.body.user,
+        type: 'pool',
+        tags: []
     };
 
     couch.insert(db_name, pool).then( ({data, headers, status}) => res.json({'status': 'ok', 'data': data}), err => res.json({'status': 'error', 'reason': err}) );
@@ -37,13 +39,18 @@ exports.getByUser = function(req, res){
 }
 
 exports.getByID = function(req, res){
-    couch.mango(db_name, {
-        selector: {
-            "_id": {
-                "$eq": req.query.pool_id
-            }
-        }
-    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+    couch.get(db_name, '_design/poolTasks/_view/all', {
+        include_docs: true, 
+        key: req.query.pool_id
+    }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+
+    // couch.mango(db_name, {
+    //     selector: {
+    //         "_id": {
+    //             "$eq": req.query.pool_id
+    //         }
+    //     }
+    // }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
 exports.update = function(req, res){
@@ -55,5 +62,25 @@ exports.delete = function(req, res){
 }
 
 exports.addTask = function(req, res){
-    res.json({'status': 'ok'})
+    let task = req.body.params.values;
+    couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$eq": req.body.params.parent
+            }
+        }
+    }, {}).then(({data, headers, status}) => {
+        if(data.docs.length > 0){
+            let pool = data.docs[0];
+            if(!pool.tasks) pool.tasks = new Array();
+            
+            pool.tasks.push(req.body.params.values);
+
+            couch.update(db_name, pool).then(({data, headers, status}) => 
+                res.json({'status': 'ok', "data": data}), 
+                err => res.json({'status': 'error_01', 'reason': err}) )            
+        }else{
+            err => res.json({'status':'error_03', 'reason':err})
+        }
+    }, err => res.json({'status':'error_02', 'reason':err}) );
 }

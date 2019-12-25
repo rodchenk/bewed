@@ -2,6 +2,7 @@
 
 var pool = 		require('../controllers/pool.controller');
 var user =		require('../controllers/user.controller');
+var task = 		require('../controllers/task.controller');
 
 const express = require('express')
 const router = express.Router()
@@ -20,7 +21,7 @@ router.post	 ('/pool', pool.add)
 router.put 	 ('/pool', pool.update)
 router.delete('/pool', pool.delete)
 
-/* task api (part of pool table) */
-router.post	 ('/task', pool.addTask)
+/* task api */
+router.post	 ('/task', task.add)
 
 module.exports = router;
