@@ -6,85 +6,38 @@
 	<div *ngIf="pool.name" class="row p-16">
 		<div class="col s6 m8 row">
 
-			<!-- <div class="container">
+			<div *ngIf="tasks.length == 0" class="container">
 				
 				<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
 				<h5 class="text-center weight-300 no-mt">to create a project click on <i class="ion-md-add marker"></i> in the side menu</h5>
 				<div class="container">
 					<img src="assets/img/shopping.svg" class="full-width">
 				</div>
-			</div> -->
-
-			<div class="col s12 m6 l4">
-				<mat-card class="task drop-shadow">
-					<img src="/assets/img/task_cover_2.png" class="full-width cover">
-					<div class="p-10">
-						<span class="text-center d-block">
-							First project
-						</span>
-						<p class="text-grey weight-300">
-							Be the change you want to see in the world
-						</p>
-						<div class="actions text-right">
-							<button mat-icon-button class="mr-10">
-								<i class="ion-md-alarm"></i>
-								12
-							</button>
-							<button mat-icon-button>
-								<i class="ion-md-pulse"></i>
-								3
-							</button>
-						</div>
-					</div>
-				</mat-card>
 			</div>
-
-			<div class="col s12 m6 l4">
-				<mat-card class="task drop-shadow">
-					<img src="/assets/img/task_cover_1.PNG" class="full-width cover">
-					<div class="p-10">
-						<span class="text-center d-block">
-							Second project
-						</span>
-						<p class="text-grey weight-300">
-							Be the change you want to see in the world
-						</p>
-						<div class="actions text-right">
-							<button mat-icon-button class="mr-10">
-								<i class="ion-md-alarm"></i>
-								12
-							</button>
-							<button mat-icon-button>
-								<i class="ion-md-pulse"></i>
-								3
-							</button>
+			<div *ngIf="tasks.length > 0">
+				<div *ngFor="let task of tasks" class="col s12 m6 l4">
+					<mat-card class="task drop-shadow">
+						<img src="/assets/img/task_cover_2.png" class="full-width cover">
+						<div class="p-10">
+							<span class="text-center d-block">
+								{{task.name}}
+							</span>
+							<p class="text-grey weight-300">
+								{{task.description}}
+							</p>
+							<div class="actions text-right">
+								<button mat-icon-button class="mr-10">
+									<i class="ion-md-alarm"></i>
+									12
+								</button>
+								<button mat-icon-button>
+									<i class="ion-md-pulse"></i>
+									3
+								</button>
+							</div>
 						</div>
-					</div>
-				</mat-card>
-			</div>
-
-			<div class="col s12 m6 l4">
-				<mat-card class="task drop-shadow">
-					<img src="/assets/img/me.jpg" class="full-width cover">
-					<div class="p-10">
-						<span class="text-center d-block">
-							Third project
-						</span>
-						<p class="text-grey weight-300">
-							Be the change you want to see in the world
-						</p>
-						<div class="actions text-right">
-							<button mat-icon-button class="mr-10">
-								<i class="ion-md-alarm"></i>
-								12
-							</button>
-							<button mat-icon-button>
-								<i class="ion-md-pulse"></i>
-								3
-							</button>
-						</div>
-					</div>
-				</mat-card>
+					</mat-card>
+				</div>
 			</div>
 
 		</div>

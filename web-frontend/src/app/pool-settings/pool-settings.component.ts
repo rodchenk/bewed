@@ -50,7 +50,8 @@ export class PoolSettingsComponent implements OnInit {
     }
 
   	ngOnInit() {
-
+  		if(!this.pool.tags)
+  			this.pool.tags = []
         this.tags = [...this.pool.tags]
 
   		this.form = new FormGroup({

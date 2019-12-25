@@ -56,9 +56,11 @@ export class StudioComponent implements OnInit {
 
   	/**
   	* @method gets all pool data of given user_id via API
+    * @query a view {{poolTasks/all}}
   	*/
   	private getUserPools(user_id:string){
         this.poolProvider.getByUser(user_id).then( (pools:any) => {
+            console.log(pools)
             this.pools = pools
             this.setCategory()
         } ).catch( error => console.warn(error) )

@@ -44,6 +44,7 @@ export class PoolService {
   	public getByID(pool_id):Promise<any>{
   		return new Promise( (resolve, reject) => {
   			this.http.get(Config.API_URL + '/pool', { params: {pool_id}} ).subscribe( (data:any) => {
+          console.log(data)
   				if(data.docs.length > 0){
 	  				let pool = data.docs[0]
 	  				let result = PoolCategory.categories.filter( (category:PoolCategoryAbstract) => category.value === pool.category)
@@ -87,7 +88,7 @@ export class PoolService {
   		}
 	  	if(values.isprivate === null) 
 	  		values.isprivate = false;
-  		
+
   		return new Promise( (resolve, reject) => this.http.post(Config.API_URL + '/pool', { data: values, user: this.userProvider.user.user_id}).subscribe( data => resolve(true), error => reject(error) ))
   	}
 

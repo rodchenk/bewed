@@ -5,6 +5,7 @@ import { PoolSettingsComponent } from './../pool-settings/pool-settings.componen
 import { PoolCategory, PoolCategoryAbstract } from './../pool-category';
 import { PoolService } from './../pool.service';
 import { CreateTaskComponent } from './../create-task/create-task.component';
+import { TaskService } from './../task.service';
 
 @Component({
 	selector: 'app-studio-pool',
@@ -18,10 +19,11 @@ import { CreateTaskComponent } from './../create-task/create-task.component';
 export class StudioPoolComponent implements OnInit {
 
 	private pool:any = {name:''};
+	private tasks:any[] = []
 	private component:StudioPoolComponent = this
 	private cover:string = 'assets/img/3.png'
 
-  	constructor(private poolProvider: PoolService, private route: ActivatedRoute, private dialog: MatDialog) { }
+  	constructor(private poolProvider: PoolService, private taskProvider: TaskService, private route: ActivatedRoute, private dialog: MatDialog) { }
 
   	ngOnInit():void {
   		this.loadPoolData()
@@ -34,7 +36,14 @@ export class StudioPoolComponent implements OnInit {
   		this.route.params.subscribe( (params:any) => this.poolProvider.getByID(params['pool']).then( (data:any) => {
   			this.pool = data 
   			this.cover = '/assets/img/' + this.pool.category + '.png'
+
+  			this.loadTasks()
+
   		}).catch( error => console.warn(error)) );
+  	}
+
+  	private loadTasks():void{
+  		this.taskProvider.getTasksByPool(this.pool._id).then( (data:any) => {console.log(data.docs);this.tasks = data.docs} ).catch( error => console.log('error by getting tasks'))	
   	}
 
   	/**
@@ -43,6 +52,11 @@ export class StudioPoolComponent implements OnInit {
   	*/
   	private newTask():void{
   		let dialog = this.dialog.open(CreateTaskComponent, { data: this.pool._id } );
+  		dialog.afterClosed().subscribe((hasAdded:boolean) => {
+  			if(hasAdded){
+  				this.loadTasks()
+  			}
+  		})
   		console.log('new task')
   	}
 

@@ -13,13 +13,31 @@ export class TaskService {
 
   	saveTask(task:any):Promise<any>{
   		return new Promise( (resolve, reject) => {
-  			this.http.post(Config.API_URL + '/task', {params: task}).subscribe( (data:any) => {
+  			this.http.post(Config.API_URL + '/task', {task}).subscribe( (data:any) => {
   				this.showSuccess('Task has been saved')
   				resolve(data)
   			}, (error:any) => {
   				this.showError('An error is occured')
   				reject(error) 
   			})  			
+  		})
+  	}
+
+  	getTasksByPool(pool_id:string):Promise<any>{
+		return new Promise( (resolve, reject) => {
+  			this.http.get(Config.API_URL + '/tasks', { params: {pool_id} }).subscribe((data:any) => resolve(data), error => {
+  				this.showError('An error is occured')
+  				reject(error) 
+  			})
+  		})
+  	}
+
+  	getTask(task_id:string):Promise<any>{
+  		return new Promise( (resolve, reject) => {
+  			this.http.get(Config.API_URL + '/task', { params: {task_id} }).subscribe((data:any) => resolve(data), error => {
+  				this.showError('An error is occured')
+  				reject(error) 
+  			})
   		})
   	}
 
