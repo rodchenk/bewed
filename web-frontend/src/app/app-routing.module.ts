@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { UserComponent } from './user/user.component';
-import { MessageComponent } from './message/message.component';
-import { RegisterComponent } from './register/register.component';
-import { StudioComponent } from './studio/studio.component';
-import { SettingsComponent } from './settings/settings.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { CompleteSignupComponent } from './complete-signup/complete-signup.component';
-import { StudioPoolComponent } from './studio-pool/studio-pool.component';
-import { ExploreUsersComponent } from './explore-users/explore-users.component';
+import { HomeComponent } from './pages/home/home.component';
+import { UserComponent } from './pages/user/user.component';
+import { MessageComponent } from './pages/message/message.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { StudioComponent } from './pages/studio/studio.component';
+import { SettingsComponent } from './pages/settings/settings.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { CompleteSignupComponent } from './pages/complete-signup/complete-signup.component';
+import { StudioPoolComponent } from './pages/studio-pool/studio-pool.component';
+import { ExploreUsersComponent } from './pages/explore-users/explore-users.component';
+import { TaskComponent } from './pages/task/task.component';
 
 const routes: Routes = [  
 	{
@@ -47,6 +48,10 @@ const routes: Routes = [
  	{
  		path: 'studio/:user/:pool',
  		component: StudioPoolComponent
+ 	},
+ 	{
+ 		path: 'studio/:pool/:task',
+ 		component: TaskComponent
  	},
  	{ 
  		path: '**', 
