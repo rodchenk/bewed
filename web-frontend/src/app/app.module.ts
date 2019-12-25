@@ -43,6 +43,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { ExploreUsersComponent } from './explore-users/explore-users.component';
 import { UploadPhotoComponent } from './upload-photo/upload-photo.component';
 import { CreateTaskComponent } from './create-task/create-task.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
     declarations: [
@@ -65,7 +66,8 @@ import { CreateTaskComponent } from './create-task/create-task.component';
         ConfirmDialogComponent,
         ExploreUsersComponent,
         UploadPhotoComponent,
-        CreateTaskComponent
+        CreateTaskComponent,
+        TaskComponent
     ],
     imports: [
         BrowserModule,

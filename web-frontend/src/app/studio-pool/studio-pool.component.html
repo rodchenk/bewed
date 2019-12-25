@@ -19,13 +19,16 @@
 					<mat-card class="task drop-shadow">
 						<img src="/assets/img/task_cover_2.png" class="full-width cover">
 						<div class="p-10">
-							<span class="text-center d-block">
+							<span class="text-center d-block mt-10">
 								{{task.name}}
 							</span>
-							<p class="text-grey weight-300">
+							<p class="text-grey weight-300 description">
 								{{task.description}}
 							</p>
 							<div class="actions text-right">
+								<span class="progress">
+									In Progress
+								</span>
 								<button mat-icon-button class="mr-10">
 									<i class="ion-md-alarm"></i>
 									12

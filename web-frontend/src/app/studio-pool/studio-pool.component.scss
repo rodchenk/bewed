@@ -18,8 +18,29 @@ div.contact-links{
 		border-radius: 4px 4px 0 0;
 		object-fit: cover;
 		object-position: bottom;
+
+		display: none;
 	}
-	& div.actions i{
-		margin-right: 2px;
+	& div.actions {
+		span{
+		    float: left;
+		    font-size: 0.8em;
+		    margin-top: 14px;
+		    &.progress{
+		    	color: #36b37e;
+		    }
+		    &.todo{
+		    	color: yellow;
+		    }
+		    &.done{
+		    	color: coral;
+		    }
+		}
+		i{
+			margin-right: 2px;
+		}
+	}
+	& p.description{
+		height: 57.6px; /* WORKSROUND */
 	}
 }
