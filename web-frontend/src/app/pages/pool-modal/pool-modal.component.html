@@ -1,0 +1,36 @@
+<div style="width: 550px;padding: 16px" class="m-auto bg-white p-relative">
+	<button mat-icon-button class="p-absolute" style="top:0;right:5px;font-size:1em" (click)="close()" type="button">
+		<i class="ion-ios-close"></i>
+	</button>
+	<h3 class="weight-300 no-mb no-mt">Add new pool to Studio</h3>
+	<h5 class="weight-300 text-grey no-mt">specify name and category</h5>
+	<form [formGroup]="poolForm" (ngSubmit)="onSubmit(poolForm.value)" class="bewed-input-container">
+
+		<mat-form-field class="d-block"  appearance="outline">
+			<mat-label>Pool name</mat-label>
+			<input matInput type="text" formControlName="name" autocomplete="off" required>
+		</mat-form-field>
+
+		<mat-form-field class="d-block"  appearance="outline">
+			<mat-label>Category</mat-label>
+			<mat-select placeholder="Category" formControlName="category" required>
+				<mat-option *ngFor="let category of categories" [value]="category.value">{{category.viewValue}}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<div class="row mt-10 no-mb">
+			<div class="col s12 m6">
+				<div class="row no-mb">
+					<mat-checkbox color="warn" formControlName="isprivate">private pool</mat-checkbox>
+				</div>
+				<div class="row no-mb">
+					<h5 class="weight-300 text-grey no-mb" style="margin-top:0">private pools are only for you visible</h5>
+				</div>
+			</div>
+			<div class="col s12 m6 text-right" style="padding-right:0">
+				<button mat-button type="button" class="mr-10 bg-light-grey" (click)="close()">Cancel</button>
+				<button mat-button type="submit" class="bg-bewed-primary">Add pool</button>
+			</div>
+		</div>
+	</form>
+</div>

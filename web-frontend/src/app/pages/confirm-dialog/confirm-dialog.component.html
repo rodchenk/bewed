@@ -1,0 +1,10 @@
+
+<div style="max-width: 300px">
+	<p class="weight-300">
+		{{data.message}}
+	</p>
+	<mat-dialog-actions class="text-right d-block">
+		<button mat-button class="weight-300" (click)="close()">Cancel</button>
+		<button mat-flat-button class="weight-300 bg-blue text-white" (click)="close(true)">{{data.okButton || 'OK'}}</button>
+	</mat-dialog-actions>
+</div>

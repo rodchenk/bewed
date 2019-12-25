@@ -1,0 +1,118 @@
+<!--<div class="bg-white light-border-bottom row no-mb" style="padding: 4px 26px !important">
+	<div class="col s4">
+		<div class="ui left icon input">
+			<i class="ion-md-search icon"></i>
+			<input placeholder="Search" type="text" autocomplete="off" style="border: 0">
+		</div>
+	</div>
+ 	<div class="col s4 text-center legend">
+		<a class="text-grey" href="">
+			Pools: 1
+		</a>
+		<a class="text-grey" href="">
+			Tags: 0
+		</a>
+		<a class="text-grey" href="">
+			Projects: 0
+		</a>
+	</div>
+	<div class="col s4 text-right legend">
+		<a href="">
+			<i class="ion-md-grid"></i>
+		</a>
+	</div>
+</div> -->
+<div *ngIf="user.name">
+	<div class="p-16 row">
+		<div class="col " style="max-width: 350px">
+			<mat-card class="p-26 no-mt drop-shadow" style="border-bottom: 2px #f25d5185 solid">
+				<div class="text-center">
+					<div class="user-photo has-story">
+						<img src="{{user.photo}}">
+					</div>
+				</div>
+
+				<div class="text-center mt-10 p-16 no-pb">
+					<span style="font-size: 1.2em">
+						<i *ngIf="user.verified" class="ion-ios-checkmark-circle text-orange" style="margin-right: 2px;filter: drop-shadow(0 0 12px #f25d51)"></i>
+						{{user.name}}
+					</span>
+				</div>
+				<span class="text-grey d-block mt-10 weight-300 p-16 no-pt" style="font-size: 0.9em">{{user.status}}</span>
+
+				<div class="p-16 row no-mb light-border-top light-border-bottom">
+					<div class="col s4 text-center">
+						<span class="bold d-block" style="font-size: 2em">0</span>
+						<span class="d-block small-text text-grey">projects</span>
+					</div>
+					<div class="col s4 text-center">
+						<span class="bold d-block" style="font-size: 2em">0</span>
+						<span class="d-block small-text text-grey">followers</span>
+					</div>
+					<div class="col s4 text-center">
+						<span class="bold d-block" style="font-size: 2em">0</span>
+						<span class="d-block small-text text-grey">follows</span>
+					</div>
+				</div>
+
+				<div class="p-16 text-center mt-10">
+					<button class="bg-orange text-white full-width weight-300" mat-button *ngIf="!isItMe">
+						<i class="ion-md-add mr-10"></i>
+						Follow
+					</button>
+					<button class="full-width weight-300 bg-light-grey mt-10" mat-button *ngIf="!isItMe">
+						<i class="ion-md-paper-plane mr-10"></i>
+						Write a message
+					</button>
+					<a class="full-width weight-300 bg-light-grey mt-10" mat-button *ngIf="isItMe" routerLink="/settings">
+						<i class="ion-ios-cog mr-10"></i>
+						Settings
+					</a>
+				</div>
+
+				<div *ngIf="user.social" class="contact-links mt-10">
+					<a *ngIf="user.social.vk" href="https://vk.com/{{user.social.vk}}">
+						<i class="ion-logo-vk"></i>
+					</a>
+					<a *ngIf="user.social.github" href="https://github.com/{{user.social.github}}">
+						<i class="ion-logo-github"></i>
+					</a>
+					<a *ngIf="user.social.facebook" href="https://facebook.com/{{user.social.facebook}}">
+						<i class="ion-logo-facebook"></i>
+					</a>
+					<a *ngIf="user.social.instagram" href="https://instagram.com/{{user.social.instagram}}">
+						<i class="ion-logo-instagram"></i>
+					</a>
+					<a *ngIf="user.social.youtube" href="https://youtube.com/{{user.social.youtube}}">
+						<i class="ion-logo-youtube"></i>
+					</a>
+					<a *ngIf="user.social.twitch" href="https://twitch.com/{{user.social.twitch}}">
+						<i class="ion-logo-twitch"></i>
+					</a>
+				</div>
+
+			</mat-card>
+
+		</div>
+
+		<div class="col" style="max-width: calc(100% - 350px)">
+			<div class="container">
+				<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
+				<h5 class="text-center weight-300 no-mt">to create projects go to <a class="text-grey" routerLink="/studio">studio</a></h5>
+				<div class="container">
+					<img src="assets/img/shopping.svg" class="full-width">
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<div *ngIf="!user.name">
+	<h2 class="weight-300 text-center p-16 no-mb">
+		<i class="ion-md-finger-print text-grey mr-10"></i>
+		User does not exist
+	</h2>
+	<div style="max-width: 400px" class="m-auto">
+		<img src="assets/img/empty.png" class="full-width mt-10">
+	</div>
+</div>

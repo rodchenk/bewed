@@ -1,0 +1,67 @@
+<mat-card>
+	<h4>
+		Message
+		<input type="text" name=" "[(ngModel)]="name" style="background: #eff0f6;
+		    border: none;
+		    padding: 4px 8px;
+		    border-radius: 4px;
+		    float: right;
+		    text-align: center;">
+	</h4>
+	<div class="content ui list">
+
+		<div *ngIf="loading" class="loader">
+			<div class="boxes">
+				<div class="box">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="box">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="box">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				<div class="box">
+					<div></div>
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+		</div>
+
+		<h3 *ngIf="error" class="text-center text-grey weight-300">{{error}}</h3>
+
+		<div *ngFor="let message of messages" class="message">
+			<div>
+				<span class="author">{{message.name}}</span>
+				<span class="time">{{message.time | date: 'shortTime'}}</span>
+			</div>
+			<div>
+				<span class="text">
+					{{message.text}}
+				</span>
+			</div>
+		</div>
+
+	</div>
+	<div class="message-input">
+		<form (ngSubmit)="send_message()">
+			<div class="ui input">
+		    	<input type="text" placeholder="Be nice in the chat" name="message" [(ngModel)]="messagetext" autocomplete="off">
+		 	</div>
+			<button mat-flat-button style="background: transparent;color: #686b79;">
+				<i class="ion-md-paper-plane icon"></i>
+			</button>	
+		</form>	
+	</div>
+</mat-card>

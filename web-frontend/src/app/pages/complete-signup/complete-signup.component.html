@@ -1,0 +1,29 @@
+<div class="container mt-10 vertical-middle" style="min-height: calc(100vh - 300px)">
+
+	<div class="row">
+
+		<div class="col s12 m4">
+			<img src="assets/img/notif.png" class="full-width">
+		</div>
+
+		<div class="col s12 m8">
+			<h2 class="weight-300 no-mb">Congratulation!</h2>
+			<h4 class="text-grey weight-300 no-mt">Verification message has been sent on <span class="marker text-dark">{{email}}</span></h4>
+			<div class="row mt-10">
+				<div class="col s12 m8">
+					<button mat-button class="full-width text-white weight-300 gradient-button">
+						<i class="ion-ios-rocket mr-10" style="vertical-align: unset!important"></i>
+						Discover foliage
+					</button>
+				</div>
+				<div class="col s12 m4">
+					<button mat-button class="full-width bg-light-grey" (click)="resend()">
+						Resend code
+					</button>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
