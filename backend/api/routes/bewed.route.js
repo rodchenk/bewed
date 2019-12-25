@@ -23,5 +23,7 @@ router.delete('/pool', pool.delete)
 
 /* task api */
 router.post	 ('/task', task.add)
+router.get 	 ('/tasks', task.getByPool)
+router.get 	 ('/task', task.get)
 
 module.exports = router;

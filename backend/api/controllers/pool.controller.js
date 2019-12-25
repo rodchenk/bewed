@@ -39,18 +39,18 @@ exports.getByUser = function(req, res){
 }
 
 exports.getByID = function(req, res){
-    couch.get(db_name, '_design/poolTasks/_view/all', {
-        include_docs: true, 
-        key: req.query.pool_id
-    }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+    // couch.get(db_name, '_design/poolTasks/_view/all', {
+    //     include_docs: true, 
+    //     key: req.query.pool_id
+    // }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 
-    // couch.mango(db_name, {
-    //     selector: {
-    //         "_id": {
-    //             "$eq": req.query.pool_id
-    //         }
-    //     }
-    // }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+    couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$eq": req.query.pool_id
+            }
+        }
+    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
 exports.update = function(req, res){
