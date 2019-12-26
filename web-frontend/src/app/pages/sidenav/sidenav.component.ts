@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { StudioNav, PoolNav, ProjectNav } from './interface/sidenav.implementation';
+import { StudioNav, PoolNav, TaskNav } from './interface/sidenav.implementation';
 import { SideNav } from './interface/SideNav.interface';
 
 @Component({
@@ -25,7 +25,7 @@ export class SidenavComponent implements OnInit {
   		switch (this.page) {
   			case 'studio':	this.sideNav = new StudioNav(this.component); break;
   			case 'pool':	this.sideNav = new PoolNav(this.component); 	break;
-  			case 'project':	this.sideNav = new ProjectNav(this.component);break;
+  			case 'task':	this.sideNav = new TaskNav(this.component);break;
 
   			default: 
   				console.warn('No implementation component found for ' + this.page); 

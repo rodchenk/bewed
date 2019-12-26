@@ -23,6 +23,18 @@ export class TaskService {
   		})
   	}
 
+  	updateTask(task:any):Promise<any>{
+  		return new Promise( (resolve, reject) => {
+  			this.http.put(Config.API_URL + '/task', {task}).subscribe( (data:any) => {
+  				this.showSuccess('Task has been updated')
+  				resolve(data)
+  			}, error => {
+  				this.showError('An error is occured')
+  				reject(error) 
+  			})
+  		})
+  	}
+
   	getTasksByPool(pool_id:string):Promise<any>{
 		return new Promise( (resolve, reject) => {
   			this.http.get(Config.API_URL + '/tasks', { params: {pool_id} }).subscribe((data:any) => resolve(data), error => {

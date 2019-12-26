@@ -30,7 +30,7 @@ export class StudioPoolComponent implements OnInit {
   	}
 
   	openTask(task_id:boolean):void{
-  		this.router.navigate(['studio/' + this.pool._id + '/' + task_id])
+  		this.router.navigate(['studio/' + this.pool._id + '/task/' + task_id])
   	}
 
   	/**

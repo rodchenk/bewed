@@ -11,6 +11,7 @@ import { TaskService } from './../../services/task.service';
 export class TaskComponent implements OnInit {
 
 	private task:any = {}
+	private component:TaskComponent = this
 
   	constructor(private route: ActivatedRoute, private taskProvider: TaskService) { }
 
@@ -19,10 +20,11 @@ export class TaskComponent implements OnInit {
   	}
 
   	private _loadTaskData(id:string):void{
-		this.taskProvider.getTask(id).then( (data:any) => {
-			console.log(data)
-			this.task = data
-  		}).catch( error => console.warn(error));
+		this.taskProvider.getTask(id).then( (data:any) => this.task = data.docs[0] ).catch( error => console.warn(error));
+  	}
+
+  	private save():void{
+  		console.log('works')
   	}
 
 }

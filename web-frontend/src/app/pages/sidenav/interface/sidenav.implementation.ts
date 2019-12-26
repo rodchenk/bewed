@@ -9,6 +9,8 @@ export class StudioNav implements SideNav{
 
 	constructor(private component: any){}
 	
+	goBack():void{}
+
 	addNew():void{
 		this.component.addPool()
 	}
@@ -18,17 +20,21 @@ export class StudioNav implements SideNav{
 export class PoolNav implements SideNav{
 	
 	constructor(private component: any){ }
+
+	goBack():void{}
 	
 	addNew():void{
 		this.component.newTask()
 	}
 }
 
-export class ProjectNav implements SideNav{
+export class TaskNav implements SideNav{
 	
 	constructor(private component: any){ }
+
+	goBack():void{}
 	
 	addNew():void{
-		console.log('new task?')
+		this.component.save()
 	}
 }

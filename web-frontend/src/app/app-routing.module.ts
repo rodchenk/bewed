@@ -50,7 +50,7 @@ const routes: Routes = [
  		component: StudioPoolComponent
  	},
  	{
- 		path: 'studio/:pool/:task',
+ 		path: 'studio/:pool/task/:task',
  		component: TaskComponent
  	},
  	{ 

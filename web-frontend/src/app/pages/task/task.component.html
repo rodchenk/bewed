@@ -1,1 +1,9 @@
-<p>task works!</p>
+<div class="with-sidenav">
+	<app-sidenav [page]="'task'" [component]="component"></app-sidenav>
+	<div class="p-16">
+		<h3>{{task.name}}</h3>
+		<p>{{task.description}}</p>
+		<p>{{task.created | date: 'shortDate'}}</p>
+		<span>posted by </span><a routerLink="/user/{{task.user_id}}">{{task.user_id}}</a>
+	</div>
+</div>

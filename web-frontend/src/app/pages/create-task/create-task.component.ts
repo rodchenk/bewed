@@ -30,6 +30,7 @@ export class CreateTaskComponent implements OnInit {
   		values.user_id = this.userProvider.user.user_id
   		values.parent = this.pool_id
   		values.type = 'task'
+      values.status = 0
   		this.taskProvider.saveTask(values).then( () => this.close(true)).catch( error => console.warn(error))
   	}
 
