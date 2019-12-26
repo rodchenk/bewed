@@ -25,5 +25,6 @@ router.delete('/pool', pool.delete)
 router.post	 ('/task', task.add)
 router.get 	 ('/tasks', task.getByPool)
 router.get 	 ('/task', task.get)
+router.put 	 ('/task', task.update)
 
 module.exports = router;

@@ -27,3 +27,7 @@ exports.getByPool = function(req, res){
         }
     }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
+
+exports.update = function(req, res){
+    couch.update(db_name, req.body.values).then(({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
+}
