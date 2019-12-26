@@ -271,3 +271,18 @@ div.menu-triangle{
 .mat-form-field-appearance-legacy .mat-form-field-underline {
     background-color: rgba(0, 0, 0, 0.18)!important;
 }
+
+div.panel{
+	& div.right-actions{
+		& button{
+			border-radius: 0;
+		}
+		& button:first-child{
+			border-radius: 4px 0 0 4px;
+			border-right: 1px #c8cbd8 solid;
+		}
+		& button:last-child{
+			border-radius: 0 4px 4px 0;
+		}
+	}
+}

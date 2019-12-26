@@ -36,6 +36,10 @@ export class PoolService {
   		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools', { params: {user_id} }).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
   	}
 
+  	public getPublishedPools(user_id:string):Promise<any>{
+  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools/published', { params: {user_id} }).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
+  	}
+
   	/**
   	* @method gets pool data by given pool id
   	* @use_api GET /pool?pool_id={id}
@@ -86,8 +90,9 @@ export class PoolService {
   			this.showError('Name and category required')	
   			return;
   		}
-	  	if(values.isprivate === null) 
+	  	if(values.isprivate == null) 
 	  		values.isprivate = false;
+      values.created = new Date()
 
   		return new Promise( (resolve, reject) => this.http.post(Config.API_URL + '/pool', { data: values, user: this.userProvider.user.user_id}).subscribe( data => resolve(true), error => reject(error) ))
   	}

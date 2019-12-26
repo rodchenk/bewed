@@ -1,10 +1,13 @@
 
-<div style="max-width: 300px">
+<div style="max-width: 300px" class="p-16">
+	<button mat-icon-button class="close-button" type="button" (click)="close()">
+		<i class="ion-md-close"></i>
+	</button>
 	<p class="weight-300">
 		{{data.message}}
 	</p>
 	<mat-dialog-actions class="text-right d-block">
 		<button mat-button class="weight-300" (click)="close()">Cancel</button>
-		<button mat-flat-button class="weight-300 bg-blue text-white" (click)="close(true)">{{data.okButton || 'OK'}}</button>
+		<button mat-flat-button class="weight-300 bg-orange text-white" (click)="close(true)">{{data.okButton || 'OK'}}</button>
 	</mat-dialog-actions>
 </div>

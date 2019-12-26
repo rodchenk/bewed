@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../services/user.service';
+import { PoolService } from './../../services/pool.service';
 import { ActivatedRoute, Router } from "@angular/router";
 @Component({
 	selector: 'app-user',
@@ -11,8 +12,9 @@ export class UserComponent implements OnInit {
 	private user_id: string
 	private isItMe:boolean = false
 	private user:any = {name:'', photo: 'default.png'}
+	private pools:any[] = []
 
-  	constructor(private userProvider: UserService, private route: ActivatedRoute, private router: Router) {
+  	constructor(private userProvider: UserService, private route: ActivatedRoute, private router: Router, private poolProvider: PoolService) {
   		console.log('constructor loaded');
   	}
 
@@ -25,8 +27,16 @@ export class UserComponent implements OnInit {
             		if(!this.user.photo){
             			this.user.photo = '/assets/img/dpi.png'
             		}
+
+            		this.poolProvider.getPublishedPools(this.user._id).then( (data:any) => {
+            			this.pools = data
+            		})
           		}
   			});  			
   		});
+  	}
+
+  	private openPool(pool_id:string){
+  		this.router.navigate(['studio/' + this.user_id + '/' + pool_id])
   	}
 }

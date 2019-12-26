@@ -35,6 +35,21 @@ export class TaskService {
   		})
   	}
 
+  	deleteTask(task:any):Promise<any>{
+  		return new Promise( (resolve, reject) => {
+  			this.http.delete(Config.API_URL + '/task', {params: {
+  				_id: task._id,
+  				_rev: task._rev
+  			}}).subscribe( () => {
+  				this.showSuccess('Task has been delete')
+  				resolve()
+  			}, error => {
+  				this.showError('An error is occured')
+  				reject(error) 
+  			})
+  		})
+  	}
+
   	getTasksByPool(pool_id:string):Promise<any>{
 		return new Promise( (resolve, reject) => {
   			this.http.get(Config.API_URL + '/tasks', { params: {pool_id} }).subscribe((data:any) => resolve(data), error => {

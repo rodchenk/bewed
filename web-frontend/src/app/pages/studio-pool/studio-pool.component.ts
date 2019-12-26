@@ -33,6 +33,11 @@ export class StudioPoolComponent implements OnInit {
   		this.router.navigate(['studio/' + this.pool._id + '/task/' + task_id])
   	}
 
+  	publishPool(shouldPublish:boolean):void{
+  		this.pool.published = shouldPublish
+  		this.poolProvider.update(this.pool)
+  	}
+
   	/**
 	* @method loads pool data by id via API. Id will be taken from URL -> params['pool']
 	*/
@@ -62,6 +67,10 @@ export class StudioPoolComponent implements OnInit {
   			}
   		})
   		console.log('new task')
+  	}
+
+  	private goBack():void{
+  		this.router.navigate(['studio/' + this.pool.user])
   	}
 
   	/**

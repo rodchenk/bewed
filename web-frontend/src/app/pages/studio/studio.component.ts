@@ -84,4 +84,8 @@ export class StudioComponent implements OnInit {
   	public openPool(pool_id:string):void{
         this.router.navigate(['studio/' + this.userProvider.user.user_id + '/' + pool_id])
   	}
+
+  	private goBack():void{
+  		this.router.navigate(['/user/' + this.userProvider.user.user_id])
+  	}
 }

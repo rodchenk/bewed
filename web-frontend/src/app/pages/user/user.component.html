@@ -1,27 +1,3 @@
-<!--<div class="bg-white light-border-bottom row no-mb" style="padding: 4px 26px !important">
-	<div class="col s4">
-		<div class="ui left icon input">
-			<i class="ion-md-search icon"></i>
-			<input placeholder="Search" type="text" autocomplete="off" style="border: 0">
-		</div>
-	</div>
- 	<div class="col s4 text-center legend">
-		<a class="text-grey" href="">
-			Pools: 1
-		</a>
-		<a class="text-grey" href="">
-			Tags: 0
-		</a>
-		<a class="text-grey" href="">
-			Projects: 0
-		</a>
-	</div>
-	<div class="col s4 text-right legend">
-		<a href="">
-			<i class="ion-md-grid"></i>
-		</a>
-	</div>
-</div> -->
 <div *ngIf="user.name">
 	<div class="p-16 row">
 		<div class="col " style="max-width: 350px">
@@ -95,13 +71,34 @@
 
 		</div>
 
-		<div class="col" style="max-width: calc(100% - 350px)">
-			<div class="container">
+		<div class="col" style="width: calc(100% - 350px)">
+			<div *ngIf="pools.length == 0" class="container">
 				<h2 class="text-center text-grey weight-300 no-mb">Here you will find open projects</h2>
 				<h5 class="text-center weight-300 no-mt">to create projects go to <a class="text-grey" routerLink="/studio">studio</a></h5>
 				<div class="container">
 					<img src="assets/img/shopping.svg" class="full-width">
 				</div>
+			</div>
+
+			<div *ngIf="pools.length > 0" class="row">
+
+				<div *ngFor="let pool of pools" class="col s12 m6 l4">
+					<div class="light-border rounded bg-white p-16 pointer drop-shadow" (click)="openPool(pool._id)">
+						<h4 class="weight-300 text-grey mt-10">
+							<i *ngIf="pool.private" class="ion-ios-lock float-right"></i>
+							{{pool.name}}
+							<mat-chip-list class="bewed-chips" style="display: inline-block;">
+								 <mat-basic-chip>{{pool.viewCategory || pool.category}}</mat-basic-chip>
+							</mat-chip-list>
+						</h4>
+						<!-- <div class="text-grey">
+							<span>hello</span>
+						</div> -->
+						<img src="/assets/img/{{pool.category}}.png" class="full-width" style="max-height: 135px">
+
+					</div>
+				</div>
+
 			</div>
 		</div>
 
