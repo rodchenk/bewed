@@ -14,6 +14,7 @@ router.get 	 ('/user/image', user.getImage)
 router.get 	 ('/users', user.getAll)
 
 /* pool api */
+router.get 	 ('/pools/published', pool.getPublished)
 router.get 	 ('/pools/all', pool.getAll)
 router.get 	 ('/pools', pool.getByUser)
 router.get 	 ('/pool', pool.getByID)
@@ -26,5 +27,6 @@ router.post	 ('/task', task.add)
 router.get 	 ('/tasks', task.getByPool)
 router.get 	 ('/task', task.get)
 router.put 	 ('/task', task.update)
+router.delete('/task', task.delete)
 
 module.exports = router;

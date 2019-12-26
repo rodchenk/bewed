@@ -31,3 +31,11 @@ exports.getByPool = function(req, res){
 exports.update = function(req, res){
     couch.update(db_name, req.body.values).then(({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
+
+exports.delete = function(req, res){
+    couch.del(db_name, req.query._id, req.query._rev).then( ({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
+}
+
+exports.deleteChildred = function(req, res){
+	//
+}

@@ -32,7 +32,10 @@ exports.getAll = function(req, res){
             "_id": {
                 "$gt": "0"
             }
-        }
+        },
+       "sort": [
+            "signUp.timestamp"
+        ]
     }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 

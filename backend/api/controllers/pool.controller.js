@@ -11,6 +11,7 @@ exports.add = function(req, res){
         category: req.body.data.category,
         private: req.body.data.isprivate,
         user: req.body.user,
+        created: new Date(),
         type: 'pool',
         tags: []
     };
@@ -53,6 +54,23 @@ exports.getByID = function(req, res){
     }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
+exports.getPublished = function(req, res){
+    console.log(req.query);
+    couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$gt": null
+            },
+            "user": {
+                "$eq": req.query.user_id
+            },
+            "published": {
+                "$eq": true
+            }
+        }
+    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+}
+
 exports.update = function(req, res){
     couch.update(db_name, req.body.values).then(({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
@@ -61,26 +79,26 @@ exports.delete = function(req, res){
     couch.del(db_name, req.query._id, req.query._rev).then( ({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
 
-exports.addTask = function(req, res){
-    let task = req.body.params.values;
-    couch.mango(db_name, {
-        selector: {
-            "_id": {
-                "$eq": req.body.params.parent
-            }
-        }
-    }, {}).then(({data, headers, status}) => {
-        if(data.docs.length > 0){
-            let pool = data.docs[0];
-            if(!pool.tasks) pool.tasks = new Array();
+// exports.addTask = function(req, res){
+//     let task = req.body.params.values;
+//     couch.mango(db_name, {
+//         selector: {
+//             "_id": {
+//                 "$eq": req.body.params.parent
+//             }
+//         }
+//     }, {}).then(({data, headers, status}) => {
+//         if(data.docs.length > 0){
+//             let pool = data.docs[0];
+//             if(!pool.tasks) pool.tasks = new Array();
             
-            pool.tasks.push(req.body.params.values);
+//             pool.tasks.push(req.body.params.values);
 
-            couch.update(db_name, pool).then(({data, headers, status}) => 
-                res.json({'status': 'ok', "data": data}), 
-                err => res.json({'status': 'error_01', 'reason': err}) )            
-        }else{
-            err => res.json({'status':'error_03', 'reason':err})
-        }
-    }, err => res.json({'status':'error_02', 'reason':err}) );
-}
+//             couch.update(db_name, pool).then(({data, headers, status}) => 
+//                 res.json({'status': 'ok', "data": data}), 
+//                 err => res.json({'status': 'error_01', 'reason': err}) )            
+//         }else{
+//             err => res.json({'status':'error_03', 'reason':err})
+//         }
+//     }, err => res.json({'status':'error_02', 'reason':err}) );
+// }
