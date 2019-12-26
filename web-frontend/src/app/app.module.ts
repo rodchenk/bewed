@@ -44,6 +44,7 @@ import { ExploreUsersComponent } from './pages/explore-users/explore-users.compo
 import { UploadPhotoComponent } from './pages/upload-photo/upload-photo.component';
 import { CreateTaskComponent } from './pages/create-task/create-task.component';
 import { TaskComponent } from './pages/task/task.component';
+import { NewsComponent } from './pages/news/news.component';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,8 @@ import { TaskComponent } from './pages/task/task.component';
         ExploreUsersComponent,
         UploadPhotoComponent,
         CreateTaskComponent,
-        TaskComponent
+        TaskComponent,
+        NewsComponent
     ],
     imports: [
         BrowserModule,

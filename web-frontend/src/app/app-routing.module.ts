@@ -11,6 +11,7 @@ import { CompleteSignupComponent } from './pages/complete-signup/complete-signup
 import { StudioPoolComponent } from './pages/studio-pool/studio-pool.component';
 import { ExploreUsersComponent } from './pages/explore-users/explore-users.component';
 import { TaskComponent } from './pages/task/task.component';
+import { NewsComponent } from './pages/news/news.component';
 
 const routes: Routes = [  
 	{
@@ -28,6 +29,10 @@ const routes: Routes = [
  	{
  		path: 'msg',
  		component: MessageComponent
+ 	},
+ 	{
+ 		path: 'news',
+ 		component: NewsComponent
  	},
  	{
  		path: 'explore',

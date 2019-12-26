@@ -36,6 +36,11 @@ export class PoolService {
   		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools', { params: {user_id} }).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
   	}
 
+  	/**
+  	* @method gets all published pools by given user_id
+  	* @user_api GET /pools/published?user_id={id}
+  	* @return Promise<any> with array of published pools
+  	*/
   	public getPublishedPools(user_id:string):Promise<any>{
   		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools/published', { params: {user_id} }).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
   	}
