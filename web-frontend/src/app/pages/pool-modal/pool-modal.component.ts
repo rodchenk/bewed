@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { PoolCategory, PoolCategoryAbstract } from './../../interfaces/pool-category';
+import { Layout, LayoutAbstract } from './../../interfaces/layout';
 import { PoolService } from './../../services/pool.service';
 
 @Component({
@@ -16,7 +17,9 @@ import { PoolService } from './../../services/pool.service';
 export class PoolModalComponent implements OnInit {
 
 	private poolForm:any
+  	private auto_layout:boolean = true
 	public categories: PoolCategoryAbstract[] = PoolCategory.categories
+	public layouts: LayoutAbstract[] = Layout.layouts
 
   	constructor(private poolProvider: PoolService, private formBuilder: FormBuilder, public dialog: MatDialogRef<PoolModalComponent>) { }
 
@@ -24,7 +27,7 @@ export class PoolModalComponent implements OnInit {
   		this.poolForm = new FormGroup({
 			name: new FormControl(),
 			category: new FormControl(),
-			isprivate: new FormControl()
+			layout: new FormControl({value: ''})
 		});
   	}
 
@@ -33,6 +36,14 @@ export class PoolModalComponent implements OnInit {
   	* @use_api POST /pool
   	*/
   	public onSubmit(values:any){
+    	if(this.auto_layout){
+    		switch (values.category) {
+    			case PoolCategory.SPORT: values.layout = Layout.CHAIN;	break;
+    			case PoolCategory.ART: 	 values.layout = Layout.GALLERY;break;
+    			case PoolCategory.ENGINEERING: 
+    			default:   				 values.layout = Layout.CANBAN; break;
+    		}
+      	}
   		this.poolProvider.add(values).then( (ok:boolean) => this.close(ok) ).catch( error => console.warn(error) )
   	}
 

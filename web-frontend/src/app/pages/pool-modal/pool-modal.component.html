@@ -19,15 +19,23 @@
 		</mat-form-field>
 
 		<div class="row mt-10 no-mb">
-			<div class="col s12 m6">
+			<div class="col s12 m6" style="padding-top: 14px">
 				<div class="row no-mb">
-					<mat-checkbox color="warn" formControlName="isprivate">private pool</mat-checkbox>
+					<mat-checkbox color="warn" [(ngModel)]="auto_layout" [ngModelOptions]="{standalone: true}">auto layout</mat-checkbox>
 				</div>
 				<div class="row no-mb">
-					<h5 class="weight-300 text-grey no-mb" style="margin-top:0">private pools are only for you visible</h5>
+					<h5 class="weight-300 text-grey no-mb no-mt">Layout will be passed automatically</h5>
 				</div>
 			</div>
-			<div class="col s12 m6 text-right" style="padding-right:0">
+			<div class="col s12 m6" style="padding-right:0">
+				<mat-form-field class="d-block"  appearance="outline">
+					<mat-label>Layout</mat-label>
+					<mat-select placeholder="Layout" formControlName="layout" [disabled]="auto_layout" required>
+						<mat-option *ngFor="let layout of layouts" [value]="layout.value">{{layout.viewValue}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="col s12 text-right">
 				<button mat-button type="button" class="mr-10 bg-light-grey" (click)="close()">Cancel</button>
 				<button mat-button type="submit" class="bg-bewed-primary">Add pool</button>
 			</div>
