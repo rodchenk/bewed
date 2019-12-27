@@ -55,7 +55,6 @@ exports.getByID = function(req, res){
 }
 
 exports.getPublished = function(req, res){
-    console.log(req.query);
     couch.mango(db_name, {
         selector: {
             "_id": {

@@ -29,7 +29,7 @@ exports.getByPool = function(req, res){
 }
 
 exports.update = function(req, res){
-    couch.update(db_name, req.body.values).then(({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
+    couch.update(db_name, req.body.task).then(({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
 
 exports.delete = function(req, res){
@@ -37,5 +37,5 @@ exports.delete = function(req, res){
 }
 
 exports.deleteChildred = function(req, res){
-	//
+	res.json({'status': 'ok', "data": 'not implemented'})
 }
