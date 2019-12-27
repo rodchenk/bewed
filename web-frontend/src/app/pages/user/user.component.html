@@ -82,7 +82,7 @@
 
 			<div *ngIf="pools.length > 0" class="row">
 
-				<div *ngFor="let pool of pools" class="col s12 m6 l4">
+				<div *ngFor="let pool of pools" class="col s12 m6 l4 xl3">
 					<div class="light-border rounded bg-white p-16 pointer drop-shadow" (click)="openPool(pool._id)">
 						<h4 class="weight-300 text-grey mt-10">
 							<i *ngIf="pool.private" class="ion-ios-lock float-right"></i>
@@ -94,7 +94,10 @@
 						<!-- <div class="text-grey">
 							<span>hello</span>
 						</div> -->
-						<img src="/assets/img/{{pool.category}}.png" class="full-width" style="max-height: 135px">
+						<div class="text-center">
+							
+								<img src="/assets/img/{{pool.category}}.png" class="max-full-width" style="max-height: 135px">
+						</div>
 
 					</div>
 				</div>

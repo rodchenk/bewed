@@ -238,9 +238,14 @@ export class UserService{
   		})
   	}
 
-    getUserImage():Promise<string>{
+    getUserImage(user_id?:string, obj?:any):Promise<string>{
+      let size
+      if(obj){
+        user_id = obj.user_id;
+        size = obj.size
+      }
         return new Promise( (resolve, reject) => {
-            this.http.get(Config.API_URL + '/user/image', { params: {size: 'm', user_id: this.user.user_id}}).subscribe( (image:string) => {
+            this.http.get(Config.API_URL + '/user/image', { params: {size: size || 'm', user_id: user_id || this.user.user_id}}).subscribe( (image:string) => {
                 if(image){
                     resolve(image)
                 }else{

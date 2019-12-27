@@ -19,7 +19,7 @@ import { MatButtonModule, MatCheckboxModule, MatSelectModule,
         MatInputModule, MatFormFieldModule, MatMenuModule, 
         MatCardModule, MatDialogModule, MatChipsModule,
         MatTabsModule, MatDatepickerModule, MatNativeDateModule,
-        MatProgressBarModule, MatSnackBarModule } from '@angular/material';
+        MatProgressBarModule, MatSnackBarModule, MatSlideToggleModule } from '@angular/material';
 
 /* bewed components */
 import { AppRoutingModule } from './app-routing.module';
@@ -88,6 +88,7 @@ import { NewsComponent } from './pages/news/news.component';
         MatNativeDateModule,
         MatCardModule,
         MatDatepickerModule,
+        MatSlideToggleModule,
         AngularFirestoreModule,
         MatFormFieldModule,
         MatDialogModule,

@@ -31,6 +31,8 @@ export class CreateTaskComponent implements OnInit {
   		values.parent = this.pool_id
   		values.type = 'task'
       values.status = 0
+      values.comments = []
+      
   		this.taskProvider.saveTask(values).then( () => this.close(true)).catch( error => console.warn(error))
   	}
 
