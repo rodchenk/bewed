@@ -1,7 +1,7 @@
-<div class="gallery">
+<div *ngIf="pool.tasks.length > 0" class="gallery">
 	<div class="wrapper">
 		<div class="unit" style="background-color: #dcdde3;display: inline-block;vertical-align: inherit;display: inline-block;vertical-align: inherit;">
-			<div class="vertical-middle" style="height: 100%;position: absolute; width: 100%;">
+			<div class="vertical-middle" style="height: 100%;position: absolute; width: 100%;" (click)="addUnit()">
 				<div class="text-center">
 					<span class="text-grey" style="font-size: 2em">
 						<i class="ion-md-add"></i>
@@ -11,79 +11,24 @@
 		</div>
 	</div>
 
-	<div class="wrapper">
+	<div *ngFor="let unit of pool.tasks" class="wrapper">
 		<div class="unit drop-shadow">
 			<div class="panel vertical-middle">
 				<div class="text-center">
 					<span class="mr-10">
-						<i class="ion-md-heart"></i>12
+						<i class="ion-md-heart"></i>{{unit.likes.length}}
 					</span>
 					<span>
-						<i class="ion-ios-chatboxes"></i>0
+						<i class="ion-ios-chatboxes"></i>{{unit.comments.length}}
 					</span>
 				</div>
 			</div>
-			<img src="/assets/img/testimgs/0c347a3d87cc0fb11db60553082a621df6c467eb.jpg">
+			<img src="{{unit.image}}">
 		</div>
 	</div>
-	<div class="wrapper">
-		<div class="unit drop-shadow">
-			<div class="panel vertical-middle">
-				<div class="text-center">
-					<span class="mr-10">
-						<i class="ion-md-heart"></i>12
-					</span>
-					<span>
-						<i class="ion-ios-chatboxes"></i>0
-					</span>
-				</div>
-			</div>
-			<img src="/assets/img/testimgs/greece.jpg">
-		</div>
-	</div>
-	<div class="wrapper">
-		<div class="unit drop-shadow">
-			<div class="panel vertical-middle">
-				<div class="text-center">
-					<span class="mr-10">
-						<i class="ion-md-heart"></i>12
-					</span>
-					<span>
-						<i class="ion-ios-chatboxes"></i>0
-					</span>
-				</div>
-			</div>
-			<img src="/assets/img/testimgs/me.jpg">
-		</div>
-	</div>
-	<div class="wrapper">
-		<div class="unit drop-shadow">
-			<div class="panel vertical-middle">
-				<div class="text-center">
-					<span class="mr-10">
-						<i class="ion-md-heart"></i>12
-					</span>
-					<span>
-						<i class="ion-ios-chatboxes"></i>0
-					</span>
-				</div>
-			</div>
-			<img src="/assets/img/testimgs/soup.jpeg">
-		</div>
-	</div>
-	<div class="wrapper">
-		<div class="unit drop-shadow">
-			<div class="panel vertical-middle">
-				<div class="text-center">
-					<span class="mr-10">
-						<i class="ion-md-heart"></i>12
-					</span>
-					<span>
-						<i class="ion-ios-chatboxes"></i>0
-					</span>
-				</div>
-			</div>
-			<img src="/assets/img/testimgs/studio_logo.png">
-		</div>
-	</div>
+
+</div>
+
+<div *ngIf="pool.tasks.length == 0" class="mt-10 text-center">
+	<span>Nothing here. Try to <button mat-button class="ng-light-grey weight-300" (click)="addUnit()">add</button> new image</span>
 </div>

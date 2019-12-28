@@ -40,12 +40,12 @@
 							</mat-chip-list>
 						</h4>
 						<div class="text-grey" *ngIf="pool.layout == 'kanban'">
-							<span class="weight-300 small-text">{{completed(pool.tasks)}} from {{pool.tasks.length}} completed</span>
+							<span class="weight-300 small-text">{{completed(pool.tasks)}} from {{pool.tasks.length}} tasks completed</span>
 						</div>
-						<div class="text-grey" *ngIf="pool.layout != 'kanban'">
-							<span class="weight-300 small-text">{{pool.tasks.length}} thing(s)</span>
+						<div class="text-grey" *ngIf="pool.layout == 'gallery'">
+							<span class="weight-300 small-text">{{pool.tasks.length}} photo(s)</span>
 						</div>
-						<div class="pool-scala" style="width: 20%"></div>
+						<div *ngIf="pool.layout == 'kanban'" class="pool-scala" style="width: 33%"></div>
 					</div>
 				</div>
 			</div>

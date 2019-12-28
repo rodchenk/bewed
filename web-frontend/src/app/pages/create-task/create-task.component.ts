@@ -4,6 +4,7 @@ import { TaskService } from './../../services/task.service';
 import { UserService } from './../../services/user.service';
 import { PoolService  } from './../../services/pool.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Helper } from './../../helper';
 
 @Component({
 	selector: 'app-create-task',
@@ -14,14 +15,6 @@ export class CreateTaskComponent implements OnInit {
 
 	private parent_pool: any
 	private form: FormGroup
-	private readonly c:string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
-	/**
-	 * @return random String constising of 16 chars from this.c
-	**/
-	private gen_random():string{
-		return Array.from({length:16}, _ => this.c[Math.floor(Math.random()*62)]).join('');
-	}
 
   	constructor(@Inject(MAT_DIALOG_DATA) public parent: any, private dialogRef: MatDialogRef<CreateTaskComponent>, private poolProvider: PoolService, private userProvider: UserService) {
   		this.parent_pool = parent
@@ -36,7 +29,7 @@ export class CreateTaskComponent implements OnInit {
 
   	private save(values:any){
 
-  		values._id = this.gen_random()
+  		values._id = Helper.gen_random()
   		values.created = new Date()
   		values.user_id = this.userProvider.user.user_id
   		//values.parent = this.pool_id

@@ -5,6 +5,7 @@ import { PoolService } from './../../services/pool.service';
 import { UserService } from './../../services/user.service';
 import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
+import { Helper } from './../../helper';
 
 @Component({
   selector: 'app-task',
@@ -18,20 +19,12 @@ export class TaskComponent implements OnInit {
 	private status:number = 0
 	private comment:string = ''
 	private author_image:string
-  	private readonly c:string = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
   	constructor(private route: ActivatedRoute, private poolProvider: PoolService, private dialog: MatDialog, private router: Router, private userProvider: UserService) { }
 
   	ngOnInit() {
   		this.route.params.subscribe( (params:any) => this._loadTaskData(params['pool'], params['task']) )
   	}
-
-	/**
-	 * @return random String constising of 16 chars from this.c
-	**/
-	private gen_random():string{
-		return Array.from({length:16}, _ => this.c[Math.floor(Math.random()*62)]).join('');
-	}
 
   	private _loadTaskData(pool_id:string, task_id:string):void{
 
@@ -49,7 +42,7 @@ export class TaskComponent implements OnInit {
 
   	private commentTask():void{
   		let comment = {
-  			_id: this.gen_random(),
+  			_id: Helper.gen_random(),
   			content: this.comment,
   			author: this.userProvider.user.user_id,
   			created: new Date()
