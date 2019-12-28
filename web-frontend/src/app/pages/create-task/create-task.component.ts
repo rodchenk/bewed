@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TaskService } from './../../services/task.service';
 import { UserService } from './../../services/user.service';
+import { PoolService  } from './../../services/pool.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,11 +12,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class CreateTaskComponent implements OnInit {
 
-	private pool_id: string
+	private parent_pool: any
 	private form: FormGroup
 
-  	constructor(@Inject(MAT_DIALOG_DATA) public parent: any, private dialogRef: MatDialogRef<CreateTaskComponent>, private taskProvider: TaskService, private userProvider: UserService) {
-  		this.pool_id = parent
+  	constructor(@Inject(MAT_DIALOG_DATA) public parent: any, private dialogRef: MatDialogRef<CreateTaskComponent>, private poolProvider: PoolService, private userProvider: UserService) {
+  		this.parent_pool = parent
   	}
 
   	ngOnInit() {
@@ -26,14 +27,18 @@ export class CreateTaskComponent implements OnInit {
   	}
 
   	private save(values:any){
+
   		values.created = new Date()
   		values.user_id = this.userProvider.user.user_id
-  		values.parent = this.pool_id
+  		//values.parent = this.pool_id
   		values.type = 'task'
-      values.status = 0
-      values.comments = []
-      
-  		this.taskProvider.saveTask(values).then( () => this.close(true)).catch( error => console.warn(error))
+      	values.status = 0
+      	values.comments = []
+
+      	this.parent_pool.tasks.push(values)
+      	this.poolProvider.update(this.parent_pool).then( () => this.close(true)).catch( error => console.warn(error))
+
+  		//this.taskProvider.saveTask(values).then( () => this.close(true)).catch( error => console.warn(error))
   	}
 
   	private close(result:boolean = false){

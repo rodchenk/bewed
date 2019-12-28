@@ -30,6 +30,10 @@ export class StudioComponent implements OnInit {
         this.route.params.subscribe( params => this.getUserPools(params['user'] || this.userProvider.user.user_id) );
   	}
 
+  	completed(tasks:any[]):number{
+  		return tasks.filter(task => task.status == 3).length
+  	}
+
   	/**
     * @unused
   	* @method gets all pool data from API

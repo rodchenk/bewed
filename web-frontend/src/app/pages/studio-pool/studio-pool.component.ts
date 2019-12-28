@@ -23,10 +23,7 @@ export class StudioPoolComponent implements OnInit {
 	private component:StudioPoolComponent = this
 	private cover:string = 'assets/img/3.png'
 
-	private waiting_tasks:any[] = []
-	private active_tasks:any[] = []
-	private todo_tasks:any[] = []
-	private done_tasks:any[] = []
+	
 
   	constructor(private poolProvider: PoolService, private taskProvider: TaskService, private route: ActivatedRoute, private dialog: MatDialog, private router: Router) { }
 
@@ -50,22 +47,38 @@ export class StudioPoolComponent implements OnInit {
   		this.route.params.subscribe( (params:any) => this.poolProvider.getByID(params['pool']).then( (data:any) => {
   			this.pool = data 
   			this.cover = '/assets/img/' + this.pool.category + '.png'
-  			this.loadTasks()
+  			//this.loadTasks()
+
+  			this.tasks = data.tasks
+
+			
 
   		}).catch( error => console.warn(error)) );
   	}
 
+
+  	/**
+  	* @UNUSED
+  	*/
   	private loadTasks():void{
-  		this.taskProvider.getTasksByPool(this.pool._id).then( (data:any) => {
+  		//this.tasks = data.docs
 
-  			this.tasks = data.docs
+		this.waiting_tasks = this.tasks.filter(task => task.status == 0)
+		this.todo_tasks = this.tasks.filter(task => task.status == 1)
+		this.active_tasks = this.tasks.filter(task => task.status == 2)
+		this.done_tasks = this.tasks.filter(task => task.status == 3)
 
-  			this.waiting_tasks = this.tasks.filter(task => task.status == 0)
-  			this.todo_tasks = this.tasks.filter(task => task.status == 1)
-  			this.active_tasks = this.tasks.filter(task => task.status == 2)
-  			this.done_tasks = this.tasks.filter(task => task.status == 3)
+
+  		// this.taskProvider.getTasksByPool(this.pool._id).then( (data:any) => {
+
+  		// 	this.tasks = data.docs
+
+  		// 	this.waiting_tasks = this.tasks.filter(task => task.status == 0)
+  		// 	this.todo_tasks = this.tasks.filter(task => task.status == 1)
+  		// 	this.active_tasks = this.tasks.filter(task => task.status == 2)
+  		// 	this.done_tasks = this.tasks.filter(task => task.status == 3)
   			
-  		}).catch( error => console.log('error by getting tasks'))	
+  		// }).catch( error => console.log('error by getting tasks'))	
   	}
 
   	/**
@@ -73,7 +86,7 @@ export class StudioPoolComponent implements OnInit {
   	* @method opens modal with task creation form
   	*/
   	private newTask():void{
-  		let dialog = this.dialog.open(CreateTaskComponent, { data: this.pool._id } );
+  		let dialog = this.dialog.open(CreateTaskComponent, { data: this.pool } );
   		dialog.afterClosed().subscribe((hasAdded:boolean) => {
   			if(hasAdded){
   				this.loadTasks()
