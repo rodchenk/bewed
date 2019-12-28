@@ -19,11 +19,7 @@ import { TaskService } from './../../services/task.service';
 export class StudioPoolComponent implements OnInit {
 
 	private pool:any = {name:''};
-	private tasks:any[] = []
-	private component:StudioPoolComponent = this
 	private cover:string = 'assets/img/3.png'
-
-	
 
   	constructor(private poolProvider: PoolService, private taskProvider: TaskService, private route: ActivatedRoute, private dialog: MatDialog, private router: Router) { }
 
@@ -31,13 +27,13 @@ export class StudioPoolComponent implements OnInit {
   		this.loadPoolData()
   	}
 
-  	openTask(task_id:boolean):void{
-  		this.router.navigate(['studio/' + this.pool._id + '/task/' + task_id])
-  	}
-
   	publishPool(shouldPublish:boolean):void{
   		this.pool.published = shouldPublish
   		this.poolProvider.update(this.pool)
+  	}
+
+  	goBack():void{
+  		this.router.navigate(['studio/' + this.pool.user])
   	}
 
   	/**
@@ -47,57 +43,9 @@ export class StudioPoolComponent implements OnInit {
   		this.route.params.subscribe( (params:any) => this.poolProvider.getByID(params['pool']).then( (data:any) => {
   			this.pool = data 
   			this.cover = '/assets/img/' + this.pool.category + '.png'
-  			//this.loadTasks()
-
-  			this.tasks = data.tasks
-
-			
-
   		}).catch( error => console.warn(error)) );
   	}
 
-
-  	/**
-  	* @UNUSED
-  	*/
-  	private loadTasks():void{
-  		//this.tasks = data.docs
-
-		this.waiting_tasks = this.tasks.filter(task => task.status == 0)
-		this.todo_tasks = this.tasks.filter(task => task.status == 1)
-		this.active_tasks = this.tasks.filter(task => task.status == 2)
-		this.done_tasks = this.tasks.filter(task => task.status == 3)
-
-
-  		// this.taskProvider.getTasksByPool(this.pool._id).then( (data:any) => {
-
-  		// 	this.tasks = data.docs
-
-  		// 	this.waiting_tasks = this.tasks.filter(task => task.status == 0)
-  		// 	this.todo_tasks = this.tasks.filter(task => task.status == 1)
-  		// 	this.active_tasks = this.tasks.filter(task => task.status == 2)
-  		// 	this.done_tasks = this.tasks.filter(task => task.status == 3)
-  			
-  		// }).catch( error => console.log('error by getting tasks'))	
-  	}
-
-  	/**
-  	* @used in Sidenav
-  	* @method opens modal with task creation form
-  	*/
-  	private newTask():void{
-  		let dialog = this.dialog.open(CreateTaskComponent, { data: this.pool } );
-  		dialog.afterClosed().subscribe((hasAdded:boolean) => {
-  			if(hasAdded){
-  				this.loadTasks()
-  			}
-  		})
-  		console.log('new task')
-  	}
-
-  	private goBack():void{
-  		this.router.navigate(['studio/' + this.pool.user])
-  	}
 
   	/**
   	* @method opens modal with pool settings

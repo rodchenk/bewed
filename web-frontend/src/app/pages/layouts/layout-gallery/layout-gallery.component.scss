@@ -1,0 +1,41 @@
+div.gallery{
+	float:right;
+	width: 708px;
+	& div.wrapper{
+		padding: 8px;
+		display: inline-block; 
+		.unit{
+			width: 220px;
+			height: 220px;
+			cursor: pointer;
+			position: relative;
+			border-radius: 2px;
+			&>div.panel{
+				border-radius: inherit;
+				opacity: 0;
+				background-color: rgba(0,0,0,.4);
+				color: #fff;
+				position: absolute;
+				top: 0; left: 0;
+				width: inherit;
+				height: inherit;
+				&>div>span{
+					font-size: 1.15em;
+					& i{
+						margin-right: 5px;
+					}
+				}
+			}
+			&:hover>div.panel{
+				opacity: 1;
+			}
+			&>img{
+				object-fit: cover;
+				height: 100%;
+				filter: saturate(0.5);
+				width: 100%;
+				border-radius: inherit;
+			}
+		}
+	}
+}

@@ -27,10 +27,6 @@ export class LayoutKanbanComponent implements OnInit {
   		this.loadPoolData()
   	}
 
-	private goBack():void{
-  		this.router.navigate(['studio/' + this.pool.user])
-  	}
-
   	private loadPoolData():void{
 		this.poolProvider.getByID(this.pool_id).then((data:any) => {
   			this.pool = data
@@ -49,5 +45,9 @@ export class LayoutKanbanComponent implements OnInit {
   				this.loadPoolData()
   			}
   		})
+  	}
+
+  	private openTask(task_id:boolean):void{
+  		this.router.navigate(['studio/' + this.pool._id + '/task/' + task_id])
   	}
 }

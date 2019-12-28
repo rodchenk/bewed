@@ -41,7 +41,7 @@ export class PoolModalComponent implements OnInit {
     			case PoolCategory.SPORT: values.layout = Layout.CHAIN;	break;
     			case PoolCategory.ART: 	 values.layout = Layout.GALLERY;break;
     			case PoolCategory.ENGINEERING: 
-    			default:   				 values.layout = Layout.CANBAN; break;
+    			default:   				 values.layout = Layout.KANBAN; break;
     		}
       	}
   		this.poolProvider.add(values).then( (ok:boolean) => this.close(ok) ).catch( error => console.warn(error) )

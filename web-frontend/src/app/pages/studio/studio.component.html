@@ -1,4 +1,4 @@
-<!-- <app-sidenav [page]="'studio'" [component]="component"></app-sidenav> -->
+
 <div class="no-with-sidenav">
 
 	<div class="p-16 row">
@@ -6,7 +6,7 @@
 		<div class="col s12 m8">
 
 			<div class="col s12">
-				<div class="pb-10 row panel pt-10 rounded light-border-bottom" style="margin: 10px 0">
+				<div class="pb-10 row panel pt-10 light-border-bottom" style="margin: 10px 0">
 					<div class="col s12 m6">
 						
 						<button mat-button class="mr-10 weight-300" (click)="goBack()">
@@ -39,9 +39,11 @@
 								 <mat-basic-chip>{{pool.viewCategory || pool.category}}</mat-basic-chip>
 							</mat-chip-list>
 						</h4>
-						<div class="text-grey">
-							<span *ngIf="pool.tasks.length > 0" class="weight-300 small-text">{{completed(pool.tasks)}} from {{pool.tasks.length}} completed</span>
-							<span *ngIf="pool.tasks.length == 0" class="weight-300 small-text">0 things</span>
+						<div class="text-grey" *ngIf="pool.layout == 'kanban'">
+							<span class="weight-300 small-text">{{completed(pool.tasks)}} from {{pool.tasks.length}} completed</span>
+						</div>
+						<div class="text-grey" *ngIf="pool.layout != 'kanban'">
+							<span class="weight-300 small-text">{{pool.tasks.length}} thing(s)</span>
 						</div>
 						<div class="pool-scala" style="width: 20%"></div>
 					</div>

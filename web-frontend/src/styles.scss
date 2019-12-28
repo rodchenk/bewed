@@ -112,6 +112,7 @@ a.arrow-animation{
 .bg-light-grey{	background-color: rgba(0,0,0,.08) !important }
 .bg-orange{ background-color: #f25d51 !important}
 .bg-blue{background-color: #85b7d9!important}
+.bg-grey{background-color: #cecfd4!important}
 
 .p-relative{ position: relative }
 .p-absolute{ position: absolute!important }
@@ -284,6 +285,7 @@ div.panel{
 			border-right: 1px #c8cbd8 solid;
 		}
 		& button:last-child{
+			border-left: 1px #c8cbd8 solid;
 			border-radius: 0 4px 4px 0;
 		}
 	}
