@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PoolService } from './../../../services/pool.service';
 import { UploadPhotoComponent } from './../../../pages/upload-photo/upload-photo.component';
+import { GalleryUnitComponent } from './../../../pages/gallery-unit/gallery-unit.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Helper } from './../../../helper';
+import { GalleryTypes } from './../../../interfaces/gallery-types';
 
 @Component({
   selector: 'app-layout-gallery',
@@ -39,6 +41,13 @@ export class LayoutGalleryComponent implements OnInit {
   				this.pool.tasks.push(task)
   				this.poolProvider.update(this.pool).catch(error => console.warn(error))
   			}
+  		})
+  	}
+
+  	openUnit(unit_id:string):void{
+  		let dialog = this.dialog.open(GalleryUnitComponent, {data: {type: GalleryTypes.PHOTO_WITH_COMMENTS_LIKES, unit: unit_id, pool: this.pool}} )
+  		dialog.afterClosed().subscribe((data:any) => {
+  			if(data) this.pool = data
   		})
   	}
 

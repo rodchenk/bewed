@@ -1,1 +1,38 @@
-<p>gallery-unit works!</p>
+<div class="unit">
+	<div class="photo-wrapper">
+		<img src="{{unit.image}}" class="full-width">
+	</div>
+	<div class="comment-block">
+		<div class="comments">
+			<div class="p-26">
+				<div *ngFor="let comment of unit.comments" class="comment">
+					<a routerLink="user/mischa" class="mr-10">{{comment.author}}</a>
+					<span class="weight-300">{{comment.content}}</span>
+				</div>
+				<div *ngIf="unit.comments.length == 0" class="text-center weight-300 small-text">
+					No comments
+				</div>
+			</div>
+		</div>
+		<div class="actions text-right p-16">
+			<button mat-button class="bg-light-grey mr-10" (click)="delete()">Delete</button>
+			<span class="like-button" (click)="like()" style="vertical-align: middle;">
+				{{unit.likes.length}}
+				<i *ngIf="!liked" class="ion-md-heart-empty" style="margin-left: 3px"></i>
+				<i *ngIf="liked" class="ion-md-heart" style="color: #f26a60;margin-left: 3px"></i>
+            </span>
+		</div>
+		<div class="panel light-border-top">
+			<div class="p-16" style="margin-top: 4px">
+				<form>
+					<div class="ui icon input header-element full-width">
+		                <input type="text" placeholder="Comment" [(ngModel)]="comment" name="comment">
+		                <button (click)="sendComment()" class="icon" mat-icon-button type="submit">
+		                    <i class="ion-md-paper-plane"></i>
+		                </button>
+		            </div>
+	            </form>
+			</div>
+		</div>
+	</div>
+</div>

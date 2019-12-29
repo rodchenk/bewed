@@ -1,0 +1,54 @@
+div.unit{
+	width: 950px;
+	margin: -24px;
+	.photo-wrapper{
+		height: 600px;
+		width: 600px;
+		display: inline-block;
+    	vertical-align: top;
+		&>img{
+			height: 100%;
+	    	object-fit: cover;
+		}
+	}
+	div.actions{
+		&>.like-button{
+			cursor: pointer;
+			font-size: 1.3em;
+			padding: 5px;
+		}
+	}
+	div.comment-block{
+		display: inline-block;
+		width: 350px;
+		height: 600px;
+		vertical-align: top;
+		&>div.comments{
+			height: 442px;
+			overflow-y: auto;
+    		margin-top: 9px;
+			& div.comment{
+				margin-bottom: 7px;
+				& a{ color: #222 }
+			}
+		}
+		&>div.panel{
+			height: 80px;
+			.ui .icon{
+		    	position: absolute;
+		    	right: 12px;
+		    }
+		    .ui button.icon{
+		        position: absolute;
+		        right: 0;
+		        top: -2px;
+		        font-size: 18px;
+		    }
+		    .ui input{
+		    	border: none;
+		    	background: #eff0f6;
+		    	padding: 10px;
+		    }
+		}
+	}
+}
