@@ -47,6 +47,7 @@ import { TaskComponent } from './pages/task/task.component';
 import { NewsComponent } from './pages/news/news.component';
 import { LayoutKanbanComponent } from './pages/layouts/layout-kanban/layout-kanban.component';
 import { LayoutGalleryComponent } from './pages/layouts/layout-gallery/layout-gallery.component';
+import { GalleryUnitComponent } from './pages/gallery-unit/gallery-unit.component';
 
 @NgModule({
     declarations: [
@@ -73,7 +74,8 @@ import { LayoutGalleryComponent } from './pages/layouts/layout-gallery/layout-ga
         TaskComponent,
         NewsComponent,
         LayoutKanbanComponent,
-        LayoutGalleryComponent
+        LayoutGalleryComponent,
+        GalleryUnitComponent
     ],
     imports: [
         BrowserModule,
@@ -109,7 +111,8 @@ import { LayoutGalleryComponent } from './pages/layouts/layout-gallery/layout-ga
         PoolSettingsComponent,
         ConfirmDialogComponent,
         UploadPhotoComponent,
-        CreateTaskComponent
+        CreateTaskComponent,
+        GalleryUnitComponent
     ],
     providers: [],
     bootstrap: [AppComponent]
