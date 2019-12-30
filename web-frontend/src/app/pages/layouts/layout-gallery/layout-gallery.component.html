@@ -1,5 +1,5 @@
 <div *ngIf="pool.tasks.length > 0" class="gallery">
-	<div class="wrapper">
+	<div *ngIf="pool.user == userProvider.user.user_id" class="wrapper">
 		<div class="unit" style="background-color: #dcdde3;display: inline-block;vertical-align: inherit;display: inline-block;vertical-align: inherit;">
 			<div class="vertical-middle" style="height: 100%;position: absolute; width: 100%;" (click)="addUnit()">
 				<div class="text-center">

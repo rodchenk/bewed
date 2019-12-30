@@ -21,7 +21,7 @@
 		<h3 class="text-grey weight-300 pb-10 light-border-bottom text-center">Waiting</h3>
 		<div *ngFor="let task of waiting_tasks" class="qwe">
 			<mat-card class="status{{task.status}} task drop-shadow mat-card" (click)="openTask(task._id)">
-				<div class="p-10">
+				<div class="p-10 no-pb">
 					<span class="d-block mt-10">
 						{{task.name}}
 					</span>
@@ -31,11 +31,11 @@
 					<div class="actions text-right">
 
 						<button *ngIf="task.comments" mat-icon-button class="mr-10">
-							<i class="ion-md-clipboard"></i>
+							<i class="ion-ios-code" style="vertical-align: bottom;"></i>
 							{{task.comments.length}}
 						</button>
 						<button mat-icon-button>
-							<i class="ion-md-body"></i>
+							<i class="ion-md-body" style="vertical-align: bottom;"></i>
 							1
 						</button>
 					</div>
@@ -48,7 +48,7 @@
 		<h3 class="text-grey weight-300 pb-10 light-border-bottom text-center">To do</h3>
 		<div *ngFor="let task of todo_tasks">
 			<mat-card class="status{{task.status}} task drop-shadow mat-card" (click)="openTask(task._id)">
-				<div class="p-10">
+				<div class="p-10 no-pb">
 					<span class="d-block mt-10">
 						{{task.name}}
 					</span>
@@ -58,11 +58,11 @@
 					<div class="actions text-right">
 
 						<button *ngIf="task.comments" mat-icon-button class="mr-10">
-							<i class="ion-md-clipboard"></i>
+							<i class="ion-ios-code" style="vertical-align: bottom;"></i>
 							{{task.comments.length}}
 						</button>
 						<button mat-icon-button>
-							<i class="ion-md-body"></i>
+							<i class="ion-md-body" style="vertical-align: bottom;"></i>
 							1
 						</button>
 					</div>
@@ -75,7 +75,7 @@
 		<h3 class="text-grey weight-300 pb-10 light-border-bottom text-center">Active</h3>
 		<div *ngFor="let task of active_tasks">
 			<mat-card class="status{{task.status}} task drop-shadow mat-card" (click)="openTask(task._id)">
-				<div class="p-10">
+				<div class="p-10 no-pb">
 					<span class="d-block mt-10">
 						{{task.name}}
 					</span>
@@ -85,11 +85,11 @@
 					<div class="actions text-right">
 
 						<button *ngIf="task.comments" mat-icon-button class="mr-10">
-							<i class="ion-md-clipboard"></i>
+							<i class="ion-ios-code" style="vertical-align: bottom;"></i>
 							{{task.comments.length}}
 						</button>
 						<button mat-icon-button>
-							<i class="ion-md-body"></i>
+							<i class="ion-md-body" style="vertical-align: bottom;"></i>
 							1
 						</button>
 					</div>
@@ -102,7 +102,7 @@
 		<h3 class="text-grey weight-300 pb-10 light-border-bottom text-center">Completed</h3>
 		<div *ngFor="let task of done_tasks">
 			<mat-card class="status{{task.status}} task drop-shadow mat-card" (click)="openTask(task._id)">
-				<div class="p-10">
+				<div class="p-10 no-pb">
 					<span class="d-block mt-10">
 						{{task.name}}
 					</span>
@@ -112,11 +112,11 @@
 					<div class="actions text-right">
 
 						<button *ngIf="task.comments" mat-icon-button class="mr-10">
-							<i class="ion-md-clipboard"></i>
+							<i class="ion-ios-code" style="vertical-align: bottom;"></i>
 							{{task.comments.length}}
 						</button>
 						<button mat-icon-button>
-							<i class="ion-md-body"></i>
+							<i class="ion-md-body"  style="vertical-align: bottom;"></i>
 							1
 						</button>
 					</div>

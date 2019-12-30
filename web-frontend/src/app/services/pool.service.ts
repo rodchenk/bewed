@@ -118,6 +118,22 @@ export class PoolService {
         })
     }
 
+    public mergeTask(pool:any, task:any):any{
+    	let index:number = pool.tasks.findIndex((e:any) => e._id == task._id)
+    	if(index < 0)
+    		return pool
+    	pool.tasks[index] = task
+    	return pool;
+    }
+
+    public cutTask(pool:any, task:any):any{
+    	let index:number = pool.tasks.findIndex((e:any) => e._id == task._id)
+    	if(index < 0)
+    		return pool
+    	pool.tasks.splice(index, 1)
+    	return pool
+    }
+
   	/**
   	* @method shows error toast with given message
   	*/

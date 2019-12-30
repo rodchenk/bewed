@@ -41,7 +41,7 @@ export class GalleryUnitComponent implements OnInit {
   			}
 
   			this.unit.comments.push(comment)
-  			this.pool.tasks.filter(task => task._id == this.unit_id)[0] = this.unit
+  			this.pool = this.poolProvider.mergeTask(this.pool, this.unit)
 
   			this.poolProvider.update(this.pool).then( () => this.comment = '').catch(error => console.warn(error) )
   		}
@@ -54,7 +54,7 @@ export class GalleryUnitComponent implements OnInit {
   			this.unit.likes.push(this.me)
   		}
 
-  		this.pool.tasks.filter(task => task._id == this.unit_id)[0] = this.unit
+  		this.pool = this.poolProvider.mergeTask(this.pool, this.unit)
   		this.poolProvider.update(this.pool).then( () => this.liked = !this.liked).catch(error => console.warn(error) )
   	}
 
@@ -62,8 +62,8 @@ export class GalleryUnitComponent implements OnInit {
   		let dialog = this.dialog.open(ConfirmDialogComponent, {data: {message: 'Do you want to delete a picture?', okButton: 'Yes, delete'}})
   		dialog.afterClosed().subscribe((confirmed:boolean) => {
   			if(confirmed){
-  				// TODO delete
-  				this.dialogRef.close()
+  				this.pool = this.poolProvider.cutTask(this.pool, this.unit)
+  				this.poolProvider.update(this.pool).then( () => this.dialogRef.close() ).catch( error => console.warn(error) )
   			}
   		})
   	}

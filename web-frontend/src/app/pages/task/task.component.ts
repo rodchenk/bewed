@@ -53,12 +53,12 @@ export class TaskComponent implements OnInit {
   	}
 
   	private goBack():void{
-  		this.router.navigate(['studio/' + this.task.user_id + '/' + this.task.parent])
+  		this.router.navigate(['studio/' + this.task.user_id + '/' + this.pool._id])
   	}
 
   	private save():void{
-  		this.pool.tasks.filter(task => task._id == this.task._id)[0] = this.task
-  		this.poolProvider.update(this.pool).then( () => this._loadTaskData(this.pool._id, this.task._id) ).catch( error => console.warn(error))
+  		this.pool = this.poolProvider.mergeTask(this.pool, this.task)
+  		this.poolProvider.update(this.pool).then( () => console.log('ok') ).catch( error => console.warn(error))
   	}
 
   	setStatus(status:number):void{
@@ -67,7 +67,7 @@ export class TaskComponent implements OnInit {
   	}
 
   	/**
-  	* @TODO
+  	* @methof
   	*/
   	private delete():void{
   		let dialog = this.dialog.open(ConfirmDialogComponent, {data: {
@@ -76,8 +76,7 @@ export class TaskComponent implements OnInit {
   		}})
   		dialog.afterClosed().subscribe( (confirmed: boolean) => {
   			if(confirmed){
-  				delete this.pool.tasks[this.pool.tasks.indexOf(this.task)]
-  				//TODO
+  				this.poolProvider.cutTask(this.pool, this.task)
 				this.poolProvider.update(this.pool).then( () => this.router.navigate(['studio/' + this.pool.user + '/' + this.pool._id]) ).catch( error => console.warn(error))
   			}
   		})

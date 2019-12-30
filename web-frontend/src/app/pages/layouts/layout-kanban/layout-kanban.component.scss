@@ -1,6 +1,7 @@
 .task{
 	padding: 0;
 	cursor: pointer;
+	font-size: 0.85em;
 	&.status0{ border-bottom: 2px #adabb9 solid;}
 	&.status1{ border-bottom: 2px #fa7369 solid;}
 	&.status2{ border-bottom: 2px #6074e1 solid;}
@@ -35,7 +36,7 @@
 		}
 	}
 	& p.description{
-		height: 20.6px; /* WORKSROUND */
+		height: 18.6px; /* WORKSROUND */
 		overflow: hidden;
 	}
 }

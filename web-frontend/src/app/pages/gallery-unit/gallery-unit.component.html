@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<div class="actions text-right p-16">
-			<button mat-button class="bg-light-grey mr-10" (click)="delete()">Delete</button>
+			<button *ngIf="pool.user == me" mat-button class="bg-light-grey mr-10" (click)="delete()" tabindex="2">Delete</button>
 			<span class="like-button" (click)="like()" style="vertical-align: middle;">
 				{{unit.likes.length}}
 				<i *ngIf="!liked" class="ion-md-heart-empty" style="margin-left: 3px"></i>
@@ -26,7 +26,7 @@
 			<div class="p-16" style="margin-top: 4px">
 				<form>
 					<div class="ui icon input header-element full-width">
-		                <input type="text" placeholder="Comment" [(ngModel)]="comment" name="comment">
+		                <input type="text" placeholder="Comment" [(ngModel)]="comment" name="comment" autocomplete="off" tabindex="1">
 		                <button (click)="sendComment()" class="icon" mat-icon-button type="submit">
 		                    <i class="ion-md-paper-plane"></i>
 		                </button>

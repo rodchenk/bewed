@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PoolService } from './../../../services/pool.service';
+import { UserService } from './../../../services/user.service';
 import { UploadPhotoComponent } from './../../../pages/upload-photo/upload-photo.component';
 import { GalleryUnitComponent } from './../../../pages/gallery-unit/gallery-unit.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -16,7 +17,7 @@ export class LayoutGalleryComponent implements OnInit {
 	@Input() private pool_id:string
 	private pool:any = {tasks:[]}
 
-  	constructor(private poolProvider: PoolService, private dialog: MatDialog) { }
+  	constructor(private poolProvider: PoolService, private dialog: MatDialog, private userProvider: UserService) { }
 
   	ngOnInit() {
   		this._loadPoolData()
