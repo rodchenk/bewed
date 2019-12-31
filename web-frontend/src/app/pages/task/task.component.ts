@@ -14,7 +14,7 @@ import { Helper } from './../../helper';
 })
 export class TaskComponent implements OnInit {
 
-	private task:any = {}
+	private task:any = {comments:[], likes: []}
 	private pool:any = {}
 	private status:number = 0
 	private comment:string = ''
@@ -41,6 +41,9 @@ export class TaskComponent implements OnInit {
   	}
 
   	private commentTask():void{
+  		if(!this.comment.trim())
+  			return
+
   		let comment = {
   			_id: Helper.gen_random(),
   			content: this.comment,
@@ -52,13 +55,22 @@ export class TaskComponent implements OnInit {
   		this.save()
   	}
 
+  	private removeComment(comment_id:string):void{
+  		let index:number = this.task.comments.findIndex(e => e._id == comment_id)
+  		if(index > -1){
+  			this.task.comments.splice(index, 1)
+  			this.pool = this.poolProvider.mergeTask(this.pool, this.task)
+  			this.poolProvider.update(this.pool)
+  		}
+  	}
+
   	private goBack():void{
   		this.router.navigate(['studio/' + this.task.user_id + '/' + this.pool._id])
   	}
 
   	private save():void{
   		this.pool = this.poolProvider.mergeTask(this.pool, this.task)
-  		this.poolProvider.update(this.pool).then( () => console.log('ok') ).catch( error => console.warn(error))
+  		this.poolProvider.update(this.pool).then( () => this.comment = '' ).catch( error => console.warn(error))
   	}
 
   	setStatus(status:number):void{

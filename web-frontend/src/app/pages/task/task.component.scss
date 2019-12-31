@@ -7,3 +7,37 @@
     object-fit: cover;
     display: block;
 }
+div.status0 > .mat-card{ border-bottom: 2px #adabb9 solid;}
+div.status1 > .mat-card{ border-bottom: 2px #fa7369 solid;}
+div.status2 > .mat-card{ border-bottom: 2px #6074e1 solid;}
+div.status3 > .mat-card{ border-bottom: 2px #36b37e solid;}
+
+div.task-header{
+	&>div.first-col{
+		display: inline-block;
+		width: 110px;
+		vertical-align: middle;
+	}
+	&>div.second-col{
+		vertical-align: middle;
+		display: inline-block;
+	}
+	&>div.third-col{
+		float: right;
+	}
+}
+.ui .icon{
+	position: absolute;
+	right: 12px;
+}
+.ui button.icon{
+    position: absolute;
+    right: 0;
+    top: -2px;
+    font-size: 18px;
+}
+.ui input{
+	border: none;
+	background: #eff0f6;
+	padding: 10px;
+}
