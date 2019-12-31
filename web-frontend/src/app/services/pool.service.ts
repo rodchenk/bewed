@@ -77,7 +77,7 @@ export class PoolService {
   			this.http.put(Config.API_URL + '/pool', {values: pool}).subscribe( 
   				(data:any) => {
 	  				this.showSuccess('Pool has been updated')
-	  				resolve()
+	  				resolve(data)
   			}, (error:any) => {
 	  				this.showError(this.ERROR_MESSAGE) 
 	  				reject(error)

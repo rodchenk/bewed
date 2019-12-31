@@ -60,7 +60,7 @@ export class TaskComponent implements OnInit {
   		if(index > -1){
   			this.task.comments.splice(index, 1)
   			this.pool = this.poolProvider.mergeTask(this.pool, this.task)
-  			this.poolProvider.update(this.pool)
+  			this.poolProvider.update(this.pool).then((data:any) => this.pool._rev = data.data.rev)
   		}
   	}
 
@@ -70,7 +70,10 @@ export class TaskComponent implements OnInit {
 
   	private save():void{
   		this.pool = this.poolProvider.mergeTask(this.pool, this.task)
-  		this.poolProvider.update(this.pool).then( () => this.comment = '' ).catch( error => console.warn(error))
+  		this.poolProvider.update(this.pool).then( (data:any) => {
+  			this.pool._rev = data.data.rev
+  			this.comment = ''
+  		} ).catch( error => console.warn(error))
   	}
 
   	setStatus(status:number):void{
@@ -89,7 +92,9 @@ export class TaskComponent implements OnInit {
   		dialog.afterClosed().subscribe( (confirmed: boolean) => {
   			if(confirmed){
   				this.poolProvider.cutTask(this.pool, this.task)
-				this.poolProvider.update(this.pool).then( () => this.router.navigate(['studio/' + this.pool.user + '/' + this.pool._id]) ).catch( error => console.warn(error))
+				this.poolProvider.update(this.pool).then( (data:any) =>  {
+					this.router.navigate(['studio/' + this.pool.user + '/' + this.pool._id]) 
+				} ).catch( error => console.warn(error))
   			}
   		})
   	}

@@ -43,7 +43,10 @@ export class GalleryUnitComponent implements OnInit {
   			this.unit.comments.push(comment)
   			this.pool = this.poolProvider.mergeTask(this.pool, this.unit)
 
-  			this.poolProvider.update(this.pool).then( () => this.comment = '').catch(error => console.warn(error) )
+  			this.poolProvider.update(this.pool).then( (data:any) => {
+  				this.pool._rev = data.data.rev
+  				this.comment = ''
+  			}).catch(error => console.warn(error) )
   		}
   	}
 
@@ -55,7 +58,10 @@ export class GalleryUnitComponent implements OnInit {
   		}
 
   		this.pool = this.poolProvider.mergeTask(this.pool, this.unit)
-  		this.poolProvider.update(this.pool).then( () => this.liked = !this.liked).catch(error => console.warn(error) )
+  		this.poolProvider.update(this.pool).then( (data:any) => {
+  			this.liked = !this.liked
+  			this.pool._rev = data.data.rev
+  		}).catch(error => console.warn(error) )
   	}
 
   	delete():void{
@@ -63,7 +69,9 @@ export class GalleryUnitComponent implements OnInit {
   		dialog.afterClosed().subscribe((confirmed:boolean) => {
   			if(confirmed){
   				this.pool = this.poolProvider.cutTask(this.pool, this.unit)
-  				this.poolProvider.update(this.pool).then( () => this.dialogRef.close() ).catch( error => console.warn(error) )
+  				this.poolProvider.update(this.pool).then( (data:any) => {
+  					this.dialogRef.close()
+  				} ).catch( error => console.warn(error) )
   			}
   		})
   	}

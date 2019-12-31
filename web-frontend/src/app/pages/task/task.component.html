@@ -51,7 +51,7 @@
 					<button mat-icon-button class="close-button" (click)="removeComment(comment._id)">
 						<i class="ion-md-close"></i>
 					</button>
-					<div class="mb-10 mr-10" style="display: inline-block;">
+					<div class="mb-10 mr-10 pb-10 light-border-bottom">
 						<a routerLink="/user/{{comment.author}}" class="mr-10 text-dark">{{comment.author}}</a>
 						<span class="small-text text-grey">{{comment.created | date: 'MMM d, HH:mm'}}</span>
 					</div>
