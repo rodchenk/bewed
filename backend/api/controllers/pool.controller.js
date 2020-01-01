@@ -80,26 +80,21 @@ exports.delete = function(req, res){
     couch.del(db_name, req.query._id, req.query._rev).then( ({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
 
+/**
+* @TODO pagination
+*/
 exports.news = function(req, res){
-    // couch.mango(db_name, {
-    //     selector: {
-    //         "_id": {
-    //             "$gt": null
-    //         },
-    //         "published": {
-    //      		"$eq": true
-    //   		},
-    //       	"watchers": {
-    //         	"$elemMatch": {
-    //             	"$eq": req.query.user_id
-    //          	}
-    //       	}
-    //    }
-    // }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+
+	var rows_per_page = 15;
+	var page = (req.query.offset / rows_per_page);
+	var skip = page * rows_per_page;
 
    	couch.get(db_name, '_design/poolTasks/_view/news', {
         include_docs: false, 
-        descending: true
-        //key: req.query.pool_id
+        descending: true,
+        limit: rows_per_page,
+        skip: skip,
+        startkey: [req.query.user_id, {}],
+        endkey: [req.query.user_id, null]
     }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
