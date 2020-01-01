@@ -33,7 +33,7 @@
 				<span *ngIf="pool.tags" class="text-grey d-block weight-300 p-16 no-pt text-center" style="font-size: 0.9em">
 					<a *ngFor="let tag of pool.tags" routerLink="/tags/{{tag}}" class="text-dark tag-marker">{{tag}}</a>
 				</span>
-				<div class="panel p-10">
+				<div *ngIf="pool.user == me" class="panel p-10">
 					<div class="right-actions">
 						<button mat-button class="weight-300 bg-light-grey" *ngIf="!pool.published" (click)="publishPool(true)" style="width: 33%">
 							<i class="ion-ios-megaphone mr-10" style="vertical-align: unset;"></i>
@@ -67,7 +67,7 @@
 					</div>
 					<div *ngIf="!pool.private" class="col s4 text-center">
 						<a>
-							<span class="bold d-block" style="font-size: 2em">0</span>
+							<span class="bold d-block" style="font-size: 2em">{{pool.watchers.length}}</span>
 							<span class="d-block small-text text-grey">Watch</span>
 						</a>
 					</div>
@@ -87,9 +87,13 @@
 						</button>
 					</div>
 					<div class="col s6">
-						<button class="bg-orange text-white full-width weight-300 arrow-animation" mat-button style="border-radius: 40px;padding: 4px 0">
+						<button *ngIf="!isWatching" class="bg-orange text-white full-width weight-300 arrow-animation" mat-button style="border-radius: 40px;padding: 4px 0" (click)="watch()">
 							<i class="ion-ios-arrow-round-forward mr-10"></i>
 							Watch
+						</button>
+						<button *ngIf="isWatching" class="bg-light-grey full-width weight-300" mat-button style="border-radius: 40px;padding: 4px 0" (click)="watch()">
+							<i class="ion-ios-eye-off mr-10"></i>
+							Unwatch
 						</button>
 					</div>
 				</div>

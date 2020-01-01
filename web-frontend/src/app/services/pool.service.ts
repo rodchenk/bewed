@@ -46,6 +46,15 @@ export class PoolService {
   	}
 
   	/**
+  	* @method gets all pools, that a given user is watching
+  	* @user_api GET /pool/news?user_id={id}
+  	* @return Promise<any> with array of pools
+  	*/
+    public getUserNews(user_id:string):Promise<any>{
+      	return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pool/news', { params: {user_id}}).subscribe( (data:any) => resolve(data), error => reject(error)) )
+    }
+
+  	/**
   	* @method gets pool data by given pool id
   	* @use_api GET /pool?pool_id={id}
   	* @return Promise<any> e.g. Pool data
@@ -53,7 +62,6 @@ export class PoolService {
   	public getByID(pool_id):Promise<any>{
   		return new Promise( (resolve, reject) => {
   			this.http.get(Config.API_URL + '/pool', { params: {pool_id}} ).subscribe( (data:any) => {
-          console.log(data)
   				if(data.docs.length > 0){
 	  				let pool = data.docs[0]
 	  				let result = PoolCategory.categories.filter( (category:PoolCategoryAbstract) => category.value === pool.category)

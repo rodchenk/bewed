@@ -19,7 +19,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class StudioComponent implements OnInit {
 
 	public pools:any[] = [];
-    component:StudioComponent = this
+	public me:string
 
   	constructor(private dialog: MatDialog, private userProvider: UserService, private poolProvider: PoolService, private router: Router, private route: ActivatedRoute) { }
 
@@ -27,7 +27,8 @@ export class StudioComponent implements OnInit {
     * @method will be called after constructor. It takes user parameter from URL and looks for its pools in DB
     */
   	ngOnInit() {
-        this.route.params.subscribe( params => this.getUserPools(params['user'] || this.userProvider.user.user_id) );
+  		this.me = this.userProvider.user.user_id
+        this.route.params.subscribe( params => this.getUserPools(params['user'] || this.me) );
   	}
 
   	completed(tasks:any[]):number{

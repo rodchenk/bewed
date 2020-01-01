@@ -12,6 +12,10 @@ import { GalleryTypes } from './../../../interfaces/gallery-types';
   templateUrl: './layout-gallery.component.html',
   styleUrls: ['./layout-gallery.component.scss']
 })
+/**
+* @author Misha Rodchenkov
+* @github github.com/rodchenk
+*/
 export class LayoutGalleryComponent implements OnInit {
 
 	@Input() private pool_id:string
@@ -37,10 +41,11 @@ export class LayoutGalleryComponent implements OnInit {
   					_id: Helper.gen_random(),
   					image: data,
   					comments: [],
-  					likes: []
+  					likes: [],
+            created: new Date()
   				}
   				this.pool.tasks.push(task)
-  				this.poolProvider.update(this.pool).catch(error => console.warn(error))
+  				this.poolProvider.update(this.pool).then( (data:any) => this.pool._rev = data.data.rev ).catch(error => console.warn(error))
   			}
   		})
   	}

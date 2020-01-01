@@ -6,6 +6,7 @@ import { PoolCategory, PoolCategoryAbstract } from './../../interfaces/pool-cate
 import { PoolService } from './../../services/pool.service';
 import { CreateTaskComponent } from './../create-task/create-task.component';
 import { TaskService } from './../../services/task.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
 	selector: 'app-studio-pool',
@@ -18,22 +19,44 @@ import { TaskService } from './../../services/task.service';
 */
 export class StudioPoolComponent implements OnInit {
 
-	private pool:any = {name:''};
+	private pool:any = {name:'', watchers: []};
+	private isWatching:boolean
 	private cover:string = 'assets/img/3.png'
+    public me:string
 
-  	constructor(private poolProvider: PoolService, private taskProvider: TaskService, private route: ActivatedRoute, private dialog: MatDialog, private router: Router) { }
+  	constructor(private poolProvider: PoolService, private taskProvider: TaskService, private userProvider: UserService, private route: ActivatedRoute, private dialog: MatDialog, private router: Router) { }
 
   	ngOnInit():void {
+        this.me = this.userProvider.user.user_id
   		this.loadPoolData()
   	}
 
-  	publishPool(shouldPublish:boolean):void{
+  	/**
+  	* @method switches publish flag and saves it into DB
+  	*/ 
+  	private publishPool(shouldPublish:boolean):void{
   		this.pool.published = shouldPublish
-  		this.poolProvider.update(this.pool)
+  		this.poolProvider.update(this.pool).then( (data:any) => { this.pool._rev = data.data.rev } )
   	}
 
-  	goBack():void{
+  	/**
+  	* @method navigates view to studio component
+  	*/
+  	private goBack():void{
   		this.router.navigate(['studio/' + this.pool.user])
+  	}
+
+  	/**
+  	* @method switches watch-status of current user and saves it into DB
+  	*/
+  	private watch():void{
+  		if(this.isWatching){
+  			this.pool.watchers = this.pool.watchers.filter(user => user != this.me)
+  		}else{
+  			this.pool.watchers.push(this.me)
+  		}
+  		this.isWatching = !this.isWatching
+  		this.poolProvider.update(this.pool).then( (data:any) => this.pool._rev = data.data.rev ).catch( error => console.warn(error) )
   	}
 
   	/**
@@ -43,9 +66,14 @@ export class StudioPoolComponent implements OnInit {
   		this.route.params.subscribe( (params:any) => this.poolProvider.getByID(params['pool']).then( (data:any) => {
   			this.pool = data 
   			this.cover = '/assets/img/' + this.pool.category + '.png'
+  			if(!this.pool.watchers){
+  				this.pool.watchers = []
+  				this.isWatching = false
+  			}else{
+  				this.isWatching = this.pool.watchers.indexOf(this.me) > -1
+  			}
   		}).catch( error => console.warn(error)) );
   	}
-
 
   	/**
   	* @method opens modal with pool settings
