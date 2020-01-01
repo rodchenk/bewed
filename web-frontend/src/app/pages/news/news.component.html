@@ -1,16 +1,66 @@
 <h5 *ngIf="news.length == 0" class="text-grey weight-300 text-center">No news yet</h5>
 
 <mat-card *ngFor="let post of news" class="p-16">
-	<div class="row">
-		<span *ngIf="post.value.task.user_id">{{post.value.task.user_id}} created new task in </span>
-		<span class="bold">{{post.value.pool}}</span>
-		<span class="text-grey small-text" style="float: right;">{{post.value.task.created | date: 'HH:mm, MMM d y' }}</span>
+	<div *ngIf="post.value.layout == 'kanban'">
+
+		<div *ngIf="post.value.task.update_trigger == 0">
+			<div class="row pb-10 light-border-bottom">
+				<span *ngIf="post.value.task.user_id" class="weight-300">
+					<a routerLink="/user/{{post.value.task.user_id}}">{{post.value.task.user_id}}</a> created new task in
+				</span>
+				<a routerLink="/studio/{{post.value.user_id}}/{{post.id}}">{{post.value.pool}}</a>
+				<span class="text-grey small-text" style="float: right;">{{post.value.task.updated | date: 'HH:mm, MMM d y' }}</span>
+			</div>
+			<div class="row">
+				<span class="d-block">{{post.value.task.name}}</span>
+				<p class="d-block text-grey weight-300">{{post.value.task.description}}</p>
+			</div>
+		</div>
+
+		<div *ngIf="post.value.task.update_trigger == 1">
+			<div class="row pb-10 light-border-bottom">
+				<span *ngIf="post.value.task.user_id" class="weight-300">
+					<a routerLink="/user/{{post.value.task.user_id}}">{{post.value.task.user_id}}</a> changed status in
+				</span>
+				<a routerLink="/studio/{{post.value.user_id}}/{{post.id}}">{{post.value.pool}}</a>
+				<span class="text-grey small-text" style="float: right;">{{post.value.task.updated | date: 'HH:mm, MMM d y' }}</span>
+			</div>
+			<h4 class="weight-300">
+				Status of {{post.value.task.name}} has been changed to <span class="marker">{{parseTaskStatus(post.value.task.status)}}</span>
+			</h4>
+		</div>
+
+<!-- 		<div *ngIf="post.value.task.update_trigger == 2">
+			<div class="row pb-10 light-border-bottom">
+				<span *ngIf="post.value.task.user_id" class="weight-300">
+					<a routerLink="/user/{{post.value.task.user_id}}">{{post.value.task.user_id}}</a> commented task in
+				</span>
+				<a routerLink="/studio/{{post.value.user_id}}/{{post.id}}">{{post.value.pool}}</a>
+				<span class="text-grey small-text" style="float: right;">{{post.value.task.updated | date: 'HH:mm, MMM d y' }}</span>
+			</div>
+			<h4 class="weight-300">
+				Status of {{post.value.task.name}} has been changed to <span class="marker">{{parseTaskStatus(post.value.task.status)}}</span>
+			</h4>
+		</div> -->
+
 	</div>
-	<div class="row">
-		<span class="d-block">{{post.value.task.name}}</span>
-		<p class="d-block text-grey weight-300">{{post.value.task.description}}</p>
+
+	<div *ngIf="post.value.layout == 'gallery'">
+		<div class="row">
+			<span *ngIf="post.value.task.user_id">{{post.value.task.user_id}} created new task in </span>
+			<span class="bold">{{post.value.pool}}</span>
+			<span class="text-grey small-text" style="float: right;">{{post.value.task.created | date: 'HH:mm, MMM d y' }}</span>
+		</div>
+		<div class="row">
+			<img class="full-width" src="{{post.value.task.image}}" style="height: 550px;object-fit: cover;">
+		</div>
 	</div>
-	<div *ngIf="post.value.task.image" class="row">
-		<img class="full-width" src="{{post.value.task.image}}" style="height: 550px;object-fit: cover;">
-	</div>
+
+
+
+
 </mat-card>
+
+<div class="text-center p-16">
+	<button mat-button class="weight-300" (click)="loadNext()">load next</button>
+</div>

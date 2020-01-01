@@ -50,8 +50,8 @@ export class PoolService {
   	* @user_api GET /pool/news?user_id={id}
   	* @return Promise<any> with array of pools
   	*/
-    public getUserNews(user_id:string):Promise<any>{
-      	return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pool/news', { params: {user_id}}).subscribe( (data:any) => resolve(data), error => reject(error)) )
+    public getUserNews(data):Promise<any>{
+      	return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pool/news', { params: {user_id:data.user_id, offset:data.offset}}).subscribe( (data:any) => resolve(data), error => reject(error)) )
     }
 
   	/**

@@ -4,7 +4,7 @@ import { TaskService } from './../../services/task.service';
 import { UserService } from './../../services/user.service';
 import { PoolService  } from './../../services/pool.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Helper } from './../../helper';
+import { Helper, UPDATE_TRIGGER } from './../../helper';
 
 @Component({
 	selector: 'app-create-task',
@@ -31,6 +31,8 @@ export class CreateTaskComponent implements OnInit {
 
   		values._id = Helper.gen_random()
   		values.created = new Date()
+      	values.updated = new Date()
+      	values.update_trigger = UPDATE_TRIGGER.CREATED
   		values.user_id = this.userProvider.user.user_id
   		//values.parent = this.pool_id
   		values.type = 'task'

@@ -22,9 +22,22 @@ export class NewsComponent implements OnInit {
   	}
 
   	private _loadNews():void{
-  		this.poolProvider.getUserNews( this.userProvider.user.user_id ).then( (data:any) => {
-  			console.log(data)
-  			this.news = data.rows
+  		this.poolProvider.getUserNews( { user_id: this.userProvider.user.user_id, offset: 0} ).then( (data:any) => {
+  			if(data.rows){
+  				this.news = data.rows
+  			}
+  		})
+  	}
+
+  	private parseTaskStatus(status:number):string{
+  		return status == 0 ? 'Waiting' : status == 1 ? 'To do' : status == 2 ? 'Active' : 'Completed'
+  	}
+
+  	private loadNext():void{
+  		this.poolProvider.getUserNews( { user_id: this.userProvider.user.user_id, offset: this.news.length}).then( (data:any) => {
+  			if(data.rows){
+  				data.rows.forEach(row => this.news.push(row));
+  			}
   		})
   	}
 

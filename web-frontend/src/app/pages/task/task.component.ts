@@ -5,7 +5,7 @@ import { PoolService } from './../../services/pool.service';
 import { UserService } from './../../services/user.service';
 import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
 import { Router } from '@angular/router';
-import { Helper } from './../../helper';
+import { Helper, UPDATE_TRIGGER } from './../../helper';
 
 @Component({
   selector: 'app-task',
@@ -52,6 +52,8 @@ export class TaskComponent implements OnInit {
   		}
 
   		this.task.comments.push(comment)
+  		// this.task.updated = new Date()
+  		// this.task.update_trigger = UPDATE_TRIGGER.COMMENTED
   		this.save()
   	}
 
@@ -78,6 +80,8 @@ export class TaskComponent implements OnInit {
 
   	setStatus(status:number):void{
   		this.task.status = status
+  		this.task.updated = new Date()
+  		this.task.update_trigger = UPDATE_TRIGGER.EDIT_STATUS
   		this.save()
   	}
 
