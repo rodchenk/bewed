@@ -6,7 +6,6 @@ const db_name = 'pool';
 
 
 exports.add = function(req, res){
-    //console.log(req,body.layout)
     const pool = {
         name: req.body.data.name,
         category: req.body.data.category,
@@ -81,26 +80,26 @@ exports.delete = function(req, res){
     couch.del(db_name, req.query._id, req.query._rev).then( ({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
 
-// exports.addTask = function(req, res){
-//     let task = req.body.params.values;
-//     couch.mango(db_name, {
-//         selector: {
-//             "_id": {
-//                 "$eq": req.body.params.parent
-//             }
-//         }
-//     }, {}).then(({data, headers, status}) => {
-//         if(data.docs.length > 0){
-//             let pool = data.docs[0];
-//             if(!pool.tasks) pool.tasks = new Array();
-            
-//             pool.tasks.push(req.body.params.values);
+exports.news = function(req, res){
+    // couch.mango(db_name, {
+    //     selector: {
+    //         "_id": {
+    //             "$gt": null
+    //         },
+    //         "published": {
+    //      		"$eq": true
+    //   		},
+    //       	"watchers": {
+    //         	"$elemMatch": {
+    //             	"$eq": req.query.user_id
+    //          	}
+    //       	}
+    //    }
+    // }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 
-//             couch.update(db_name, pool).then(({data, headers, status}) => 
-//                 res.json({'status': 'ok', "data": data}), 
-//                 err => res.json({'status': 'error_01', 'reason': err}) )            
-//         }else{
-//             err => res.json({'status':'error_03', 'reason':err})
-//         }
-//     }, err => res.json({'status':'error_02', 'reason':err}) );
-// }
+   	couch.get(db_name, '_design/poolTasks/_view/news', {
+        include_docs: false, 
+        descending: true
+        //key: req.query.pool_id
+    }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+}
