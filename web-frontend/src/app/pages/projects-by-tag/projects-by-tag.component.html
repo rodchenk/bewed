@@ -1,0 +1,5 @@
+<h5 *ngIf="pools.length == 0" class="text-center text-grey weight-300">No pools found</h5>
+
+<mat-card *ngFor="let pool of pools" class="p-16">
+	{{pool.value.pool}}
+</mat-card>

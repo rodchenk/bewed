@@ -48,6 +48,7 @@ import { NewsComponent } from './pages/news/news.component';
 import { LayoutKanbanComponent } from './pages/layouts/layout-kanban/layout-kanban.component';
 import { LayoutGalleryComponent } from './pages/layouts/layout-gallery/layout-gallery.component';
 import { GalleryUnitComponent } from './pages/gallery-unit/gallery-unit.component';
+import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.component';
 
 @NgModule({
     declarations: [
@@ -75,7 +76,8 @@ import { GalleryUnitComponent } from './pages/gallery-unit/gallery-unit.componen
         NewsComponent,
         LayoutKanbanComponent,
         LayoutGalleryComponent,
-        GalleryUnitComponent
+        GalleryUnitComponent,
+        ProjectsByTagComponent
     ],
     imports: [
         BrowserModule,

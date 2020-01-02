@@ -69,6 +69,21 @@
 
 			</mat-card>
 
+			<mat-card *ngIf="follows.length > 0" class="p-26 block-with-illustration">
+				<h5 class="weight-300 text-grey p-10 no-mb no-pt">
+					<i class="ion-md-bookmark mr-10" style="color: #f46075"></i>
+					Mischa is watching {{follows.length}} pools
+				</h5>
+				<div *ngFor="let follow of follows" class="p-10">
+				 	<a routerLink="/studio/{{follow.value.user}}/{{follow.value.pool_id}}" class="text-dark weight-300">{{follow.value.pool}}</a>
+					<mat-chip-list class="bewed-chips ml-10" style="display: inline-block;float: right;">
+						 <mat-basic-chip>
+						 	{{follow.value.category}}
+						 </mat-basic-chip>
+					</mat-chip-list>
+				</div>
+			</mat-card>
+
 		</div>
 
 		<div class="col" style="width: calc(100% - 350px)">

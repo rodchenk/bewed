@@ -12,6 +12,7 @@ import { StudioPoolComponent } from './pages/studio-pool/studio-pool.component';
 import { ExploreUsersComponent } from './pages/explore-users/explore-users.component';
 import { TaskComponent } from './pages/task/task.component';
 import { NewsComponent } from './pages/news/news.component';
+import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.component';
 
 const routes: Routes = [  
 	{
@@ -57,6 +58,10 @@ const routes: Routes = [
  	{
  		path: 'studio/:pool/task/:task',
  		component: TaskComponent
+ 	},
+ 	{
+ 		path: 'tags/:tag',
+ 		component: ProjectsByTagComponent
  	},
  	{ 
  		path: '**', 

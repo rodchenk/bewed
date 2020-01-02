@@ -16,7 +16,7 @@
 
 <!-- -->
 
-<div class="row mt-10">
+<div *ngIf="pool.tasks.length > 0"  class="row mt-10">
 	<div class="col s12 m6 l3 light-border-right waiting-col" style="min-height: calc(100vh - 210px);">
 		<h3 class="text-grey weight-300 pb-10 light-border-bottom text-center">Waiting</h3>
 		<div *ngFor="let task of waiting_tasks" class="qwe">

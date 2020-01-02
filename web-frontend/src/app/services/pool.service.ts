@@ -46,12 +46,27 @@ export class PoolService {
   	}
 
   	/**
-  	* @method gets all pools, that a given user is watching
+  	* @method gets all pool's updates and news, that a given user is watching
   	* @user_api GET /pool/news?user_id={id}
   	* @return Promise<any> with array of pools
   	*/
-    public getUserNews(data):Promise<any>{
+    public getUserNews(data:{user_id, offset}):Promise<any>{
       	return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pool/news', { params: {user_id:data.user_id, offset:data.offset}}).subscribe( (data:any) => resolve(data), error => reject(error)) )
+    }
+
+    /**
+  	* @method gets all pool's names, that a given user is watching
+  	* @user_api GET /pool/follows?user_id={id}
+  	* @return Promise<any> with array of pools
+  	*/
+    public getUserFollows(data: {user_id}):Promise<any>{
+    	return new Promise((resolve, reject) => {
+    		this.http.get(Config.API_URL + '/pool/follows', { params: {user_id: data.user_id}}).subscribe( (data:any) => resolve(data), error => reject(error))
+    	})
+    }
+
+    public getPoolsByTag(tag:string):Promise<any>{
+    	return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pool/tags', { params: {tag} } ).subscribe( (data:any) => resolve(data), error => reject(error)) )
     }
 
   	/**
