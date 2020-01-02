@@ -9,7 +9,7 @@
 					<a routerLink="/user/{{post.value.task.user_id}}">{{post.value.task.user_id}}</a> created new task in
 				</span>
 				<a routerLink="/studio/{{post.value.user_id}}/{{post.id}}">{{post.value.pool}}</a>
-				<span class="text-grey small-text" style="float: right;">{{post.value.task.updated | date: 'HH:mm, MMM d y' }}</span>
+				<span class="text-grey small-text" style="position: absolute;left: 16px; bottom: 16px">{{post.value.task.updated | date: 'HH:mm, d. MMMM' }}</span>
 			</div>
 			<div class="row">
 				<span class="d-block">{{post.value.task.name}}</span>
@@ -23,11 +23,13 @@
 					<a routerLink="/user/{{post.value.task.user_id}}">{{post.value.task.user_id}}</a> changed status in
 				</span>
 				<a routerLink="/studio/{{post.value.user_id}}/{{post.id}}">{{post.value.pool}}</a>
-				<span class="text-grey small-text" style="float: right;">{{post.value.task.updated | date: 'HH:mm, MMM d y' }}</span>
+				<span class="text-grey small-text" style="position:absolute;left:16px;bottom:16px">{{post.value.task.updated | date: 'HH:mm, d. MMMM' }}</span>
 			</div>
-			<h4 class="weight-300">
-				Status of {{post.value.task.name}} has been changed to <span class="marker">{{parseTaskStatus(post.value.task.status)}}</span>
-			</h4>
+			<div class="row">
+				<p class="weight-300 text-grey">
+					Status of "{{post.value.task.name}}" has been changed to <span class="marker">{{parseTaskStatus(post.value.task.status)}}</span>
+				</p>
+			</div>
 		</div>
 
 <!-- 		<div *ngIf="post.value.task.update_trigger == 2">
@@ -46,21 +48,33 @@
 	</div>
 
 	<div *ngIf="post.value.layout == 'gallery'">
-		<div class="row">
-			<span *ngIf="post.value.task.user_id">{{post.value.task.user_id}} created new task in </span>
-			<span class="bold">{{post.value.pool}}</span>
-			<span class="text-grey small-text" style="float: right;">{{post.value.task.created | date: 'HH:mm, MMM d y' }}</span>
+		<div class="row weight-300">
+			New image in
+			<a routerLink="/studio/{{post.value.user_id}}/{{post.id}}" style="font-weight: 400">{{post.value.pool}}</a>
+			<span class="text-grey small-text" style="position: absolute;left: 16px; bottom: 26px">{{post.value.task.created | date: 'HH:mm, d. MMMM' }}</span>
 		</div>
-		<div class="row">
-			<img class="full-width" src="{{post.value.task.image}}" style="height: 550px;object-fit: cover;">
+		<div class="row no-mb" style="cursor: pointer;">
+			<img class="full-width" src="{{post.value.task.image}}" style="height: 550px;object-fit: cover;width: calc(100% + 32px);margin: 0 -16px;">
+		</div>
+		<div class="row no-mb text-right mt-10">
+			<button mat-flat-button style="font-size: 1.2em" class="weight-300">
+				{{post.value.task.comments.length}}
+				<i class="ion-md-paper-plane"></i>
+			</button>
+			<button mat-flat-button style="font-size: 1.2em" class="weight-300">
+				{{post.value.task.likes.length}}
+				<i *ngIf="!post.value.task.likes.includes(me)" class="ion-md-heart-empty"></i>
+				<i *ngIf="post.value.task.likes.includes(me)" class="ion-md-heart" style="color: #f26a60"></i>
+			</button>
 		</div>
 	</div>
 
-
-
-
 </mat-card>
 
-<div class="text-center p-16">
+<div *ngIf="loadNextVisible" class="text-center p-16">
 	<button mat-button class="weight-300" (click)="loadNext()">load next</button>
+</div>
+
+<div class="top-navigator vertical-middle text-center" (click)="goTop()">
+	<i class="ion-ios-arrow-up"></i>
 </div>

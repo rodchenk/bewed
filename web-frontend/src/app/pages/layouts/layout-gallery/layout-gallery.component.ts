@@ -42,7 +42,8 @@ export class LayoutGalleryComponent implements OnInit {
   					image: data,
   					comments: [],
   					likes: [],
-            created: new Date()
+            created: new Date(),
+            updated: new Date()
   				}
   				this.pool.tasks.push(task)
   				this.poolProvider.update(this.pool).then( (data:any) => this.pool._rev = data.data.rev ).catch(error => console.warn(error))
