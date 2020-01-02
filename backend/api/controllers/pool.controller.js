@@ -80,9 +80,6 @@ exports.delete = function(req, res){
     couch.del(db_name, req.query._id, req.query._rev).then( ({data, headers, status}) => res.json({'status': 'ok', "data": data}), err => res.json({'status': 'error', 'reason': err}) )
 }
 
-/**
-* @TODO pagination
-*/
 exports.news = function(req, res){
 
 	var rows_per_page = 15;
@@ -96,5 +93,23 @@ exports.news = function(req, res){
         skip: skip,
         startkey: [req.query.user_id, {}],
         endkey: [req.query.user_id, null]
+    }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+}
+
+exports.follows = function(req, res){
+	couch.get(db_name, '_design/poolTasks/_view/follows', {
+        include_docs: false, 
+        descending: true,
+        limit: 25,
+        key: req.query.user_id
+    }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+}
+
+exports.tags = function(req, res){
+	couch.get(db_name, '_design/poolTasks/_view/poolsByTag', {
+        include_docs: false, 
+        descending: true,
+        limit: 25,
+        key: req.query.tag
     }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }

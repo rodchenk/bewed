@@ -22,6 +22,8 @@ router.post	 ('/pool', pool.add)
 router.put 	 ('/pool', pool.update)
 router.delete('/pool', pool.delete)
 router.get 	 ('/pool/news', pool.news)
+router.get 	 ('/pool/follows', pool.follows)
+router.get 	 ('/pool/tags', pool.tags)
 
 /* task api (out-to-date -> has been moved to {pool} document) */
 // router.post	 ('/task', task.add)
