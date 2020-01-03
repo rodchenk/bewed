@@ -113,3 +113,31 @@ exports.tags = function(req, res){
         key: req.query.tag
     }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
+
+exports.followers = function(req, res){
+	couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$eq": req.query.pool_id
+            }
+        },
+        fields: ["_id", "_rev", "watchers"]
+    }, {}).then(({data, headers, status}) => {
+    	if(data.docs.length > 0){
+    		let users = [];
+    		for(var i = 0; i < data.docs[0].watchers.length; i++){
+    			users.push({
+    				"_id": {
+    					"$eq": data.docs[0].watchers[i]
+    				}
+    			})
+    		}
+    		//console.log(users);
+			couch.mango('sl-users', {
+			   	selector: {	"$or": users },
+			   fields: ["_rev", "_id", "name", "photo"]
+			}, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+    		
+    	}
+    }, err => res.json({'status':'error', 'reason':err}) );
+}
