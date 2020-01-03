@@ -9,8 +9,8 @@
 		<div class="photo">
 			<img src="{{user.photo}}" class="full-width">
 		</div>
-		<div class="info">
-			<a routerLink="/user/{{user._id}}" class="text-dark">{{user.name}}</a>
+		<div class="info" (click)="navigateToUser(user._id)">
+			<span class="text-dark">{{user.name}}</span>
 		</div>
 		<button mat-button class="bg-light-grey weight-300" style="float: right;">
 			follow

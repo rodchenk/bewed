@@ -42,7 +42,7 @@ export class StudioPoolComponent implements OnInit {
 
   	private showWatchers():void{
   		this.poolProvider.getPoolWatchers(this.pool._id).then( (data:any) => {
-	  		let dialog = this.dialog.open(UsersListComponent, {data});
+	  		let dialog = this.dialog.open(UsersListComponent, {closeOnNavigation: true, data});
 	  		dialog.afterClosed().subscribe( (data:any) => {
 	  			console.log(data)
 	  		})

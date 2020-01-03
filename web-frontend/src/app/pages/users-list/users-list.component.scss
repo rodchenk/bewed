@@ -19,7 +19,8 @@ div.block{
 	& div.info{
 		display: inline-block;
 		vertical-align: middle;
-		&>a{
+		cursor: pointer;
+		&>span{
 			padding: 2px 12px;
 		}
 	}

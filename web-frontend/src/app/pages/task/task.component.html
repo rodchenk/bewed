@@ -1,10 +1,29 @@
 
 <div class="no-with-sidenav">
-	<div class="row p-16">
-		<div class="col s6 m8 row">
+	<div class="row p-16 no-pt">
+
+		<div class="col s6 m3 light-border-right">
+			<div *ngFor="let task of pool.tasks" class="status{{task.status}}">
+				<mat-card class="drop-shadow" style="cursor: pointer;" (click)="openTask(task._id)">
+					<span class="small-text d-block">{{task.name}}</span>
+					<p class="text-grey small-text weight-300 no-mt no-mb" style="max-height: 16px;overflow: hidden">{{task.description}}</p>
+					<div class="text-right" style="margin-bottom: -10px">
+						<button mat-icon-button>
+							{{task.comments.length}}
+							<i class="ion-md-paper-plane"></i>
+						</button>
+						<button mat-icon-button>
+							1
+							<i class="ion-md-body"></i>
+						</button>
+					</div>
+				</mat-card>
+			</div>
+		</div>
+		<div class="col s6 m6 row">
 
 			<div class="col s12 status{{task.status}}">
-				<mat-card class="rounded light-border p-26 col s12 no-mb" style="float: right;">
+				<mat-card class="rounded light-border p-26 col s12 no-mb full-width">
 					<div class="task-header">
 						<div class="first-col user-photo">
 							<img src="{{author_image}}">
@@ -45,9 +64,9 @@
 
 			<div class="col s12">
 
-				<h5 *ngIf="task.comments.length == 0" class="text-center text-grey weight-300" style="width: 650px;float: right;">No comments</h5>
+				<h5 *ngIf="task.comments.length == 0" class="text-center text-grey weight-300">No comments</h5>
 
-				<mat-card *ngFor="let comment of task.comments" class="rounded light-border p-26 col s12 no-mb" style="float: right">
+				<mat-card *ngFor="let comment of task.comments" class="rounded light-border p-26 col s12 no-mb full-width">
 					<button mat-icon-button class="close-button" (click)="removeComment(comment._id)">
 						<i class="ion-md-close"></i>
 					</button>
@@ -56,10 +75,12 @@
 						<span class="small-text text-grey">{{comment.created | date: 'MMM d, HH:mm'}}</span>
 					</div>
 
-					<p class="weight-300">{{comment.content}}</p>
+					<p *ngIf="!comment.intern" class="weight-300">{{comment.content}}</p>
+
+					<p *ngIf="comment.intern" class="text-center weight-300 text-grey">{{comment.content}}</p>
 				</mat-card>
 
-				<mat-card class="rounded light-border p-26 col s12" style="float:right;">
+				<mat-card class="rounded light-border p-26 col s12 full-width">
 
 					<div class="ui icon input header-element full-width">
 		                <input type="text" placeholder="Comment" [(ngModel)]="comment" name="comment" autocomplete="off" tabindex="1">
@@ -84,7 +105,7 @@
 
 		</div>
 
-		<div class="col s6 m4">
+		<div class="col s6 m3">
 			<div class="p-26 no-pt text-right">
 				<button mat-button class="mr-10 weight-300" (click)="goBack()">
 					<i class="ion-ios-arrow-round-back mr-10" style="vertical-align: unset;"></i>

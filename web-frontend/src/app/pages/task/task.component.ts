@@ -8,9 +8,9 @@ import { Router } from '@angular/router';
 import { Helper, UPDATE_TRIGGER } from './../../helper';
 
 @Component({
-  selector: 'app-task',
-  templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss']
+	selector: 'app-task',
+	templateUrl: './task.component.html',
+	styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
 
@@ -40,6 +40,10 @@ export class TaskComponent implements OnInit {
   		})
   	}
 
+  	private openTask(task_id:string):void{
+  		this.router.navigate(['studio/' + this.pool._id + '/task/' + task_id])
+  	}
+
   	private commentTask():void{
   		if(!this.comment.trim())
   			return
@@ -47,6 +51,7 @@ export class TaskComponent implements OnInit {
   		let comment = {
   			_id: Helper.gen_random(),
   			content: this.comment,
+  			intern: false,
   			author: this.userProvider.user.user_id,
   			created: new Date()
   		}
@@ -79,10 +84,29 @@ export class TaskComponent implements OnInit {
   	}
 
   	setStatus(status:number):void{
+  		let old_status = this._parse_status(this.task.status)
   		this.task.status = status
   		this.task.updated = new Date()
   		this.task.update_trigger = UPDATE_TRIGGER.EDIT_STATUS
+
+  		let comment = {
+  			_id: Helper.gen_random(),
+  			content: 'Status has been changed from ' + old_status + ' to ' + this._parse_status(status),
+  			intern: true,
+  			author: this.userProvider.user.user_id,
+  			created: new Date()
+  		}
+
+  		this.task.comments.push(comment)
+
   		this.save()
+  	}
+
+  	private _parse_status(index:number):string{
+  		if(index == 0) return 'Waiting'
+  		if(index == 1) return 'To do'
+  		if(index == 2) return 'Active'
+  		return 'Done'
   	}
 
   	/**
