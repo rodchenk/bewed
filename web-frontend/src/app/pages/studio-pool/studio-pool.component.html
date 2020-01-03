@@ -14,7 +14,7 @@
 				<h1 class="text-center no-mb" style="text-decoration: underline #f25d51;font-weight: 900;">{{pool.name}}</h1>
 
 				<div class="text-center p-16">
-					<span>{{pool.viewCategory}} by <span (click)="goBack()" class="marker" style="cursor: pointer;">{{pool.user}}</span></span>
+					<span>{{pool.viewCategory}} by <span (click)="goBack()" class="gradient-marker" style="cursor: pointer;">{{pool.user}}</span></span>
 				</div>
 				<span *ngIf="pool.description" class="d-block p-16 no-pt text-right weight-300" style="font-size: 0.9em">
 					{{pool.description}}
@@ -61,15 +61,13 @@
 						<span class="bold d-block" style="font-size: 2em">{{pool.tasks.length}}</span>
 						<span class="d-block small-text text-grey">Posts</span>
 					</div>
-					<div class="col s4 text-center">
+					<div class="col s4 text-center" style="cursor: pointer;">
 						<span class="bold d-block" style="font-size: 2em">1</span>
 						<span class="d-block small-text text-grey">Mates</span>
 					</div>
-					<div *ngIf="!pool.private" class="col s4 text-center">
-						<a>
-							<span class="bold d-block" style="font-size: 2em">{{pool.watchers.length}}</span>
-							<span class="d-block small-text text-grey">Watch</span>
-						</a>
+					<div *ngIf="!pool.private" class="col s4 text-center" (click)="showWatchers()" style="cursor: pointer;">
+						<span class="bold d-block" style="font-size: 2em">{{pool.watchers.length}}</span>
+						<span class="d-block small-text text-grey">Watch</span>
 					</div>
 					<div *ngIf="pool.private" class="col s4 text-center">
 						<a>

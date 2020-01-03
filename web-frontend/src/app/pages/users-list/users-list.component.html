@@ -1,0 +1,19 @@
+<div *ngIf="users.length == 0" class="block">
+	<h5 class="text-center text-grey weight-300">
+		No users found
+	</h5>
+</div>
+
+<div *ngIf="users.length > 0" class="block">
+	<div *ngFor="let user of users">
+		<div class="photo">
+			<img src="{{user.photo}}" class="full-width">
+		</div>
+		<div class="info">
+			<a routerLink="/user/{{user._id}}" class="text-dark">{{user.name}}</a>
+		</div>
+		<button mat-button class="bg-light-grey weight-300" style="float: right;">
+			follow
+		</button>
+	</div>
+</div>

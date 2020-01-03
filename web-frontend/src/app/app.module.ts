@@ -49,6 +49,7 @@ import { LayoutKanbanComponent } from './pages/layouts/layout-kanban/layout-kanb
 import { LayoutGalleryComponent } from './pages/layouts/layout-gallery/layout-gallery.component';
 import { GalleryUnitComponent } from './pages/gallery-unit/gallery-unit.component';
 import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.component';
+import { UsersListComponent } from './pages/users-list/users-list.component';
 
 @NgModule({
     declarations: [
@@ -77,7 +78,8 @@ import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.
         LayoutKanbanComponent,
         LayoutGalleryComponent,
         GalleryUnitComponent,
-        ProjectsByTagComponent
+        ProjectsByTagComponent,
+        UsersListComponent
     ],
     imports: [
         BrowserModule,
@@ -114,7 +116,8 @@ import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.
         ConfirmDialogComponent,
         UploadPhotoComponent,
         CreateTaskComponent,
-        GalleryUnitComponent
+        GalleryUnitComponent,
+        UsersListComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { PoolSettingsComponent } from './../pool-settings/pool-settings.componen
 import { PoolCategory, PoolCategoryAbstract } from './../../interfaces/pool-category';
 import { PoolService } from './../../services/pool.service';
 import { CreateTaskComponent } from './../create-task/create-task.component';
+import { UsersListComponent } from './../users-list/users-list.component';
 import { TaskService } from './../../services/task.service';
 import { UserService } from './../../services/user.service';
 
@@ -37,6 +38,16 @@ export class StudioPoolComponent implements OnInit {
   	private publishPool(shouldPublish:boolean):void{
   		this.pool.published = shouldPublish
   		this.poolProvider.update(this.pool).then( (data:any) => { this.pool._rev = data.data.rev } )
+  	}
+
+  	private showWatchers():void{
+  		this.poolProvider.getPoolWatchers(this.pool._id).then( (data:any) => {
+	  		let dialog = this.dialog.open(UsersListComponent, {data});
+	  		dialog.afterClosed().subscribe( (data:any) => {
+	  			console.log(data)
+	  		})
+  			
+  		})
   	}
 
   	/**

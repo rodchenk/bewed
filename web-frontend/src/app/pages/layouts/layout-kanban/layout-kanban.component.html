@@ -1,4 +1,4 @@
-<div class="mt-10">
+<div *ngIf="pool.user == me" class="mt-10">
 	<button mat-button class="bg-light-grey weight-300" style="padding: 2px 55px;border-radius: 40px" (click)="newTask()">
 		<i class="ion-ios-attach mr-10" style="vertical-align: unset;"></i>
 		Add task

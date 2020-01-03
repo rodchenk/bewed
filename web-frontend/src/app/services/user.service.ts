@@ -61,6 +61,10 @@ export class UserService{
   		return this.LocalStorageManager.getValue(this.email_key)
   	}
 
+    public removeSavedEmail(){
+      this.LocalStorageManager.remove(this.email_key)
+    }
+
     public getAll():Promise<any>{
         return new Promise( (resolve, reject) => {
             this.http.get(Config.API_URL + '/users').subscribe( (data:any) => resolve(data.docs), error => reject(error))
@@ -97,6 +101,7 @@ export class UserService{
 				password: values.password
 			}).subscribe((data:any) => {
 				this.setAuth(data)
+        this.removeSavedEmail()
 				resolve()
 			}, error => {
 				this.showError(error.error.message)

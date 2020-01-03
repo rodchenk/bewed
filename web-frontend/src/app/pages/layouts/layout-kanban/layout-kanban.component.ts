@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 import { MatDialog } from '@angular/material/dialog'
 import { PoolService } from './../../../services/pool.service';
 import { CreateTaskComponent } from './../../../pages/create-task/create-task.component';
-
+import { UserService } from './../../../services/user.service'; 
 
 @Component({
   selector: 'app-layout-kanban',
@@ -15,15 +15,16 @@ export class LayoutKanbanComponent implements OnInit {
 	@Input() private pool_id:string
 
 	private pool:any = {tasks:[]}
-
+	private me:string
 	private waiting_tasks:any[] = []
 	private active_tasks:any[] = []
 	private todo_tasks:any[] = []
 	private done_tasks:any[] = []
 
-  	constructor(private router: Router, private poolProvider: PoolService, private dialog: MatDialog) { }
+  	constructor(private router: Router, private poolProvider: PoolService, private dialog: MatDialog, private userProvider: UserService) { }
 
   	ngOnInit() {
+  		this.me = this.userProvider.user.user_id
   		this.loadPoolData()
   	}
 

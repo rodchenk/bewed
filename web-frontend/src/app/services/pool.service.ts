@@ -69,6 +69,10 @@ export class PoolService {
     	return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pool/tags', { params: {tag} } ).subscribe( (data:any) => resolve(data), error => reject(error)) )
     }
 
+    public getPoolWatchers(pool_id:string):Promise<any>{
+    	return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pool/followers', {params: {pool_id}}).subscribe( (data:any) => resolve(data), error => reject(error)) )
+    }
+
   	/**
   	* @method gets pool data by given pool id
   	* @use_api GET /pool?pool_id={id}
