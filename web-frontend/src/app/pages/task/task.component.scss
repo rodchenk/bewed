@@ -12,6 +12,20 @@ div.status1 > .mat-card{ border-bottom: 2px #fa7369 solid;}
 div.status2 > .mat-card{ border-bottom: 2px #6074e1 solid;}
 div.status3 > .mat-card{ border-bottom: 2px #36b37e solid;}
 
+span.indicator{
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	margin-right: 10px;
+	display: inline-block;
+	margin-bottom: 1px;
+	display: none;
+}
+div._status0 span.indicator{ background-color: #adabb9; box-shadow: 0 0 7px #adabb9}
+div._status1 span.indicator{ background-color: #fa7369; box-shadow: 0 0 7px #fa7369}
+div._status2 span.indicator{ background-color: #6074e1; box-shadow: 0 0 7px #6074e1}
+div._status3 span.indicator{ background-color: #36b37e; box-shadow: 0 0 7px #36b37e}
+
 div.task-header{
 	&>div.first-col{
 		display: inline-block;
@@ -40,4 +54,9 @@ div.task-header{
 	border: none;
 	background: #eff0f6;
 	padding: 10px;
+}
+div.task{
+	padding: 20px;
+	margin: 7px 0;
+	border-radius: 4px;
 }

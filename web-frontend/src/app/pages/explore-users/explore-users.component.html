@@ -9,11 +9,11 @@
 					<img src="{{user.photo || '/assets/img/dpi.png'}}">
 				</div>
 				<div style="display: inline-block;vertical-align: top">
-					<a class="text-grey weight-300 d-block" routerLink="/user/{{user._id}}">
-						<i *ngIf="user.verified" class="ion-ios-checkmark-circle" style="color: #3da08d;margin-right: 3px"></i>
+					<a class="text-dark d-block" routerLink="/user/{{user._id}}">
+						<i *ngIf="user.verified" class="ion-ios-checkmark-circle text-orange" style="margin-right:3px"></i>
 						{{user.name}}
 					</a>
-					<span class="text-small d-block" style="min-height: 20px">
+					<span class="text-grey weight-300 text-small d-block" style="min-height: 20px">
 						{{user.location}}
 					</span>
 				</div>

@@ -58,7 +58,7 @@ export class UserComponent implements OnInit {
   	}
 
   	private openPool(pool_id:string){
-  		this.router.navigate(['studio/' + this.user_id + '/' + pool_id])
+  		this.router.navigate(['studio/' + this.user._id + '/' + pool_id])
   	}
 
 
