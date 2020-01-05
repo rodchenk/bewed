@@ -19,6 +19,7 @@ export class TaskComponent implements OnInit {
 	private status:number = 0
 	private comment:string = ''
 	private author_image:string
+	private copied_tasks:any []
 
   	constructor(private route: ActivatedRoute, private poolProvider: PoolService, private dialog: MatDialog, private router: Router, private userProvider: UserService) { }
 
@@ -37,11 +38,18 @@ export class TaskComponent implements OnInit {
 					this.author_image = data.docs[0].photo || '/assets/img/dpi.png'
 				} 
 			})
+
+			this.copied_tasks = [...this.pool.tasks.slice(0,5)]
   		})
   	}
 
   	private openTask(task_id:string):void{
   		this.router.navigate(['studio/' + this.pool._id + '/task/' + task_id])
+  	}
+
+  	private reply(author_id:string, task_id:string):void{
+  		this.comment = '@' + author_id + ', '
+  		document.getElementById('comment-input').focus()
   	}
 
   	private commentTask():void{

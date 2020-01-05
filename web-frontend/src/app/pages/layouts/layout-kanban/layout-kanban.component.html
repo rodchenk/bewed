@@ -1,5 +1,5 @@
 <div *ngIf="pool.user == me" class="mt-10">
-	<button mat-button class="bg-light-grey weight-300" style="padding: 2px 55px;border-radius: 40px" (click)="newTask()">
+	<button mat-button class="bg-light-grey weight-300 mr-10" style="padding: 2px 55px;border-radius: 40px" (click)="newTask()">
 		<i class="ion-ios-attach mr-10" style="vertical-align: unset;"></i>
 		Add task
 	</button>
@@ -31,7 +31,7 @@
 					<div class="actions text-right">
 
 						<button *ngIf="task.comments" mat-icon-button class="mr-10">
-							<i class="ion-ios-code" style="vertical-align: bottom;"></i>
+							<i class="ion-md-paper-plane" style="vertical-align: bottom;"></i>
 							{{task.comments.length}}
 						</button>
 						<button mat-icon-button>
@@ -58,7 +58,7 @@
 					<div class="actions text-right">
 
 						<button *ngIf="task.comments" mat-icon-button class="mr-10">
-							<i class="ion-ios-code" style="vertical-align: bottom;"></i>
+							<i class="ion-md-paper-plane" style="vertical-align: bottom;"></i>
 							{{task.comments.length}}
 						</button>
 						<button mat-icon-button>
@@ -85,7 +85,7 @@
 					<div class="actions text-right">
 
 						<button *ngIf="task.comments" mat-icon-button class="mr-10">
-							<i class="ion-ios-code"></i>
+							<i class="ion-md-paper-plane" style="vertical-align: bottom;"></i>
 							{{task.comments.length}}
 						</button>
 						<button mat-icon-button>
@@ -112,7 +112,7 @@
 					<div class="actions text-right">
 
 						<button *ngIf="task.comments" mat-icon-button class="mr-10">
-							<i class="ion-ios-code" style="vertical-align: bottom;"></i>
+							<i class="ion-md-paper-plane" style="vertical-align: bottom;"></i>
 							{{task.comments.length}}
 						</button>
 						<button mat-icon-button>

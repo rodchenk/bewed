@@ -3,16 +3,7 @@
 	<div class="row no-mb">
 
 		<div class="col s6 m2">
-			<!-- <div class="p-16">
-				<mat-slide-toggle color="warn" class="weight-300">only my tasks</mat-slide-toggle>
-			</div>
-			<div *ngFor="let task of pool.tasks" class="_status{{task.status}}">
-				<div style="cursor: pointer" (click)="openTask(task._id)" class="drop-shadow task bg-white">
-					<span class="small-text"><span class="indicator"></span>{{task.name}}</span>
-					<span class="text-grey" style="float: right;font-size: 0.7em">{{task.created | date: 'MMM d, HH:mm'}}</span>
-					<p class="text-grey small-text weight-300 no-mt no-mb" style="max-height: 16px;overflow: hidden">{{task.description}}</p>
-				</div>
-			</div> -->
+
 		</div>
 
 
@@ -35,16 +26,6 @@
 								Delete task
 							</button>
 
-							<button [matMenuTriggerFor]="status" mat-button class="bg-light-grey">
-								{{ (task.status == 0) ? 'Waiting' : (task.status == 1) ? 'To do' : (task.status == 2) ? 'In progress' : 'Done' }}
-				                <i class="ion-ios-arrow-down ml-10" style="vertical-align: unset;"></i>
-				            </button>    
-
-				            <mat-menu #status="matMenu" xPosition="after">
-				                <button mat-menu-item (click)="setStatus(1)">To do</button>
-				                <button mat-menu-item (click)="setStatus(2)">In progress</button>
-				                <button mat-menu-item (click)="setStatus(3)">Done</button>
-				            </mat-menu>
 						</div>
 					</div>
 					
@@ -62,7 +43,7 @@
 				<h5 *ngIf="task.comments.length == 0" class="text-center text-grey weight-300">No comments</h5>
 
 				<div *ngFor="let comment of task.comments">
-					<mat-card *ngIf="!comment.intern" class="rounded light-border p-26 no-mb full-width col s12">
+					<mat-card *ngIf="!comment.intern" class="rounded p-26 no-mb full-width col s12">
 						<button mat-icon-button class="close-button" (click)="removeComment(comment._id)">
 							<i class="ion-md-close"></i>
 						</button>
@@ -72,6 +53,9 @@
 						</div>
 
 						<p class="weight-300">{{comment.content}}</p>
+						<div class="mt-10 text-right">
+							<button mat-button class="weight-300" (click)="reply(comment.author, task._id)">reply</button>
+						</div>
 					</mat-card>
 
 					<div *ngIf="comment.intern" class="intern p-26 col s12" style="margin-top: 12px">
@@ -85,10 +69,10 @@
 
 				
 
-				<mat-card class="rounded light-border p-26 col s12 full-width">
+				<mat-card *ngIf="task.status != 3" class="rounded light-border p-26 col s12 full-width">
 
 					<div class="ui icon input header-element full-width">
-		                <input type="text" placeholder="Comment" [(ngModel)]="comment" name="comment" autocomplete="off" tabindex="1">
+		                <input type="text" placeholder="Comment" [(ngModel)]="comment" name="comment" autocomplete="off" tabindex="1" id="comment-input">
 		                <button (click)="commentTask()" class="icon" mat-icon-button type="submit">
 		                    <i class="ion-md-paper-plane"></i>
 		                </button>
@@ -106,29 +90,55 @@
 		            </div>
 
 				</mat-card>
+
+				<h5 *ngIf="task.status == 3" class="text-center text-grey weight-300">
+					<i class="ion-md-close-circle mr-10"></i>
+					Task is closed
+				</h5>
 			</div>
 		</div>
 
 
 		<div class="col s6 m3">
 			<div class="p-10">
-				<div class="p-26" style="border-radius: 26px;background: repeating-linear-gradient(45deg, #fce6a8, #fcd3a8 260px)">
+				<div class="text-right">
 					<button mat-button class="mr-10" (click)="goBack()">
 						<i class="ion-ios-arrow-round-back mr-10" style="vertical-align: unset;"></i>
 						{{pool.name}}
 					</button>
+
+					<button [matMenuTriggerFor]="status" mat-button class="bg-light-grey">
+						{{ (task.status == 0) ? 'Waiting' : (task.status == 1) ? 'To do' : (task.status == 2) ? 'In progress' : 'Done' }}
+		                <i class="ion-ios-arrow-down ml-10" style="vertical-align: unset;"></i>
+		            </button>    
+
+		            <mat-menu #status="matMenu" xPosition="after">
+		                <button mat-menu-item (click)="setStatus(1)">To do</button>
+		                <button mat-menu-item (click)="setStatus(2)">In progress</button>
+		                <button mat-menu-item (click)="setStatus(3)">Done</button>
+		            </mat-menu>
+				</div>
+			</div>
+			<!-- <div class="p-10">
+				<div class="p-26 text-white" style="border-radius: 26px;background: #3f4b8c">
 					<h5 class="weight-300">
 						{{pool.description}}
 					</h5>
 				</div>
-			</div>
+				<h5 class="text-right weight-300 text-grey">Other tasks</h5>
+				<div *ngFor="let task of copied_tasks" class="_status{{task.status}}">
+					<div style="cursor: pointer" (click)="openTask(task._id)" class="drop-shadow task bg-white">
+						<span class="small-text"><span class="indicator"></span>{{task.name}}</span>
+						<span class="text-grey" style="float: right;font-size: 0.7em">{{task.created | date: 'MMM d, HH:mm'}}</span>
+						<p class="text-grey small-text weight-300 no-mt no-mb" style="max-height: 16px;overflow: hidden">{{task.description}}</p>
+					</div>
+				</div>
+			</div> -->
+
 			<!-- <div class="p-16 no-pt text-right">
-				<button mat-button class="mr-10 weight-300" (click)="goBack()">
-					<i class="ion-ios-arrow-round-back mr-10" style="vertical-align: unset;"></i>
-					Pool
-				</button>
 				<img src="/assets/img/illustration_woman.svg" class="full-width">
 			</div> -->
+
 
 		</div>
 

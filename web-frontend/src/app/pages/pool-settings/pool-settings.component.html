@@ -18,12 +18,6 @@
 				</mat-select>
 			</mat-form-field>
 
-			<!-- <mat-form-field class="d-block col s12" appearance="outline">
-				<mat-label>Tags</mat-label>
-				<input matInput type="text" autocomplete="off" formControlName="tags">
-			</mat-form-field> -->
-
-
 			<mat-form-field class="d-block col s12" appearance="outline">
 				<mat-label>Description</mat-label>
 				<textarea matInput type="text" autocomplete="off" formControlName="description"></textarea>
@@ -45,11 +39,14 @@
 				</mat-chip-list>
 			</mat-form-field>
 
-
 			<div class="col s12 row light-border-bottom" style="padding-bottom: 12px">
-				<div class="no-mb col s6">
-					<mat-checkbox color="warn" formControlName="private">private pool</mat-checkbox>
-					<h5 class="weight-300 text-grey no-mb no-mt">private pools are only for you visible</h5>
+				<div class="no-mb col s6" style="padding-left: 0">
+					<!-- <mat-checkbox color="warn" formControlName="private">private pool</mat-checkbox>
+					<h5 class="weight-300 text-grey no-mb no-mt">private pools are only for you visible</h5> -->
+					<button mat-button class="bg-light-grey rounded full-width" style="padding:2px" (click)="developCover()" type="button">
+						<i class="ion-md-crop mr-10" style="vertical-align: unset;"></i>
+						Develop cover
+					</button>
 				</div>
 				<div class="col s6">
 					<div class="no-mb">

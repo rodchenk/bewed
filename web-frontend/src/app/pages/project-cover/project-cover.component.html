@@ -1,0 +1,59 @@
+<div *ngIf="size == 'block'">
+	
+
+	<mat-card class="drop-shadow" style="cursor: pointer;" (click)="openPool()">
+		<span class="small-text">
+			{{project.name}}
+		</span>
+		<mat-chip-list class="bewed-chips ml-10" style="display: inline-block;float: right;">
+			 <mat-basic-chip>
+			 	{{project.viewCategory}}
+			 </mat-basic-chip>
+		</mat-chip-list>
+		<div class="full-width" style="margin-top: 20px">
+			<mat-progress-bar [color]="project.progress > 45 ? 'primary' : 'warn'" mode="determinate" [value]="project.progress" class="mb-10 mt-10 mr-10" style="vertical-align: middle;display: inline-block;width: calc(100% - 40px);"></mat-progress-bar>
+			<span class="small-text text-grey" style="vertical-align: middle;">{{project.progress}}%</span>
+		</div>
+		<div class="p-16" style="margin: 10px -16px;background: linear-gradient(45deg, #353848, #354748);">
+			<img src="/assets/img/{{project.category}}.png" class="full-width" style="height: 135px;object-fit: contain;">
+		</div>
+		<div class="text-right">
+			<span style="float: left;margin-top: 5px" class="small-text">
+				<i class="ion-md-heart" style="color: coral;margin-right: 3px"></i>
+				{{project.watchers}}
+			</span>
+			<span class="small-text text-grey mr-10">
+				<i class="ion-ios-attach mr-10"></i>
+				{{project.tasks}} tasks
+			</span>
+			<span class="small-text text-grey mr-10">
+				<i class="ion-md-body mr-10"></i>
+				1 mates
+			</span>
+		</div>
+	</mat-card>
+
+
+</div>
+
+<div *ngIf="size == 'inline'">
+	<mat-card class="drop-shadow" style="cursor: pointer;" (click)="openPool()">
+		<span class="small-text">
+			{{project.name}}
+		</span>
+		<mat-chip-list class="bewed-chips ml-10" style="display: inline-block;float: right;">
+			 <mat-basic-chip>
+			 	{{project.viewCategory}}
+			 </mat-basic-chip>
+		</mat-chip-list>
+		<div class="p-16" style="margin: 10px -16px;background-color: #eff0f6">
+			<img src="/assets/img/{{project.category}}.png" class="full-width" style="height: 95px;object-fit: contain;">
+		</div>
+		<div>
+			<span class="small-text text-grey">
+				<i class="ion-ios-attach mr-10"></i>
+				{{project.tasks}} tasks
+			</span>
+		</div>
+	</mat-card>
+</div>

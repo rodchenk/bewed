@@ -50,6 +50,7 @@ import { LayoutGalleryComponent } from './pages/layouts/layout-gallery/layout-ga
 import { GalleryUnitComponent } from './pages/gallery-unit/gallery-unit.component';
 import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.component';
 import { UsersListComponent } from './pages/users-list/users-list.component';
+import { ProjectCoverComponent } from './pages/project-cover/project-cover.component';
 
 @NgModule({
     declarations: [
@@ -79,7 +80,8 @@ import { UsersListComponent } from './pages/users-list/users-list.component';
         LayoutGalleryComponent,
         GalleryUnitComponent,
         ProjectsByTagComponent,
-        UsersListComponent
+        UsersListComponent,
+        ProjectCoverComponent
     ],
     imports: [
         BrowserModule,

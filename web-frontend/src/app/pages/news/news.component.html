@@ -2,7 +2,7 @@
 
 <mat-card *ngFor="let post of news" class="p-16">
 	<div *ngIf="post.value.layout == 'kanban'">
-
+		
 		<div *ngIf="post.value.task.update_trigger == 0">
 			<div class="row pb-10 light-border-bottom">
 				<span *ngIf="post.value.task.user_id" class="weight-300">
@@ -14,6 +14,9 @@
 			<div class="row">
 				<span class="d-block">{{post.value.task.name}}</span>
 				<p class="d-block text-grey weight-300">{{post.value.task.description}}</p>
+			</div>
+			<div class="p-26">
+				<img src="/assets/img/{{post.value.category}}.png" class="full-width">
 			</div>
 		</div>
 
@@ -27,7 +30,7 @@
 			</div>
 			<div class="row">
 				<p class="weight-300 text-grey">
-					Status of "{{post.value.task.name}}" has been changed to <span class="marker">{{parseTaskStatus(post.value.task.status)}}</span>
+					Status of "{{post.value.task.name}}" has been changed to <i class="ion-ios-arrow-round-forward ml-10 mr-10"></i><span class="marker">{{parseTaskStatus(post.value.task.status)}}</span>
 				</p>
 			</div>
 		</div>
