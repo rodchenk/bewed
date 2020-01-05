@@ -13,6 +13,7 @@ import { ExploreUsersComponent } from './pages/explore-users/explore-users.compo
 import { TaskComponent } from './pages/task/task.component';
 import { NewsComponent } from './pages/news/news.component';
 import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.component';
+import { GetStartedComponent } from './pages/get-started/get-started.component';
 
 const routes: Routes = [  
 	{
@@ -42,6 +43,10 @@ const routes: Routes = [
  	{
  		path: 'settings',
  		component: SettingsComponent
+ 	},
+ 	{
+ 		path: 'get-started',
+ 		component: GetStartedComponent
  	},
  	{
  		path: 'signup',

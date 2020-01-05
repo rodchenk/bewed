@@ -51,6 +51,7 @@ import { GalleryUnitComponent } from './pages/gallery-unit/gallery-unit.componen
 import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.component';
 import { UsersListComponent } from './pages/users-list/users-list.component';
 import { ProjectCoverComponent } from './pages/project-cover/project-cover.component';
+import { GetStartedComponent } from './pages/get-started/get-started.component';
 
 @NgModule({
     declarations: [
@@ -81,7 +82,8 @@ import { ProjectCoverComponent } from './pages/project-cover/project-cover.compo
         GalleryUnitComponent,
         ProjectsByTagComponent,
         UsersListComponent,
-        ProjectCoverComponent
+        ProjectCoverComponent,
+        GetStartedComponent
     ],
     imports: [
         BrowserModule,
