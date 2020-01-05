@@ -57,6 +57,7 @@ body *::-webkit-scrollbar-thumb {
 	color: #acb1c1 !important;
 }
 .text-orange{ color: #f25d51}
+.text-dark-blue{ color: #424553}
 a{
 	text-decoration: none;
 }
@@ -227,7 +228,7 @@ a.gradient-button{
 }
 .gradient-marker{
 	background: linear-gradient(45deg, #fd776c, #ff4081);
-    color: #e4e4e4;
+    color: #fff;
     padding: 2px 14px;
     border-radius: 20px 4px 20px 4px;
     display: inline-block;
