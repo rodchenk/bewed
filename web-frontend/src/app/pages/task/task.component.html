@@ -15,7 +15,7 @@
 							<img src="{{author_image}}">
 						</div>
 						<div class="second-col">
-							<span class="d-block">{{task.user_id}}</span>
+							<span class="d-block bold">{{task.user_id}}</span>
 							<span class="d-block weight-300 small-text text-grey">
 								Created at {{task.created | date: 'MMM d, HH:mm'}}
 							</span>
@@ -29,7 +29,7 @@
 						</div>
 					</div>
 					
-					<h4 class="pt-10 mt-10" style="font-weight: 500">
+					<h4 class="pt-10 mt-10">
 						{{task.name}}
 					</h4>
 					<p class="weight-300">
@@ -48,13 +48,13 @@
 							<i class="ion-md-close"></i>
 						</button>
 						<div class="mb-10 mr-10 pb-10 no-light-border-bottom">
-							<a routerLink="/user/{{comment.author}}" class="mr-10 text-dark">{{comment.author}}</a>
+							<a routerLink="/user/{{comment.author}}" class="mr-10 text-dark bold">{{comment.author}}</a>
 							<span class="small-text text-grey">{{comment.created | date: 'MMM d, HH:mm'}}</span>
 						</div>
 
 						<p class="weight-300">{{comment.content}}</p>
 						<div class="mt-10 text-right">
-							<button mat-button class="weight-300" (click)="reply(comment.author, task._id)">reply</button>
+							<button mat-button class="weight-300 bg-light-grey" (click)="reply(comment.author, task._id)">reply</button>
 						</div>
 					</mat-card>
 

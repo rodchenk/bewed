@@ -15,6 +15,7 @@ export class UserService{
 
 	public isLoggedIn: boolean = false;
 	public user:any = {user_id:''};
+	private _temp_user_ = {user_id:''}
 
 	private auth_key:string = 'user_auth_data'
 	private email_key:string = 'user_email'
@@ -23,7 +24,7 @@ export class UserService{
   		this._refresh_auth();
   		if(this.isLoggedIn){
   			this.user = this.LocalStorageManager.getValue(this.auth_key);
-  			console.log(this.user);
+  			// TODO this.validateSession()
   		}
   	}
 
@@ -63,6 +64,21 @@ export class UserService{
 
     public removeSavedEmail(){
       this.LocalStorageManager.remove(this.email_key)
+    }
+
+    public validateSession():Promise<any>{
+    	return new Promise( (resolve, reject) => {
+    		this.http.get(Config.API_AUTH + '/session', {
+
+  				headers: {
+  					"Authorization": "Bearer " + this.user.token + ":" + this.user.password
+  				}
+  			
+    		}).subscribe( (session:any) => {
+    			this.user = session
+    			console.log(this.user)
+    		}, error => this.isLoggedIn = false )
+    	})
     }
 
     public getAll():Promise<any>{

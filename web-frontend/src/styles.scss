@@ -1,5 +1,31 @@
+@font-face {
+	font-family: 'DM Sans';
+	src: url('/assets/font/DMSans-Regular.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'DM Sans';
+	src: url('/assets/font/DMSans-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'DM Sans';
+	src: url('/assets/font/DMSans-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: #eff0f6}
+body { 
+	margin: 0; 
+	// font-family: Roboto, "Helvetica Neue", sans-serif; 
+	background: #eff0f6;
+	color: #333;
+	font-weight: normal;
+}
 .mat-card:not(.full-width){
 	max-width: 650px;
 }
@@ -16,6 +42,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
 }
 *{
 	transition: 250ms;
+	font-family: 'DM Sans', sans-serif !important;
 }
 body *::-webkit-scrollbar {
     width: 4px;
@@ -30,7 +57,7 @@ body *::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
-.bold{ font-weight: 700 }
+.bold{ font-weight: 600 }
 .text-center{
 	text-align: center;
 }
@@ -44,7 +71,7 @@ body *::-webkit-scrollbar-thumb {
 	float: right;
 }
 .weight-300{
-	font-weight: 300;
+	font-weight: 300; //useless
 }
 .text-grey{
 	color: #9093aa !important;
