@@ -57,4 +57,4 @@ app.use('/auth', superlogin.router);
 app.use('/api', routes);
 
 app.listen(port);
-console.log('bewed RESTful API server started on: ' + port + "\n");
+console.log('foliage API server started on: 127.0.0.1:' + port + "\n");
