@@ -1,0 +1,12 @@
+.bewed-chips{
+	display: inline-block;
+	float: right;
+}
+div.image-container{
+	margin: 10px -16px;
+	background: linear-gradient(45deg, #353848, #354748);
+	&>img{
+		height: 135px;
+		object-fit: contain;
+	}
+}
