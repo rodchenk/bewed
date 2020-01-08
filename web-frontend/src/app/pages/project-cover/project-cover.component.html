@@ -50,9 +50,13 @@
 			<img src="/assets/img/{{project.category}}.png" class="full-width" style="height: 95px;object-fit: contain;">
 		</div>
 		<div>
-			<span class="small-text text-grey">
-				<i class="ion-ios-attach mr-10"></i>
+			<span class="small-text text-grey mr-10">
+				<i class="ion-ios-attach" style="margin-right: 3px"></i>
 				{{project.tasks}} tasks
+			</span>
+			<span *ngIf="showPublished && project.published" class="small-text text-grey ml-10">
+				<i class="ion-md-globe" style="margin-right: 3px"></i>
+				Published
 			</span>
 		</div>
 	</mat-card>

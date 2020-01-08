@@ -11,6 +11,7 @@ export class ProjectCoverComponent implements OnInit {
 
 	@Input() private size:string
 	@Input() private project:any
+  @Input() private showPublished:boolean = false
 
   	constructor(private router:Router) { }
 

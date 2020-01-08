@@ -4,58 +4,61 @@
 	<div class="p-16 row">
 
 		<div class="col s12 m8">
-
-			<div class="col s12">
-				<div class="pb-10 row panel pt-10 light-border-bottom" style="margin: 10px 0">
-					<div class="col s12 m6">
-						
-						<button mat-button class="mr-10 weight-300" (click)="goBack()">
-							<i class="ion-ios-arrow-round-back mr-10" style="vertical-align: unset;"></i>
-							Profile
-						</button>
-						
-					</div>
-					<div class="col s12 m6 text-right right-actions">
-						<button mat-button class="bg-light-grey weight-300" (click)="addPool()">
-							<i class="ion-ios-color-wand mr-10" style="vertical-align: unset;"></i>
-							New pool
-						</button>
-						<button mat-button class="weight-300 bg-light-grey" (click)="openStudioSettings()">
-							<i class="ion-ios-cog mr-10" style="vertical-align: unset;"></i>
-							Settings
-						</button>
-					</div>
-				</div>
-			</div>
-
-
 			<div class="row p-10" *ngIf="pools.length > 0">
 				<div *ngFor="let pool of pools" class="col s12 m6 l4">
-					<div class="light-border rounded bg-white p-16 pointer drop-shadow mt-10 p-relative" (click)="openPool(pool._id)">
-						<h4 class="weight-300 text-grey mt-10">
-							<i *ngIf="pool.private" class="ion-ios-lock float-right"></i>
-							{{pool.name}}
-							<mat-chip-list class="bewed-chips" style="display: inline-block;">
-								 <mat-basic-chip>{{pool.viewCategory || pool.category}}</mat-basic-chip>
-							</mat-chip-list>
-						</h4>
-						<div class="text-grey" *ngIf="pool.layout == 'kanban'">
-							<span class="weight-300 small-text">{{completed(pool.tasks)}} from {{pool.tasks.length}} tasks completed</span>
-						</div>
-						<div class="text-grey" *ngIf="pool.layout == 'gallery'">
-							<span class="weight-300 small-text">{{pool.tasks.length}} photo(s)</span>
-						</div>
-						<div *ngIf="pool.layout == 'kanban'" class="pool-scala" style="width: 33%"></div>
-					</div>
+					<app-project-cover [project]="pool" [size]="'inline'" [showPublished]="true"></app-project-cover>
 				</div>
 			</div>
 
 			<div *ngIf="pools.length == 0">
-				no pools yet
+				<h4 class="text-center">
+					no pools yet
+				</h4>
 			</div>
 		</div>
 
 		<div class="col s12 m4 pt-10">
+			<div class="">
+				<h1 class="text-center" style="text-decoration: underline #f25d51;font-weight: 900;">foliage Studio</h1>
+			</div>
+
+			<div class="text-center p-16">
+				<button mat-button class="colorful-button" (click)="addPool()">
+					<i class="ion-ios-add mr-10" style="vertical-align: unset;"></i>
+					Add pool
+				</button>
+			</div>
+
+<!-- 			<div class="row">
+				<div class="col s12 m6">
+					<mat-checkbox color="accent" value="1">Design</mat-checkbox>
+				</div>
+				<div class="col s12 m6">
+					<mat-checkbox color="warn" [value]="true">Travel</mat-checkbox>
+				</div>
+				<div class="col s12 m6">
+					<mat-checkbox color="warn">Art</mat-checkbox>
+				</div>
+				<div class="col s12 m6">
+					<mat-checkbox color="warn">Sport</mat-checkbox>
+				</div>
+			</div> -->
+
+
+<!-- 			<div class="pb-10 panel">
+				<div class="no">
+					
+					<button mat-button class="mr-10 weight-300" (click)="goBack()">
+						<i class="ion-ios-arrow-round-back mr-10" style="vertical-align: unset;"></i>
+						Profile
+					</button>
+					<button mat-button class="bg-light-grey weight-300" (click)="addPool()">
+						<i class="ion-ios-color-wand mr-10" style="vertical-align: unset;"></i>
+						New pool
+					</button>
+				</div>
+			</div> -->
+
 			<img src="/assets/img/social.png" style="transform: scaleX(-1);" class="full-width">
 		</div>
 	</div>

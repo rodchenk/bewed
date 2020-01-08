@@ -43,18 +43,21 @@
 				<h5 *ngIf="task.comments.length == 0" class="text-center text-grey weight-300">No comments</h5>
 
 				<div *ngFor="let comment of task.comments">
-					<mat-card *ngIf="!comment.intern" class="rounded p-26 no-mb full-width col s12">
-						<button mat-icon-button class="close-button" (click)="removeComment(comment._id)">
+					<mat-card *ngIf="!comment.intern" class="rounded p-16 no-mb full-width col s12">
+						<!-- <button mat-icon-button class="close-button" (click)="removeComment(comment._id)">
 							<i class="ion-md-close"></i>
-						</button>
-						<div class="mb-10 mr-10 pb-10 no-light-border-bottom">
+						</button> -->
+
+						<div class="mr-10 p-10 no-light-border-bottom">
 							<a routerLink="/user/{{comment.author}}" class="mr-10 text-dark bold">{{comment.author}}</a>
 							<span class="small-text text-grey">{{comment.created | date: 'MMM d, HH:mm'}}</span>
 						</div>
 
-						<p class="weight-300">{{comment.content}}</p>
-						<div class="mt-10 text-right">
-							<button mat-button class="weight-300 bg-light-grey" (click)="reply(comment.author, task._id)">reply</button>
+						<p class="no-mt ml-10 weight-300">{{comment.content}}</p>
+						<div class="text-right">
+							<button [disabled]="task.status == 3" mat-button color="primary" class="weight-300" (click)="reply(comment.author, task._id)">reply</button>
+							<button mat-button color="primary" class="weight-300 ml-10" (click)="reply(comment.author, task._id)">translate</button>
+							<button mat-button color="accent" class="weight-300 ml-10" (click)="removeComment(comment._id)">delete</button>
 						</div>
 					</mat-card>
 
@@ -91,7 +94,7 @@
 
 				</mat-card>
 
-				<h5 *ngIf="task.status == 3" class="text-center text-grey weight-300">
+				<h5 *ngIf="task.status == 3" class="col s12 text-center text-grey weight-300">
 					<i class="ion-md-close-circle mr-10"></i>
 					Task is closed
 				</h5>

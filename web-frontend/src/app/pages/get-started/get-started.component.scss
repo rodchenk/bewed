@@ -1,0 +1,11 @@
+div.bg-absctraction{
+	position: absolute;
+    background: linear-gradient(45deg, rgb(245, 220, 86), rgb(86, 245, 208));
+    border-radius: 25px 18% 30px 80%;
+    transform: rotate(170deg);
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: 20%;
+    z-index: -1;
+}

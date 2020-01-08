@@ -41,6 +41,8 @@ export class StudioComponent implements OnInit {
   	*/
   	private getPools(){
         this.poolProvider.getAll().then( (pools:any) => {
+        	pools.map( pool => pool.tasks = pool.tasks.length)
+        	console.log(pools)
             this.pools = pools
             this.setCategory()
         }).catch( error => console.warn(error) )
@@ -65,7 +67,7 @@ export class StudioComponent implements OnInit {
   	*/
   	private getUserPools(user_id:string){
         this.poolProvider.getByUser(user_id).then( (pools:any) => {
-            console.log(pools)
+        	pools.map( pool => pool.tasks = pool.tasks.length)
             this.pools = pools
             this.setCategory()
         } ).catch( error => console.warn(error) )
