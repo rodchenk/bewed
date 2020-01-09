@@ -40,7 +40,6 @@ exports.getAll = function(req, res){
 }
 
 exports.getImage = function(req, res){
-    console.warn('Getting image with size ' + req.query.size);
     couch.mango(db_name, {
         selector: {
             "_id": {
