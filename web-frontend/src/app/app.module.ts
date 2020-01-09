@@ -19,7 +19,8 @@ import { MatButtonModule, MatCheckboxModule, MatSelectModule,
         MatInputModule, MatFormFieldModule, MatMenuModule, 
         MatCardModule, MatDialogModule, MatChipsModule,
         MatTabsModule, MatDatepickerModule, MatNativeDateModule,
-        MatProgressBarModule, MatSnackBarModule, MatSlideToggleModule } from '@angular/material';
+        MatProgressBarModule, MatSnackBarModule, MatSlideToggleModule,
+        MatStepperModule, MatExpansionModule } from '@angular/material';
 
 /* bewed components */
 import { AppRoutingModule } from './app-routing.module';
@@ -95,10 +96,12 @@ import { GetStartedComponent } from './pages/get-started/get-started.component';
         MatCheckboxModule,
         MatTabsModule,
         MatInputModule,
+        MatExpansionModule,
         MatSnackBarModule,
         MatChipsModule,
         MatSelectModule,
         MatProgressBarModule,
+        MatStepperModule,
         MatNativeDateModule,
         MatCardModule,
         MatDatepickerModule,

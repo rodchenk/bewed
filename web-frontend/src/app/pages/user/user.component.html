@@ -95,30 +95,10 @@
 				</div>
 			</div>
 
-			<div *ngIf="pools.length > 0" class="row">
+			<div *ngIf="pools.length > 0" class="row" style="margin-top: -12px">
 
 				<div *ngFor="let pool of pools" class="col s12 m6 l4 xl3">
-					<div class="light-border rounded bg-white p-16 pointer drop-shadow" (click)="openPool(pool._id)">
-						<h4 class="weight-300 text-grey mt-10 no-mb">
-							<i *ngIf="pool.private" class="ion-ios-lock float-right"></i>
-							{{pool.name}}
-							<mat-chip-list class="bewed-chips" style="display: inline-block;">
-								 <mat-basic-chip>{{pool.viewCategory || pool.category}}</mat-basic-chip>
-							</mat-chip-list>
-						</h4>
-
-						<div class="text-grey" *ngIf="pool.layout == 'kanban'">
-							<span class="weight-300 small-text">{{pool.tasks.length}} tasks</span>
-						</div>
-						<div class="text-grey" *ngIf="pool.layout == 'gallery'">
-							<span class="weight-300 small-text">{{pool.tasks.length}} photos</span>
-						</div>
-
-						<div class="text-center" style="width: 193px;height: 122px;">
-							<img src="/assets/img/{{pool.category}}.png" class="max-full-width" style="max-height: 135px">
-						</div>
-
-					</div>
+					<app-project-cover [size]="'inline'" [project]="pool"></app-project-cover>
 				</div>
 
 			</div>
@@ -127,11 +107,16 @@
 	</div>
 </div>
 <div *ngIf="!user.name">
-	<h2 class="weight-300 text-center p-16 no-mb">
-		<i class="ion-md-finger-print text-grey mr-10"></i>
+	<h4 class="weight-300 text-center p-16 no-mb">
 		User does not exist
-	</h2>
-	<div style="max-width: 400px" class="m-auto">
-		<img src="assets/img/empty.png" class="full-width mt-10">
+	</h4>
+	<div class="m-auto" style="max-width: 400px">
+		<img src="/assets/img/empty.png" class="full-width">
+	</div>
+	<div class="text-center">
+		<a routerLink="/news" mat-button color="primary" class="arrow-animation weight-300">
+			<i class="ion-ios-arrow-round-forward"></i>
+			Go home
+		</a>
 	</div>
 </div>
