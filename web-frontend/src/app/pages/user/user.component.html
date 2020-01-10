@@ -98,7 +98,7 @@
 			<div *ngIf="pools.length > 0" class="row" style="margin-top: -12px">
 
 				<div *ngFor="let pool of pools" class="col s12 m6 l4 xl3">
-					<app-project-cover [size]="'inline'" [project]="pool"></app-project-cover>
+					<app-project-cover [size]="'inline'" [project]="pool.value"></app-project-cover>
 				</div>
 
 			</div>

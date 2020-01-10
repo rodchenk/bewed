@@ -33,7 +33,7 @@ export class UserComponent implements OnInit {
             		}
 
             		this.poolProvider.getPublishedPools(this.user._id).then( (data:any) => {
-            			data.map(e => e.tasks = e.tasks.length)
+            			//data.map(e => e.tasks = e.tasks.length)
             			this.pools = data
             			this.pools.forEach((pool:any) => {
 	        				let result = PoolCategory.categories.filter( (category:PoolCategoryAbstract) => category.value === pool.category)

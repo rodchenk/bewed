@@ -37,12 +37,14 @@ export class ExploreUsersComponent implements OnInit {
   		this.poolProvider.getAll().then( (pools:any) => {
   			console.log(pools)
   			if(pools.length > 0){
-  				pools.map( pool => {
-  					pool.completed_tasks = pool.tasks.filter( e => e.status == 3).length
-  					pool.tasks = pool.tasks.length
-  					pool.watchers = pool.watchers.length
-  				} )
+  				// pools.map( pool => {
+  				// 	pool = pool.value
+  				// 	// pool.completed_tasks = pool.tasks.filter( e => e.status == 3).length
+  				// 	// pool.tasks = pool.tasks.length
+  				// 	// pool.watchers = pool.watchers.length
+  				// } )
   				this.pools = pools;
+  				console.log(this.pools)
   				this.top_pools = this.pools.slice(0,4)
   			}
 

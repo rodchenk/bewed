@@ -10,7 +10,7 @@
 		</h3>
 	</div>
 	<div *ngFor="let pool of top_pools" class="col s12 m6">
-		<app-project-cover [size]="'block'" [project]="pool"></app-project-cover>
+		<app-project-cover [size]="'block'" [project]="pool.value"></app-project-cover>
 	</div>
 </div>
 
@@ -68,7 +68,7 @@
 		</h3>
 	</div>
 	<div *ngFor="let pool of pools" class="col s12 m4 l3">
-		<app-project-cover [size]="'inline'" [project]="pool"></app-project-cover>
+		<app-project-cover [size]="'inline'" [project]="pool.value"></app-project-cover>
 	</div>
 </div>
 <img src="/assets/img/bubble.png" style="    

@@ -18,36 +18,39 @@ export class PoolService {
   	constructor(private http: HttpClient, private userProvider: UserService, private bar: MatSnackBar) { }
 
   	/**
-  	* @UNUSED
   	* @method gets all pools of all users
   	* @use_api GET /pools/all
+  	* @use_view all
   	* @return Promise<any> e.g. Pool data
   	*/
   	public getAll():Promise<any>{
-  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools/all', {}).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
+  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools/all', {}).subscribe( (data:any) => resolve(data.rows/*todo*/), error => reject(error)) )
   	}
 
   	/**
   	* @method gets all pools by given author (user_id)
   	* @use_api GET /pools?user_id={id}
+  	* @use_view user_pools
   	* @return Promise<any> e.g. Pool data
   	*/
   	public getByUser(user_id:string):Promise<any>{
-  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools', { params: {user_id} }).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
+  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools', { params: {user_id} }).subscribe( (data:any) => resolve(data.rows), error => reject(error)) )
   	}
 
   	/**
   	* @method gets all published pools by given user_id
   	* @user_api GET /pools/published?user_id={id}
+  	* @use_view published
   	* @return Promise<any> with array of published pools
   	*/
   	public getPublishedPools(user_id:string):Promise<any>{
-  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools/published', { params: {user_id} }).subscribe( (data:any) => resolve(data.docs), error => reject(error)) )
+  		return new Promise( (resolve, reject) => this.http.get(Config.API_URL + '/pools/published', { params: {user_id} }).subscribe( (data:any) => resolve(data.rows), error => reject(error)) )
   	}
 
   	/**
   	* @method gets all pool's updates and news, that a given user is watching
   	* @user_api GET /pool/news?user_id={id}
+  	* @use_view news
   	* @return Promise<any> with array of pools
   	*/
     public getUserNews(data:{user_id, offset}):Promise<any>{
