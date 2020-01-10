@@ -22,23 +22,28 @@ exports.add = function(req, res){
 }
 
 exports.getAll = function(req, res){
-    couch.mango(db_name, {
-        selector: {
-            "_id": {
-                "$gt": null
-            }
-        }
-    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+	const rows_per_page = 20;
+	const skip = 0;
+
+	couch.get(db_name, '_design/poolTasks/_view/all', {
+        include_docs: false, 
+        descending: true,
+        limit: rows_per_page,
+        skip: skip
+    }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
 exports.getByUser = function(req, res){
-    couch.mango(db_name, {
-        selector: {
-            "user": {
-                "$eq": req.query.user_id
-            }
-        }
-    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+	const rows_per_page = 20;
+	const skip = 0;
+	
+	couch.get(db_name, '_design/poolTasks/_view/user_pools', {
+        include_docs: false, 
+        descending: true,
+        limit: rows_per_page,
+        skip: skip,
+        key: req.query.user_id
+    }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
 exports.getByID = function(req, res){
@@ -52,19 +57,16 @@ exports.getByID = function(req, res){
 }
 
 exports.getPublished = function(req, res){
-    couch.mango(db_name, {
-        selector: {
-            "_id": {
-                "$gt": null
-            },
-            "user": {
-                "$eq": req.query.user_id
-            },
-            "published": {
-                "$eq": true
-            }
-        }
-    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+	const rows_per_page = 20;
+	const skip = 0;
+	
+	couch.get(db_name, '_design/poolTasks/_view/published', {
+        include_docs: false, 
+        descending: true,
+        limit: rows_per_page,
+        skip: skip,
+        key: req.query.user_id
+    }).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
 }
 
 exports.update = function(req, res){
@@ -101,7 +103,7 @@ exports.follows = function(req, res){
 }
 
 exports.tags = function(req, res){
-	couch.get(db_name, '_design/poolTasks/_view/poolsByTag', {
+	couch.get(db_name, '_design/poolTasks/_view/by_tag', {
         include_docs: false, 
         descending: true,
         limit: 25,
