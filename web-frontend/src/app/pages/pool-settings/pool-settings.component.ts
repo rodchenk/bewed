@@ -6,8 +6,9 @@ import { PoolService } from './../../services/pool.service';
 import { Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { ConfirmDialogComponent } from './../confirm-dialog/confirm-dialog.component';
-import {COMMA, ENTER, SPACE} from '@angular/cdk/keycodes';
-import {MatChipInputEvent} from '@angular/material/chips';
+import { COMMA, ENTER, SPACE } from '@angular/cdk/keycodes';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { DevelopPoolCoverComponent } from './../../pages/develop-pool-cover/develop-pool-cover.component';
 
 @Component({
 	selector: 'app-pool-settings',
@@ -32,7 +33,10 @@ export class PoolSettingsComponent implements OnInit {
 	}
 
 	private developCover():void{
-		this.userProvider.showSuccess('Not available yet')
+		this.dialogRef.close()
+		let developCoverDialog = this.dialog.open(DevelopPoolCoverComponent)
+		developCoverDialog.afterClosed().subscribe(data => console.log(data))
+		//this.userProvider.showSuccess('Not available yet')
 	}
 
 	addTag(event: MatChipInputEvent): void {

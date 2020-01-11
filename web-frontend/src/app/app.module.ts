@@ -53,6 +53,7 @@ import { ProjectsByTagComponent } from './pages/projects-by-tag/projects-by-tag.
 import { UsersListComponent } from './pages/users-list/users-list.component';
 import { ProjectCoverComponent } from './pages/project-cover/project-cover.component';
 import { GetStartedComponent } from './pages/get-started/get-started.component';
+import { DevelopPoolCoverComponent } from './pages/develop-pool-cover/develop-pool-cover.component';
 
 @NgModule({
     declarations: [
@@ -84,7 +85,8 @@ import { GetStartedComponent } from './pages/get-started/get-started.component';
         ProjectsByTagComponent,
         UsersListComponent,
         ProjectCoverComponent,
-        GetStartedComponent
+        GetStartedComponent,
+        DevelopPoolCoverComponent
     ],
     imports: [
         BrowserModule,
@@ -124,7 +126,8 @@ import { GetStartedComponent } from './pages/get-started/get-started.component';
         UploadPhotoComponent,
         CreateTaskComponent,
         GalleryUnitComponent,
-        UsersListComponent
+        UsersListComponent,
+        DevelopPoolCoverComponent
     ],
     providers: [],
     bootstrap: [AppComponent]
