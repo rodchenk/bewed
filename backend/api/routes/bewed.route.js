@@ -11,6 +11,7 @@ router.get 	 ('/user', user.getByID)
 router.put 	 ('/user', user.update)
 router.get 	 ('/user/image', user.getImage)
 router.get 	 ('/users', user.getAll)
+router.get 	 ('/user/values', user.getValues)
 
 /* pool api */
 router.get 	 ('/pools/published', pool.getPublished)

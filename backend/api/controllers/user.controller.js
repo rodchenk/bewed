@@ -53,3 +53,14 @@ exports.getImage = function(req, res){
         res.json({'status':'error', 'reason':err});
     });
 }
+
+exports.getValues = function(req, res){
+    couch.mango(db_name, {
+        selector: {
+            "_id": {
+                "$eq": req.query.user_id
+            }
+        },
+       fields: req.query.values
+    }, {}).then(({data, headers, status}) => res.json(data), err => res.json({'status':'error', 'reason':err}) );
+}
