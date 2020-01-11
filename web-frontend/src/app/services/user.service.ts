@@ -87,6 +87,20 @@ export class UserService{
         })
     }
 
+    /**
+    * @method 
+    * @use_api /GET user/value?values=[value_1, value_n]&user={id}
+    * @param obj Object containig of array values[(min 2 values)] and user_id:string
+    * @return Promise<any>
+    *	- resolve if data was found
+    *	- reject if error
+    */
+    public getValues(obj:any):Promise<any>{
+    	return new Promise( (resolve, reject) => {
+    		this.http.get(Config.API_URL + '/user/values', { params: obj }).subscribe( (data:any) => resolve(data.docs), error => reject(error))
+    	})
+    }
+
   	/**
   	* @method logs in the user and initializes temp password and token
   	* @use_api POST /login

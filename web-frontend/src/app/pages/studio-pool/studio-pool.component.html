@@ -1,113 +1,99 @@
-<div class="no-with-sidenav">
 
-	<div *ngIf="pool.name" class="row p-16">
-		<div class="col s6 m8 row">
-			<app-layout-kanban *ngIf="pool.layout == 'kanban'" [pool_id]="pool._id"></app-layout-kanban>
-			<app-layout-gallery *ngIf="pool.layout == 'gallery'" [pool_id]="pool._id"></app-layout-gallery>
-		</div>
+<div *ngIf="pool.name" class="row p-16">
+	<div class="col s6 m8 row">
+		<app-layout-kanban *ngIf="pool.layout == 'kanban'" [pool_id]="pool._id"></app-layout-kanban>
+		<app-layout-gallery *ngIf="pool.layout == 'gallery'" [pool_id]="pool._id"></app-layout-gallery>
+	</div>
 
-		<div class="col s6 m4" style="position:sticky;top:67px">
-			<div class="p-26 no-pt">
-				<div>
-					<img src="{{cover}}" class="full-width">
-				</div>
-				<h1 class="text-center no-mb" style="text-decoration: underline #f25d51;font-weight: 900;">{{pool.name}}</h1>
+	<div class="col s6 m4" style="position:sticky;top:67px">
+		<div class="p-26 no-pt">
+			<div>
+				<img src="{{cover}}" class="full-width">
+			</div>
+			<h1 class="text-center no-mb" style="text-decoration: underline #f25d51;font-weight: 900;">{{pool.name}}</h1>
 
-				<div class="text-center p-16">
-					<span>{{pool.viewCategory}} by <span (click)="goBack()" class="gradient-marker" style="cursor: pointer;">{{pool.user}}</span></span>
-				</div>
-				<span *ngIf="pool.description" class="d-block p-16 no-pt text-right weight-300" style="font-size: 0.9em">
-					{{pool.description}}
-				</span>
-				<div class="contact-links mb-10" style="display: none;">
-					<a href="">
-						<i class="ion-logo-vk"></i>
-					</a>
-					<a href="">
-						<i class="ion-logo-github"></i>
-					</a>
-					<a href="">
-						<i class="ion-logo-instagram"></i>
-					</a>
-				</div>
-				<span *ngIf="pool.tags" class="text-grey d-block weight-300 p-16 no-pt text-center" style="font-size: 0.9em">
-					<a *ngFor="let tag of pool.tags" routerLink="/tags/{{tag}}" class="text-dark tag-marker">{{tag}}</a>
-				</span>
-				<div *ngIf="pool.user == me" class="panel p-10">
-					<div class="right-actions">
-						<button mat-button class="weight-300 bg-light-grey" *ngIf="!pool.published" (click)="publishPool(true)" style="width: 33%">
-							<i class="ion-ios-megaphone mr-10" style="vertical-align: unset;"></i>
-							Publish
-						</button>
+			<div class="text-center p-16">
+				<span>{{pool.viewCategory}} by <span (click)="goBack()" class="gradient-marker" style="cursor: pointer;">{{pool.user}}</span></span>
+			</div>
+			<span *ngIf="pool.description" class="d-block p-16 no-pt text-right weight-300" style="font-size: 0.9em">
+				{{pool.description}}
+			</span>
 
-						<button mat-button class="weight-300 bg-grey" *ngIf="pool.published" (click)="publishPool(false)" style="width: 33%">
-							<i class="ion-ios-power mr-10" style="vertical-align: unset;"></i>
-							Unpublish
-						</button>
+			<span *ngIf="pool.tags" class="text-grey d-block weight-300 p-16 no-pt text-center" style="font-size: 0.9em">
+				<a *ngFor="let tag of pool.tags" routerLink="/tags/{{tag}}" class="text-dark tag-marker">{{tag}}</a>
+			</span>
+			<div *ngIf="pool.user == me" class="panel p-10">
+				<div class="right-actions">
+					<button mat-button class="weight-300 bg-light-grey" *ngIf="!pool.published" (click)="publishPool(true)" style="width: 33%">
+						<i class="ion-ios-megaphone mr-10" style="vertical-align: unset;"></i>
+						Publish
+					</button>
 
-						<button mat-button class="bg-light-grey weight-300 light-border-right" style="width: 33%">
-							<i class="ion-ios-body mr-10" style="vertical-align: unset;"></i>
-							Mates
-						</button>
+					<button mat-button class="weight-300 bg-grey" *ngIf="pool.published" (click)="publishPool(false)" style="width: 33%">
+						<i class="ion-ios-power mr-10" style="vertical-align: unset;"></i>
+						Unpublish
+					</button>
 
-						<button mat-button class="weight-300 bg-light-grey" (click)="openPoolSettings()" style="width: 33%">
-							Settings
-						</button>
-					</div>
-				</div>
+					<button mat-button class="bg-light-grey weight-300 light-border-right" style="width: 33%">
+						<i class="ion-ios-body mr-10" style="vertical-align: unset;"></i>
+						Mates
+					</button>
 
-				<div class="p-16 row no-mb light-border-top">
-					<div class="col s4 text-center">
-						<span class="bold d-block" style="font-size: 2em">{{pool.tasks.length}}</span>
-						<span class="d-block small-text text-grey">Posts</span>
-					</div>
-					<div class="col s4 text-center" style="cursor: pointer;">
-						<span class="bold d-block" style="font-size: 2em">1</span>
-						<span class="d-block small-text text-grey">Mates</span>
-					</div>
-					<div *ngIf="!pool.private" class="col s4 text-center" (click)="showWatchers()" style="cursor: pointer;">
-						<span class="bold d-block" style="font-size: 2em">{{pool.watchers.length}}</span>
-						<span class="d-block small-text text-grey">Watch</span>
-					</div>
-					<div *ngIf="pool.private" class="col s4 text-center">
-						<a>
-							<i class="ion-ios-lock" style="font-size: 2em"></i>
-							<span class="d-block small-text text-grey">Private</span>
-						</a>
-					</div>
-				</div>
-				
-				<div class="p-16 text-center row">
-					<div class="col s6">
-						<button class="full-width weight-300 bg-green text-white" mat-button *ngIf="pool.sponsor" style="border-radius: 40px;padding: 4px 0">
-							<i class="ion-logo-usd mr-10"></i>
-							Sponsor
-						</button>
-					</div>
-					<div class="col s6">
-						<button *ngIf="!isWatching" class="bg-orange text-white full-width weight-300 arrow-animation" mat-button style="border-radius: 40px;padding: 4px 0" (click)="watch()">
-							<i class="ion-ios-arrow-round-forward mr-10"></i>
-							Watch
-						</button>
-						<button *ngIf="isWatching" class="bg-light-grey full-width weight-300" mat-button style="border-radius: 40px;padding: 4px 0" (click)="watch()">
-							<i class="ion-ios-eye-off mr-10"></i>
-							Unwatch
-						</button>
-					</div>
+					<button mat-button class="weight-300 bg-light-grey" (click)="openPoolSettings()" style="width: 33%">
+						Settings
+					</button>
 				</div>
 			</div>
 
+			<div class="p-16 row no-mb light-border-top">
+				<div class="col s4 text-center">
+					<span class="bold d-block" style="font-size: 2em">{{pool.tasks.length}}</span>
+					<span class="d-block small-text text-grey">Posts</span>
+				</div>
+				<div class="col s4 text-center" style="cursor: pointer;">
+					<span class="bold d-block" style="font-size: 2em">1</span>
+					<span class="d-block small-text text-grey">Mates</span>
+				</div>
+				<div *ngIf="!pool.private" class="col s4 text-center" (click)="showWatchers()" style="cursor: pointer;">
+					<span class="bold d-block" style="font-size: 2em">{{pool.watchers.length}}</span>
+					<span class="d-block small-text text-grey">Watch</span>
+				</div>
+				<div *ngIf="pool.private" class="col s4 text-center">
+					<a>
+						<i class="ion-ios-lock" style="font-size: 2em"></i>
+						<span class="d-block small-text text-grey">Private</span>
+					</a>
+				</div>
+			</div>
+			
+			<div class="p-16 text-center row">
+				<div class="col s6">
+					<button class="full-width weight-300 bg-green text-white" mat-button *ngIf="pool.sponsor" style="border-radius: 40px;padding: 4px 0">
+						<i class="ion-logo-usd mr-10"></i>
+						Sponsor
+					</button>
+				</div>
+				<div class="col s6">
+					<button *ngIf="!isWatching" class="bg-orange text-white full-width weight-300 arrow-animation" mat-button style="border-radius: 40px;padding: 4px 0" (click)="watch()">
+						<i class="ion-ios-arrow-round-forward mr-10"></i>
+						Watch
+					</button>
+					<button *ngIf="isWatching" class="bg-light-grey full-width weight-300" mat-button style="border-radius: 40px;padding: 4px 0" (click)="watch()">
+						<i class="ion-ios-eye-off mr-10"></i>
+						Unwatch
+					</button>
+				</div>
+			</div>
 		</div>
-	</div>
 
-	<div *ngIf="!pool.name">
-		<h2 class="weight-300 text-center p-16 no-mb">
-			<i class="ion-md-finger-print text-grey mr-10"></i>
-			Pool does not exist
-		</h2>
-		<div style="max-width: 400px" class="m-auto">
-			<img src="assets/img/empty.png" class="full-width mt-10">
-		</div>
 	</div>
-	
+</div>
+
+<div *ngIf="!pool.name">
+	<h4 class="weight-300 text-center p-16 no-mb">
+		Pool does not exist
+	</h4>
+	<div style="max-width: 400px" class="m-auto">
+		<img src="assets/img/empty.png" class="full-width mt-10">
+	</div>
 </div>

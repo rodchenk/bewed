@@ -20,6 +20,8 @@ export class StudioComponent implements OnInit {
 
 	public pools:any[] = [];
 	public me:string
+ 	public studio:any = {}
+ 	public is_mine:boolean = false
 
   	constructor(private dialog: MatDialog, private userProvider: UserService, private poolProvider: PoolService, private router: Router, private route: ActivatedRoute) { }
 
@@ -27,8 +29,21 @@ export class StudioComponent implements OnInit {
     * @method will be called after constructor. It takes user parameter from URL and looks for its pools in DB
     */
   	ngOnInit() {
+  		let user_studio;
   		this.me = this.userProvider.user.user_id
-        this.route.params.subscribe( params => this.getUserPools(params['user'] || this.me) );
+
+        this.route.params.subscribe( params => {
+        	user_studio = params['user'];
+        	this.getUserPools(user_studio || this.me)
+        });
+
+        this.is_mine = user_studio == this.me
+
+  		this.userProvider.getValues( {values: ['name', 'verified'], user_id: user_studio} ).then( (data:any) => {
+  			if(data.length > 0){
+  				this.studio = data[0]
+  			}
+  		})
   	}
 
   	completed(tasks:any[]):number{

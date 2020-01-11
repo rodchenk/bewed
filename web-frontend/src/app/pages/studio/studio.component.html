@@ -16,10 +16,12 @@
 
 	<div class="col s12 m4 pt-10">
 		<div class="">
-			<h1 class="text-center" style="text-decoration: underline #f25d51;font-weight: 900;">foliage Studio</h1>
+			<h1 class="text-center" style="text-decoration: underline #f25d51;font-weight: 900;">
+				{{studio.name}} Studio
+			</h1>
 		</div>
 
-		<div class="text-center p-16">
+		<div *ngIf="is_mine" class="text-center p-16">
 			<button mat-button class="colorful-button" (click)="addPool()">
 				<i class="ion-ios-add mr-10" style="vertical-align: unset;"></i>
 				Add pool
