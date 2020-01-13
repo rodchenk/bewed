@@ -64,12 +64,12 @@ var config = {
 }
 
 var superlogin = new SuperLogin(config);
-var routes = require('./api/routes/bewed.route');
+var routes_v1 = require('./api/routes/bewed.v1.route');
 var routes_v2 = require('./api/routes/bewed.v2.route');
 
-app.use('/auth', superlogin.router);
-app.use('/api', routes);
-app.use('/api/v2', routes_v2)
+app.use('/auth', superlogin.router); // couchdb auth module
+app.use('/api/v1', routes_v1); // api for nosql connection
+app.use('/api/v2', routes_v2); // api for sql connection
 
 app.listen(port);
 console.log('foliage API server started on: 127.0.0.1:' + port + "\n");

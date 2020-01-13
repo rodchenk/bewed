@@ -2,40 +2,43 @@
 
 const TABLE = 'pool';
 
+function run_query(query, res){
+	db_sql.query(query, (error, result) => {
+		if(error) res.json({'status':'error', 'reason':error})
+		res.json(result)
+	})
+}
+
 exports.getAll = function(req, res){
-	let query = `select * from ${TABLE}`;
-	db_sql.query(query, (error, result) => res.json(result) )
+	const query = `select * from ${TABLE}`;
+	run_query(query, res)
 }
 
 exports.getByUser = function(req, res){
-	let user = req.query.user_id;
-	let query = `select * from ${TABLE} where user = '${user}';`
-	db_sql.query(query, (error, result) => {
-		if(error){
-			throw error
-		}
-		res.json(result)
-	})
+	const user = req.query.user_id;
+	const query = `select * from ${TABLE} where user = '${user}';`
+	run_query(query, res)
 }
 
 exports.getByID = function(req, res){
-	let id = req.query.pool_id;
-	let query = `select * from ${TABLE} where id = '${id}';`
-	db_sql.query(query, (error, result) => {
-		if(error){
-			throw error
-		}
-		res.json(result)
-	})
+	const id = req.query.pool_id;
+	const query = `select * from ${TABLE} where id = '${id}';`
+	run_query(query, res)
 }
 
 exports.getPublished = function(req, res){
-	let user = req.query.user_id;
-	let query = `select * from ${TABLE} where user = '${user}' AND published = 1;`
-	db_sql.query(query, (error, result) => {
-		if(error){
-			throw error
-		}
-		res.json(result)
-	})
+	const user = req.query.user_id;
+	const query = `select * from ${TABLE} where user = '${user}' AND published = 1;`
+	run_query(query, res)
+}
+
+exports.add = function(req, res){
+	const pool = {
+        name: req.body.data.name,
+        category: req.body.data.category,
+        user: req.body.user,
+        layout: req.body.data.layout
+    };
+    const query = `INSERT INTO ${TABLE} ('name', 'user', 'layout') VALUES ('${name}', '${user}', '${layout}')`;
+    run_query(query, res)
 }
