@@ -1,7 +1,8 @@
 'use strict';
 
-var pool = 		require('../controllers/pool.controller');
-var user =		require('../controllers/user.controller');
+var pool = 	require('../controllers/pool.controller');
+var user =	require('../controllers/user.controller');
+var test = 	require('../controllers/test.controller')
 
 const express = require('express')
 const router = express.Router()
