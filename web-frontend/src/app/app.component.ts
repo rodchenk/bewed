@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
-// import { NavigationService } from './services/navigation.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from './pages/login/login.component';
 
@@ -16,7 +15,7 @@ export class AppComponent implements OnInit{
 	public user:any = null;
 	public photo:string = '/assets/img/dpi.png'
 
-	constructor(public userService: UserService, /*public navigationService: NavigationService,*/ public dialog: MatDialog){
+	constructor(public userService: UserService, public dialog: MatDialog){
 		console.log(this.userService.isLoggedIn)
 	}
 
