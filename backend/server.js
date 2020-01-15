@@ -64,8 +64,8 @@ var config = {
 }
 
 var superlogin = new SuperLogin(config);
-var routes_v1 = require('./api/routes/bewed.v1.route');
-var routes_v2 = require('./api/routes/bewed.v2.route');
+var routes_v1 = require('./api/v1/routes/bewed.route');
+var routes_v2 = require('./api/v2/routes/bewed.route');
 
 app.use('/auth', superlogin.router); // couchdb auth module
 app.use('/api/v1', routes_v1); // api for nosql connection
