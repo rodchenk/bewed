@@ -42,3 +42,12 @@ exports.add = function(req, res){
     const query = `INSERT INTO ${TABLE} ('name', 'user', 'layout') VALUES ('${name}', '${user}', '${layout}')`;
     run_query(query, res)
 }
+
+/**
+* 	@TODO
+*/
+exports.update = function(req, res){
+	const name = req.query.pool.name;
+	const query = `UPDATE ${POOL} SET 'pool' = '${name}' //todo`;
+	run_query(query, res);
+}
