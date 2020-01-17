@@ -51,3 +51,14 @@ exports.update = function(req, res){
 	const query = `UPDATE ${POOL} SET 'pool' = '${name}' //todo`;
 	run_query(query, res);
 }
+
+exports.delete = function(req, res){
+	const pool_id = req.query._id;
+	const query = `DELETE ${TABLE} WHERE id='${pool_id}';`;
+	run_query(query, res);
+}
+
+exports.news = function(req, res){}
+exports.follows = function(req, res){}
+exports.tags = function(req, res){}
+exports.followers = function(req, res){}
