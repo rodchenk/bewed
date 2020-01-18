@@ -59,6 +59,14 @@ exports.delete = function(req, res){
 }
 
 exports.news = function(req, res){}
-exports.follows = function(req, res){}
+
+/**
+* 	@TODO
+*/
+exports.follows = function(req, res){
+	const user_id = req.query.user_id;
+	const query = `SELECT * FROM ${TABLE}`;
+	run_query(query, res);
+}
 exports.tags = function(req, res){}
 exports.followers = function(req, res){}
