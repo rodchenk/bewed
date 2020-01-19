@@ -1,8 +1,12 @@
 class CharEncrypter(object):
 
-	def __init__(self, file_name, _key):
+	def __init__(self, file_name, _key_file):
 		self.file_name = file_name
-		self._key = _key
+		try:
+			with open(_key_file) as key_object:
+				self._key = int(key_object.read())
+		except Exception as e:
+			print('Key not found')
 
 	def _write(self):
 		pass
@@ -12,7 +16,7 @@ class CharEncrypter(object):
 
 	def decrypt(self):
 		if self.log_on:
-			print('Start decripting')
+			print('Start decrypting')
 		temp_content = []
 		try:
 			with open(self.file_name, 'r') as file_object:
@@ -24,10 +28,12 @@ class CharEncrypter(object):
 						if word == 'MI':
 							temp_line += ' '
 						else:
-							temp_line += str(chr(int(int(word) / self._key)))
+							char_num = int( int(word, 16) / self._key)
+
+							temp_line += str(chr(char_num))
 					temp_content.append(temp_line + '\n')
 					if self.log_on:
-						print('Line decripted')
+						print('Line decrypted')
 			with open(self.file_name, 'w') as file_object:
 				# remove last newLine character
 				temp_content[-1] = temp_content[-1].replace('\n', '')
@@ -39,7 +45,7 @@ class CharEncrypter(object):
 
 	def encrypt(self):
 		if self.log_on:
-			print('Start encripting')
+			print('Start encrypting')
 		temp_content = []
 		try:
 			with open(self.file_name, 'r') as file_object:
@@ -49,10 +55,11 @@ class CharEncrypter(object):
 					for word in line.split():
 						temp = ''
 						for index in range(0, len(word)):
-							temp += str(ord(word[index]) * self._key) + ' '
+							char_num = ord(word[index])
+							temp += str(hex(char_num * self._key)) + ' '
 						temp_content.append(temp + 'MI' + ' ')
 					if self.log_on:
-						print('Line encripted')
+						print('Line encrypted')
 					temp_content.append('\n')
 
 			with open(self.file_name, 'w') as file_object:
@@ -60,6 +67,6 @@ class CharEncrypter(object):
 				temp_content.pop()
 				file_object.write(''.join(temp_content))
 				if self.log_on:
-					print('Encription finished')
+					print('Encryption finished')
 		except Exception as e:
 			print(e)
