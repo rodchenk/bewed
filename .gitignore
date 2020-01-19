@@ -2,3 +2,7 @@
 
 # database
 /_couchdb
+# key for en- or decryption
+/docs/key.m
+# python cache
+/docs/__pycache__
