@@ -2,6 +2,7 @@ class CharEncrypter(object):
 
 	def __init__(self, file_name, _key_file):
 		self.file_name = file_name
+		self.__SPACE = '0xS'
 		try:
 			with open(_key_file) as key_object:
 				self._key = int(key_object.read())
@@ -25,7 +26,7 @@ class CharEncrypter(object):
 						continue
 					temp_line = ''
 					for word in line.split():
-						if word == 'MI':
+						if word == self.__SPACE:
 							temp_line += ' '
 						else:
 							char_num = int( int(word, 16) / self._key)
@@ -57,7 +58,7 @@ class CharEncrypter(object):
 						for index in range(0, len(word)):
 							char_num = ord(word[index])
 							temp += str(hex(char_num * self._key)) + ' '
-						temp_content.append(temp + 'MI' + ' ')
+						temp_content.append(temp + self.__SPACE + ' ')
 					if self.log_on:
 						print('Line encrypted')
 					temp_content.append('\n')
