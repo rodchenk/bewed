@@ -29,8 +29,6 @@ class CharEncrypter(object):
 					raise 
 						
 				for line in content:
-					if len(line) == 0:
-						continue
 					temp_line = ''
 					for word in line.split():
 						if word == self.__SPACE:
@@ -63,8 +61,6 @@ class CharEncrypter(object):
 					raise
 
 				for line in content:
-					if len(line) == 0:
-						continue
 					for word in line.split():
 						temp = ''
 						for index in range(0, len(word)):
