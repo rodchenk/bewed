@@ -3,6 +3,6 @@
 # database
 /_couchdb
 # key for en- or decryption
-/docs/key.m
+/_docs/key.m
 # python cache
-/docs/__pycache__
+/_docs/__pycache__
