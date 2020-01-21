@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime as time
 """Object-wrapper for file to be encrypted or decrypted with simple algorithm based on char to integer convertation with user specific key-translation"""
 class CharEncrypter(object):
 
@@ -18,8 +18,8 @@ class CharEncrypter(object):
 
 	def _log(self, message):
 		if self.log_on: 
-			_now = datetime.datetime.now()
-			print('%s:%s:%s -> '%(_now.hour, _now.minute, _now.second) + message)
+			_now = time.now()
+			print('%s:%s:%s -> %s'%(_now.hour, _now.minute, _now.second, message))
 
 	def decrypt(self):
 		"""Method translate ecrypted file to noraml test object. If file is not encrypted, an Exception will be thrown"""
