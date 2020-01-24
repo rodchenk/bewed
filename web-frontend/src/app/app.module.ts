@@ -1,7 +1,7 @@
 /* Angular components */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { environment } from '../environments/environment';
+// import { environment } from '../environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -115,7 +115,7 @@ import { DevelopPoolCoverComponent } from './pages/develop-pool-cover/develop-po
         ReactiveFormsModule,
         AngularFireDatabaseModule,
         ImageCropperModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
+        // AngularFireModule.initializeApp(environment.firebaseConfig, 'bewed')
     ],
     entryComponents: [
         PoolModalComponent,
