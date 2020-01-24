@@ -1,7 +1,7 @@
 from datetime import datetime as time
-"""Object-wrapper for file to be encrypted or decrypted with simple algorithm based on char to integer convertation with user specific key-translation"""
+"""Author Mischa Rodchenkov, https://github.com/rodchenk"""
 class CharEncrypter(object):
-
+	"""Object-wrapper for file to be encrypted or decrypted with simple algorithm based on char to integer convertation with user specific key-translation"""
 	def __init__(self, file_name, _key_file=None):
 		"""Constructor method for CharEncrypter. Arguments: file_name -> file you want to crypt, _key_file -> file with your unique key(int). If no key is provided, char index will be the same. Set log_on to True to see the logs"""
 		self.file_name = file_name
